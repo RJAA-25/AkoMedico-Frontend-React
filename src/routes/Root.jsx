@@ -8,8 +8,8 @@ const Root = () => {
 
 	useEffect(() => {
 		if (isAuthorized) navigate('/overview', { replace: true });
-		// eslint-disable-next-line
-	}, []);
+		// esling-disable-next-line
+	}, [isAuthorized]);
 
 	return (
 		<main>

@@ -5,9 +5,9 @@ const FormError = ({ message, keyword, custom = false }) => {
 		<ul>
 			{message.slice(-1).map((error) =>
 				custom ? (
-					<li>{error}</li>
+					<li key={(Math.random() + 1).toString(36).substring(7)}>{error}</li>
 				) : (
-					<li>
+					<li key={(Math.random() + 1).toString(36).substring(7)}>
 						{keyword} {error.toLowerCase()}
 					</li>
 				)

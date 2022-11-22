@@ -1,7 +1,15 @@
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { authActions } from '../../store/auth';
+import { userActions } from '../../store/user';
+import { profileActions } from '../../store/profile';
+import { contactActions } from '../../store/contact';
+import { conditionActions } from '../../store/condition';
+import { doctorActions } from '../../store/doctor';
+import { consultationActions } from '../../store/consultation';
+import { admissionActions } from '../../store/admission';
+
 import { logoutUser } from '../../api/session';
 
 const Sidebar = () => {
@@ -10,21 +18,33 @@ const Sidebar = () => {
 
 	const handleLogout = async () => {
 		const res = await logoutUser();
-		if (res.status === 200) {
-			dispatch(authActions.logout());
-			navigate('/login');
-		} else if (res.status === 401) {
-			// For Notification
-			console.log(res.data);
-		} else {
-			// For Notification
-			console.log({ error: res.message });
+		switch (res.status) {
+			case 200:
+				dispatch(authActions.logout());
+				dispatch(userActions.reset());
+				dispatch(profileActions.reset());
+				dispatch(contactActions.reset());
+				dispatch(conditionActions.reset());
+				dispatch(doctorActions.reset());
+				dispatch(consultationActions.reset());
+				dispatch(admissionActions.reset());
+				navigate('/login');
+				break;
+			case 401:
+				console.log(res.data);
+				break;
+			default:
+				console.log({ error: res.message });
 		}
 	};
 
 	return (
 		<div>
-			This is a sidebar shown when user is authenticated
+			<ul>
+				<li>
+					<NavLink to="/overview">Overview</NavLink>
+				</li>
+			</ul>
 			<button onClick={handleLogout}>Logout</button>
 		</div>
 	);

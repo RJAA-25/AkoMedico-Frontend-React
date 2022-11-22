@@ -1,50 +1,67 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import { authActions } from '../../../store/auth';
+import { userActions } from '../../../store/user';
 import { loginUser } from '../../../api/session';
 
 const Login = () => {
 	const [error, setError] = useState({});
 
+	const isAuthorized = useSelector((state) => state.auth.isAuthenticated);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const isAuthorized = useSelector((state) => state.auth.isAuthenticated);
-
-	useEffect(() => {
-		if (isAuthorized) navigate('/overview', { replace: true });
-		// eslint-disable-next-line
-	}, []);
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
 		const form = document.querySelector('#session');
 		const formData = new FormData(form);
 		const res = await loginUser(formData);
-		if (res.status === 200) {
-			dispatch(authActions.login());
-			navigate('/overview');
-		} else if (res.status === 401) {
-			setError(res.data);
-		} else {
-			setError({ error: res.message });
+		switch (res.status) {
+			case 200:
+				const {
+					data: { user, profile },
+				} = res;
+				dispatch(authActions.login());
+				dispatch(userActions.set(user));
+				!user.email_confirmed
+					? navigate('/confirmation')
+					: !profile
+					? navigate('/get-started')
+					: navigate('/overview');
+				break;
+			case 401:
+				setError(res.data);
+				break;
+			default:
+				setError({ error: res.message });
 		}
 	};
 
 	return (
-		<div>
-			<form id="session" onSubmit={handleLogin}>
+		<>
+			{isAuthorized ? (
+				<Navigate replace to="/overview" />
+			) : (
 				<div>
-					<input type="text" name="session[email]" placeholder="Email" />
+					<form id="session" onSubmit={handleLogin}>
+						<div>
+							<input type="text" name="session[email]" placeholder="Email" />
+						</div>
+						<div>
+							<input
+								type="password"
+								name="session[password]"
+								placeholder="Password"
+							/>
+						</div>
+						<button>Login</button>
+					</form>
+					{error?.error && <p>{error.error}</p>}
 				</div>
-				<div>
-					<input type="password" name="session[password]" placeholder="Password" />
-				</div>
-				<button>Login</button>
-			</form>
-			{error?.error && <p>{error.error}</p>}
-		</div>
+			)}
+		</>
 	);
 };
 
