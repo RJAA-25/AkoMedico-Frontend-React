@@ -33,3 +33,8 @@ export const getDoctors = async () => {
 	const res = await api.get('doctors');
 	return res.data;
 };
+
+export const getEmergencyContacts = async () => {
+	const res = await api.get('emergency-contacts');
+	return res.data;
+};

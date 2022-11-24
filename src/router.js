@@ -11,6 +11,7 @@ import GetStarted from './routes/pages/overview/GetStarted';
 import Overview from './routes/pages/overview/Overview';
 import Profile from './routes/pages/personal/Profile';
 import Doctors from './routes/pages/people/Doctors';
+import EmergencyContacts from './routes/pages/people/EmergencyContacts';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
 				<Route path="overview" element={<Overview />} />
 				<Route path="profile" element={<Profile />} />
 				<Route path="doctors" element={<Doctors />} />
+				<Route path="emergency-contacts" element={<EmergencyContacts />} />
 			</Route>
 		</Route>
 	)

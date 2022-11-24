@@ -12,7 +12,7 @@ const Profile = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const profile = useSelector((state) => state.profile.data);
+	// const profile = useSelector((state) => state.profile.data);
 	const profileState = useSelector((state) => state.profile.isChanged);
 
 	const fetchData = async () => {
