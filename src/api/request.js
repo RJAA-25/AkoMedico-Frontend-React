@@ -43,3 +43,8 @@ export const getExistingConditions = async () => {
 	const res = await api.get('existing-conditions');
 	return res.data;
 };
+
+export const getConsultations = async () => {
+	const res = await api.get('consultations');
+	return res.data;
+};

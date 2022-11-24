@@ -13,6 +13,7 @@ import Profile from './routes/pages/personal/Profile';
 import Doctors from './routes/pages/people/Doctors';
 import EmergencyContacts from './routes/pages/people/EmergencyContacts';
 import ExistingConditions from './routes/pages/history/ExistingConditions';
+import Consultations from './routes/pages/history/Consultations';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
 				<Route path="doctors" element={<Doctors />} />
 				<Route path="emergency-contacts" element={<EmergencyContacts />} />
 				<Route path="existing-conditions" element={<ExistingConditions />} />
+				<Route path="consultations" element={<Consultations />} />
 			</Route>
 		</Route>
 	)
