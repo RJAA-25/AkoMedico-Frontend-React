@@ -21,5 +21,10 @@ export const checkAccess = async () => {
 
 export const getOverview = async () => {
 	const res = await api.get('overview');
-	return res;
+	return res.data;
+};
+
+export const getProfile = async () => {
+	const res = await api.get('profile');
+	return res.data;
 };

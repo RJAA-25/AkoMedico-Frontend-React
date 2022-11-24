@@ -25,7 +25,7 @@ export const fetchAccess = async (tool, destination, access) => {
 			} else {
 				if (destination) navigate(destination, { replace: true });
 				if (access) {
-					const { data } = await access();
+					const data = await access();
 					return data;
 				}
 			}
