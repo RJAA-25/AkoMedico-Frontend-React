@@ -1,3 +1,9 @@
+export const civilStatus = ['Single', 'Married', 'Divorced', 'Separated', 'Widowed'];
+
+export const bloodType = ['Unknown', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
+
+export const sex = ['Male', 'Female'];
+
 export const countries = [
 	{
 		num_code: '4',
@@ -1745,9 +1751,3 @@ export const countries = [
 ];
 // Taken from https://github.com/Dinuks/country-nationality-list/blob/master/countries.json
 // <img src="https://flagcdn.com/ph.svg" alt="" />
-
-export const civilStatus = ['Single', 'Married', 'Divorced', 'Separated', 'Widowed'];
-
-export const bloodType = ['Unknown', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
-
-export const sex = ['Male', 'Female'];

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-import FormError from '../../../components/navigation/error/FormError';
+import FormError from '../../../components/error/FormError';
 
 import { registerUser } from '../../../api/register';
 

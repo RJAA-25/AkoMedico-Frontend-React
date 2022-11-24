@@ -15,6 +15,7 @@ import EmergencyContacts from './routes/pages/people/EmergencyContacts';
 import ExistingConditions from './routes/pages/history/ExistingConditions';
 import Consultations from './routes/pages/history/Consultations';
 import Admission from './routes/pages/history/Admissions';
+import Settings from './routes/pages/settings/Settings';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
 				<Route path="existing-conditions" element={<ExistingConditions />} />
 				<Route path="consultations" element={<Consultations />} />
 				<Route path="admissions" element={<Admission />} />
+				<Route path="settings" element={<Settings />} />
 			</Route>
 		</Route>
 	)

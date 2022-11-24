@@ -18,3 +18,12 @@ export const createProfile = async (profile) => {
 		return error?.response ? error.response : error;
 	}
 };
+
+export const updateProfile = async (profile) => {
+	try {
+		const res = await api.patch('update', profile);
+		return res;
+	} catch (error) {
+		return error?.response ? error.response : error;
+	}
+};

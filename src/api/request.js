@@ -24,11 +24,6 @@ export const getOverview = async () => {
 	return res.data;
 };
 
-export const getProfile = async () => {
-	const res = await api.get('profile');
-	return res.data;
-};
-
 export const getDoctors = async () => {
 	const res = await api.get('doctors');
 	return res.data;

@@ -1,56 +1,65 @@
 import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { authActions } from '../../store/auth';
-import { userActions } from '../../store/user';
-import { profileActions } from '../../store/profile';
-import { contactActions } from '../../store/contact';
-import { conditionActions } from '../../store/condition';
-import { doctorActions } from '../../store/doctor';
-import { consultationActions } from '../../store/consultation';
-import { admissionActions } from '../../store/admission';
-
 import { logoutUser } from '../../api/session';
+import { removeAccess } from '../../utilities/access';
 
 const Sidebar = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const handleLogout = async () => {
-		const res = await logoutUser();
-		switch (res.status) {
-			case 200:
-				dispatch(authActions.logout());
-				dispatch(userActions.reset());
-				dispatch(profileActions.reset());
-				dispatch(contactActions.reset());
-				dispatch(conditionActions.reset());
-				dispatch(doctorActions.reset());
-				dispatch(consultationActions.reset());
-				dispatch(admissionActions.reset());
-				navigate('/login');
-				break;
-			case 401:
-				console.log(res.data);
-				break;
-			default:
-				console.log({ error: res.message });
-		}
+		await removeAccess({ dispatch, navigate }, logoutUser);
 	};
 
 	return (
-		<div>
-			<ul>
-				<li>
-					<NavLink to="/overview">Overview</NavLink>
-				</li>
-				<p>Personal</p>
-				<li>
-					<NavLink to="/profile">Profile</NavLink>
-				</li>
-			</ul>
+		<nav>
+			<div>
+				<NavLink to="/overview">Overview</NavLink>
+			</div>
+
+			<div>
+				<p>PERSONAL</p>
+				<ul>
+					<li>
+						<NavLink to="/profile">Profile</NavLink>
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<p>PEOPLE</p>
+				<ul>
+					<li>
+						<NavLink to="/doctors">Doctors</NavLink>
+					</li>
+					<li>
+						<NavLink to="/emergency-contacts">Emergency Contacts</NavLink>
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<p>HISTORY</p>
+				<ul>
+					<li>
+						<NavLink to="/existing-conditions">Existing Conditions</NavLink>
+					</li>
+					<li>
+						<NavLink to="/consultations">Consultations</NavLink>
+					</li>
+					<li>
+						<NavLink to="/admissions">Admission</NavLink>
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<NavLink to="/settings">Settings</NavLink>
+			</div>
+
 			<button onClick={handleLogout}>Logout</button>
-		</div>
+		</nav>
 	);
 };
 
