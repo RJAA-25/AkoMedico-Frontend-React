@@ -1,9 +1,17 @@
-import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { fetchAccess } from '../../../utilities/access';
 import { resendConfirmation } from '../../../api/confirmation';
 
 const Confirmation = () => {
+	console.log('Passed Confirmation');
+
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const user = useSelector((state) => state.user.data);
+	const userState = useSelector((state) => state.user.isChanged);
 
 	const handleResend = async (e) => {
 		e.preventDefault();
@@ -20,17 +28,20 @@ const Confirmation = () => {
 		}
 	};
 
+	useEffect(() => {
+		if (!userState) {
+			fetchAccess({ dispatch, navigate }, '/overview', null);
+		} else {
+			if (user.email_confirmed) navigate('/get-started', { replace: true });
+		}
+		// eslint-disable-next-line
+	}, []);
+
 	return (
-		<>
-			{user.email_confirmed ? (
-				<Navigate replace to="/overview" />
-			) : (
-				<div>
-					Confirmation
-					<button onClick={handleResend}>Resend Confirmation Email</button>
-				</div>
-			)}
-		</>
+		<div>
+			Confirmation
+			<button onClick={handleResend}>Resend Confirmation Email</button>
+		</div>
 	);
 };
 

@@ -4,14 +4,17 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 import { authActions } from '../../../store/auth';
 import { userActions } from '../../../store/user';
+
 import { loginUser } from '../../../api/session';
+import { profileActions } from '../../../store/profile';
 
 const Login = () => {
+	console.log('Passed Login');
 	const [error, setError] = useState({});
 
-	const isAuthorized = useSelector((state) => state.auth.isAuthenticated);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const isAuthorized = useSelector((state) => state.auth.isAuthenticated);
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
@@ -25,6 +28,7 @@ const Login = () => {
 				} = res;
 				dispatch(authActions.login());
 				dispatch(userActions.set(user));
+				dispatch(profileActions.set(profile));
 				!user.email_confirmed
 					? navigate('/confirmation')
 					: !profile

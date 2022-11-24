@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-import { registerUser } from '../../../api/register';
 import FormError from '../../../components/navigation/error/FormError';
 
+import { registerUser } from '../../../api/register';
+
 const Register = () => {
+	console.log('Passed Register');
 	const [error, setError] = useState({});
 
 	const isAuthorized = useSelector((state) => state.auth.isAuthenticated);

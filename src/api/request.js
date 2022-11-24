@@ -10,11 +10,16 @@ const api = axios.create({
 	withCredentials: true,
 });
 
-export const getOverview = async () => {
+export const checkAccess = async () => {
 	try {
-		const res = await api.get('overview');
+		const res = await api.get('access');
 		return res;
 	} catch (error) {
 		return error?.response ? error.response : error;
 	}
+};
+
+export const getOverview = async () => {
+	const res = await api.get('overview');
+	return res;
 };

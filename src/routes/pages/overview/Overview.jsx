@@ -2,67 +2,49 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { getOverview } from '../../../api/overview';
-import Sidebar from '../../../components/navigation/Sidebar';
-import { userActions } from '../../../store/user';
-import { profileActions } from '../../../store/profile';
+import { doctorActions } from '../../../store/doctor';
 import { contactActions } from '../../../store/contact';
 import { conditionActions } from '../../../store/condition';
+import { admissionActions } from '../../../store/admission';
+import { consultationActions } from '../../../store/consultation';
+
+import { getOverview } from '../../../api/request';
+import { fetchAccess } from '../../../utilities/access';
 
 const Overview = () => {
+	console.log('Passed Overview');
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const userState = useSelector((state) => state.user.isChanged);
-	const profileState = useSelector((state) => state.profile.isChanged);
 	const contactState = useSelector((state) => state.contact.isChanged);
 	const conditionState = useSelector((state) => state.condition.isChanged);
-
-	const user = useSelector((state) => state.user.data);
-	const profile = useSelector((state) => state.profile.data);
-	// const contacts = useSelector((state) => state.contact.data);
-	// const conditions = useSelector((state) => state.condition.data);
+	const doctorState = useSelector((state) => state.doctor.isChanged);
+	const consultationState = useSelector((state) => state.consultation.isChanged);
+	const admissionState = useSelector((state) => state.admission.isChanged);
 
 	const fetchData = async () => {
-		const res = await getOverview();
-		switch (res.status) {
-			case 200:
-				const {
-					data: { user, profile, contacts, conditions },
-				} = res;
-				dispatch(userActions.set(user));
-				dispatch(profileActions.set(profile));
-				dispatch(contactActions.set(contacts));
-				dispatch(conditionActions.set(conditions));
-				if (!user.email_confirmed) navigate('/confirmation', { replace: true });
-				if (!profile) navigate('/get-started', { replace: true });
-				break;
-			case 401:
-				console.log(res.data);
-				navigate('/login', { replace: true });
-				break;
-			case 403:
-				console.log(res.data);
-				navigate('/confirmation', { replace: true });
-				break;
-			default:
-				console.log({ error: res.message });
-		}
+		const res = await fetchAccess({ dispatch, navigate }, null, getOverview);
+		const { contacts, conditions, doctors, consultations, admissions } = res;
+		dispatch(contactActions.set(contacts));
+		dispatch(conditionActions.set(conditions));
+		dispatch(doctorActions.set(doctors));
+		dispatch(consultationActions.set(consultations));
+		dispatch(admissionActions.set(admissions));
 	};
 
 	useEffect(() => {
-		if (!userState || !profileState || !contactState || !conditionState) fetchData();
-		if (!user.email_confirmed) navigate('/confirmation', { replace: true });
-		if (!profile) navigate('/get-started', { replace: true });
+		if (
+			!contactState ||
+			!conditionState ||
+			!doctorState ||
+			!consultationState ||
+			!admissionState
+		)
+			fetchData();
 		// eslint-disable-next-line
 	}, []);
 
-	return (
-		<div>
-			Overview
-			<Sidebar />
-		</div>
-	);
+	return <div>Overview</div>;
 };
 
 export default Overview;

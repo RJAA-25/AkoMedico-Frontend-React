@@ -1,17 +1,23 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { profileActions } from '../../../store/profile';
-import { createProfile } from '../../../api/profile';
+
 import FormError from '../../../components/navigation/error/FormError';
+
+import { fetchAccess } from '../../../utilities/access';
+import { createProfile } from '../../../api/profile';
 import { countries, civilStatus, sex, bloodType } from '../../../utilities/selection';
 
 const GetStarted = () => {
+	console.log('Passed GetStarted');
 	const [error, setError] = useState({});
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const profile = useSelector((state) => state.profile.data);
+	const profileState = useSelector((state) => state.profile.isChanged);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -34,6 +40,15 @@ const GetStarted = () => {
 				console.log({ error: res.message });
 		}
 	};
+
+	useEffect(() => {
+		if (!profileState) {
+			fetchAccess({ dispatch, navigate }, '/overview', null);
+		} else {
+			if (profile) navigate('/overview', { replace: true });
+		}
+		// eslint-disable-next-line
+	}, []);
 
 	return (
 		<div>
@@ -62,7 +77,7 @@ const GetStarted = () => {
 						</option>
 						{countries.map((country) => (
 							<option
-								key={country.alpha_2_code.toLocaleLowerCase()}
+								key={country.alpha_2_code.toLowerCase()}
 								value={country.nationality}>
 								{country.nationality}
 							</option>
@@ -79,7 +94,7 @@ const GetStarted = () => {
 							Civil Status
 						</option>
 						{civilStatus.map((status) => (
-							<option key={status.toLocaleLowerCase()} value={status}>
+							<option key={status.toLowerCase()} value={status}>
 								{status}
 							</option>
 						))}
@@ -133,7 +148,7 @@ const GetStarted = () => {
 							Sex
 						</option>
 						{sex.map((s) => (
-							<option key={s.toLocaleLowerCase()} value={s}>
+							<option key={s.toLowerCase()} value={s}>
 								{s}
 							</option>
 						))}
@@ -147,7 +162,7 @@ const GetStarted = () => {
 							Blood Type
 						</option>
 						{bloodType.map((type) => (
-							<option key={type.toLocaleLowerCase()} value={type}>
+							<option key={type.toLowerCase()} value={type}>
 								{type}
 							</option>
 						))}

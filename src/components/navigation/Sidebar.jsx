@@ -44,6 +44,10 @@ const Sidebar = () => {
 				<li>
 					<NavLink to="/overview">Overview</NavLink>
 				</li>
+				<p>Personal</p>
+				<li>
+					<NavLink to="/profile">Profile</NavLink>
+				</li>
 			</ul>
 			<button onClick={handleLogout}>Logout</button>
 		</div>
