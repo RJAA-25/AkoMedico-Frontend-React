@@ -48,3 +48,8 @@ export const getConsultations = async () => {
 	const res = await api.get('consultations');
 	return res.data;
 };
+
+export const getAdmissions = async () => {
+	const res = await api.get('admissions');
+	return res.data;
+};
