@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchAccess } from '../../../utilities/access';
-import { resendConfirmation } from '../../../api/confirmation';
+import { fetchAccess } from '../../utilities/access';
+import { resendConfirmation } from '../../api/confirmation';
 
 const Confirmation = () => {
 	console.log('Passed Confirmation');

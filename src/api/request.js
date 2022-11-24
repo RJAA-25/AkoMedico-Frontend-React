@@ -38,3 +38,8 @@ export const getEmergencyContacts = async () => {
 	const res = await api.get('emergency-contacts');
 	return res.data;
 };
+
+export const getExistingConditions = async () => {
+	const res = await api.get('existing-conditions');
+	return res.data;
+};

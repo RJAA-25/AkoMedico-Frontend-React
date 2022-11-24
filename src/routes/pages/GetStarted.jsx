@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { profileActions } from '../../../store/profile';
+import { profileActions } from '../../store/profile';
 
-import FormError from '../../../components/navigation/error/FormError';
+import FormError from '../../components/navigation/error/FormError';
 
-import { fetchAccess } from '../../../utilities/access';
-import { createProfile } from '../../../api/profile';
-import { countries, civilStatus, sex, bloodType } from '../../../utilities/selection';
+import { fetchAccess } from '../../utilities/access';
+import { createProfile } from '../../api/profile';
+import { countries, civilStatus, sex, bloodType } from '../../utilities/selection';
 
 const GetStarted = () => {
 	console.log('Passed GetStarted');

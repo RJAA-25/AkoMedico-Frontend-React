@@ -6,12 +6,13 @@ import Landing from './routes/pages/landing/Landing';
 import Login from './routes/pages/auth/Login';
 import Register from './routes/pages/auth/Register';
 import Protected from './routes/pages/Protected';
-import Confirmation from './routes/pages/overview/Confirmation';
-import GetStarted from './routes/pages/overview/GetStarted';
+import Confirmation from './routes/pages/Confirmation';
+import GetStarted from './routes/pages/GetStarted';
 import Overview from './routes/pages/overview/Overview';
 import Profile from './routes/pages/personal/Profile';
 import Doctors from './routes/pages/people/Doctors';
 import EmergencyContacts from './routes/pages/people/EmergencyContacts';
+import ExistingConditions from './routes/pages/history/ExistingConditions';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
 				<Route path="profile" element={<Profile />} />
 				<Route path="doctors" element={<Doctors />} />
 				<Route path="emergency-contacts" element={<EmergencyContacts />} />
+				<Route path="existing-conditions" element={<ExistingConditions />} />
 			</Route>
 		</Route>
 	)
