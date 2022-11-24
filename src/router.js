@@ -9,7 +9,8 @@ import Protected from './routes/pages/Protected';
 import Confirmation from './routes/pages/overview/Confirmation';
 import GetStarted from './routes/pages/overview/GetStarted';
 import Overview from './routes/pages/overview/Overview';
-import Profile from './routes/pages/people/Profile';
+import Profile from './routes/pages/personal/Profile';
+import Doctors from './routes/pages/people/Doctors';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
 				<Route path="get-started" element={<GetStarted />} />
 				<Route path="overview" element={<Overview />} />
 				<Route path="profile" element={<Profile />} />
+				<Route path="doctors" element={<Doctors />} />
 			</Route>
 		</Route>
 	)
