@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { contactActions } from '../../../../store/contact';
@@ -26,7 +26,12 @@ const EmergencyContacts = () => {
 		// eslint-disable-next-line
 	}, []);
 
-	return <div>EmergencyContacts</div>;
+	return (
+		<div>
+			EmergencyContacts
+			<Outlet />
+		</div>
+	);
 };
 
 export default EmergencyContacts;

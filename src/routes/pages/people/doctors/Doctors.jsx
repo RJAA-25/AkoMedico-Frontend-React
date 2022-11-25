@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { doctorActions } from '../../../../store/doctor';
+
 import { getDoctors } from '../../../../api/request';
 import { fetchAccess } from '../../../../utilities/access';
-import { doctorActions } from '../../../../store/doctor';
 
 const Doctors = () => {
 	console.log('Passed Doctors');

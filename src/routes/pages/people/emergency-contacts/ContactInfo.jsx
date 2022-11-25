@@ -2,40 +2,40 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { doctorActions } from '../../../../store/doctor';
+import { contactActions } from '../../../../store/contact';
 
-import DoctorForm from '../../../../components/form/DoctorForm';
+import ContactForm from '../../../../components/form/ContactForm';
 
-import { destroyDoctor, updateDoctor } from '../../../../api/doctor';
+import { destroyContact, updateContact } from '../../../../api/contact';
 
-const DoctorInfo = () => {
-	console.log('Passed DoctorInfo');
+const ContactInfo = () => {
+	console.log('Passed ContactInfo');
 	const [error, setError] = useState({});
 	const [readOnly, setReadOnly] = useState(true);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const { doctorId } = useParams();
-	const doctors = useSelector((state) => state.doctor.data);
-	const doctor = doctors.find((doc) => doc.id === Number(doctorId));
+	const { contactId } = useParams();
+	const contacts = useSelector((state) => state.contact.data);
+	const contact = contacts.find((doc) => doc.id === Number(contactId));
 
-	const index = doctors.indexOf(doctor);
-	const copy = [...doctors];
+	const index = contacts.indexOf(contact);
+	const copy = [...contacts];
 
 	const handleUpdate = async (e) => {
 		e.preventDefault();
-		const form = document.querySelector('#doctor');
+		const form = document.querySelector('#emergency_contact');
 		const formData = new FormData(form);
-		const res = await updateDoctor(formData, doctor.id);
+		const res = await updateContact(formData, contact.id);
 		switch (res.status) {
 			case 200:
 				console.log(res.data.message);
 				const {
-					data: { doctor: updated },
+					data: { emergency_contact: updated },
 				} = res;
 				copy.splice(index, 1, updated);
-				dispatch(doctorActions.set(copy));
+				dispatch(contactActions.set(copy));
 				setError({});
 				setReadOnly(true);
 				break;
@@ -49,13 +49,13 @@ const DoctorInfo = () => {
 
 	const handleDelete = async (e) => {
 		e.preventDefault();
-		const res = await destroyDoctor(doctor.id);
+		const res = await destroyContact(contact.id);
 		switch (res.status) {
 			case 200:
 				copy.splice(index, 1);
-				dispatch(doctorActions.set(copy));
-				console.log('Redirect to Doctors');
-				navigate('/doctors', { replace: true });
+				dispatch(contactActions.set(copy));
+				console.log('Redirect to Contacts');
+				navigate('/contacts', { replace: true });
 				break;
 			default:
 				console.log({ error: res.message });
@@ -64,13 +64,13 @@ const DoctorInfo = () => {
 
 	return (
 		<div>
-			{doctor && (
+			{contact && (
 				<>
 					<button onClick={() => navigate(-1)}>Back</button>
 					{readOnly && <button onClick={() => setReadOnly(false)}>Edit</button>}
 					<button onClick={handleDelete}>Delete</button>
-					<DoctorForm
-						doctor={doctor}
+					<ContactForm
+						contact={contact}
 						readOnly={readOnly}
 						setReadOnly={setReadOnly}
 						error={error}
@@ -84,4 +84,4 @@ const DoctorInfo = () => {
 	);
 };
 
-export default DoctorInfo;
+export default ContactInfo;

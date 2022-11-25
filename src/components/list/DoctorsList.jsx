@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { generateKey } from '../../../../utilities/keygen';
+import { generateKey } from '../../utilities/keygen';
 
 const DoctorsList = ({ doctors }) => {
 	return (

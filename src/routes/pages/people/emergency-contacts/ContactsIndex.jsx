@@ -2,39 +2,39 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { doctorActions } from '../../../../store/doctor';
+import { contactActions } from '../../../../store/contact';
 
-import DoctorsList from '../../../../components/list/DoctorsList';
-import DoctorForm from '../../../../components/form/DoctorForm';
+import ContactsList from '../../../../components/list/ContactsList';
+import ContactForm from '../../../../components/form/ContactForm';
 
-import { createDoctor } from '../../../../api/doctor';
+import { createContact } from '../../../../api/contact';
 
-const DoctorsIndex = () => {
-	console.log('Passed DoctorsIndex');
+const ContactsIndex = () => {
+	console.log('Passed ContactsIndex');
 	const [create, setCreate] = useState(false);
 	const [error, setError] = useState({});
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const doctors = useSelector((state) => state.doctor.data);
-	const doctorState = useSelector((state) => state.doctor.isChanged);
+	const contacts = useSelector((state) => state.contact.data);
+	const contactState = useSelector((state) => state.contact.isChanged);
 
 	const handleCreate = async (e) => {
 		e.preventDefault();
-		const form = document.querySelector('#doctor');
+		const form = document.querySelector('#emergency_contact');
 		const formData = new FormData(form);
-		const res = await createDoctor(formData);
+		const res = await createContact(formData);
 		switch (res.status) {
 			case 201:
 				console.log(res.data.doctor);
 				const {
-					data: { doctor },
+					data: { emergency_contact: contact },
 				} = res;
-				dispatch(doctorActions.set([...doctors, doctor]));
+				dispatch(contactActions.set([...contacts, contact]));
 				setError({});
 				setCreate(false);
-				navigate(`/doctors/${doctor.id}`);
+				navigate(`/emergency-contacts/${contact.id}`);
 				break;
 			case 422:
 				setError(res.data.errors);
@@ -46,19 +46,19 @@ const DoctorsIndex = () => {
 
 	return (
 		<div>
-			DoctorsIndex
-			{doctorState && (
+			ContactsIndex
+			{contactState && (
 				<>
 					{!create && (
 						<>
-							<p>Your List of Doctors</p>
-							<DoctorsList doctors={doctors} />
+							<p>Your List of Contacts</p>
+							<ContactsList contacts={contacts} />
 							<button onClick={() => setCreate(true)}>Add</button>
 						</>
 					)}
 					{create && (
 						<>
-							<DoctorForm
+							<ContactForm
 								error={error}
 								setError={setError}
 								handleSubmit={handleCreate}
@@ -78,4 +78,4 @@ const DoctorsIndex = () => {
 	);
 };
 
-export default DoctorsIndex;
+export default ContactsIndex;
