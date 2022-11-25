@@ -3,15 +3,23 @@ import { createBrowserRouter, createRoutesFromElements, Route } from 'react-rout
 import Root from './routes/Root';
 import RootError from './routes/errors/RootError';
 import Landing from './routes/pages/landing/Landing';
+
 import Login from './routes/pages/auth/Login';
 import Register from './routes/pages/auth/Register';
+
 import Protected from './routes/pages/Protected';
-import Confirmation from './routes/pages/Confirmation';
 import GetStarted from './routes/pages/GetStarted';
+import Confirmation from './routes/pages/Confirmation';
+
 import Overview from './routes/pages/overview/Overview';
+
 import Profile from './routes/pages/personal/Profile';
-import Doctors from './routes/pages/people/Doctors';
-import EmergencyContacts from './routes/pages/people/EmergencyContacts';
+
+import Doctors from './routes/pages/people/doctors/Doctors';
+import DoctorInfo from './routes/pages/people/doctors/DoctorInfo';
+import DoctorsIndex from './routes/pages/people/doctors/DoctorsIndex';
+
+import EmergencyContacts from './routes/pages/people/emergency-contacts/EmergencyContacts';
 import ExistingConditions from './routes/pages/history/ExistingConditions';
 import Consultations from './routes/pages/history/Consultations';
 import Admission from './routes/pages/history/Admissions';
@@ -28,7 +36,10 @@ const router = createBrowserRouter(
 				<Route path="get-started" element={<GetStarted />} />
 				<Route path="overview" element={<Overview />} />
 				<Route path="profile" element={<Profile />} />
-				<Route path="doctors" element={<Doctors />} />
+				<Route path="doctors" element={<Doctors />}>
+					<Route index element={<DoctorsIndex />} />
+					<Route path=":doctorId" element={<DoctorInfo />} />
+				</Route>
 				<Route path="emergency-contacts" element={<EmergencyContacts />} />
 				<Route path="existing-conditions" element={<ExistingConditions />} />
 				<Route path="consultations" element={<Consultations />} />

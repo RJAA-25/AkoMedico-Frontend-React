@@ -18,15 +18,15 @@ const ProfileForm = ({
 	update = false,
 	handleSubmit,
 }) => {
-	const [sex, setSex] = useState(profile.sex);
-	const [height, setHeight] = useState(profile.height);
-	const [weight, setWeight] = useState(profile.weight);
-	const [address, setAddress] = useState(profile.address);
-	const [birthdate, setBirthdate] = useState(profile.birth_date);
-	const [bloodType, setBloodType] = useState(profile.blood_type);
-	const [nationality, setNationality] = useState(profile.nationality);
-	const [civilStatus, setCivilStatus] = useState(profile.civil_status);
-	const [contactNumber, setContactNumber] = useState(profile.contact_number);
+	const [sex, setSex] = useState(profile.sex || '');
+	const [height, setHeight] = useState(profile.height || '');
+	const [weight, setWeight] = useState(profile.weight || '');
+	const [address, setAddress] = useState(profile.address || '');
+	const [birthdate, setBirthdate] = useState(profile.birth_date || '');
+	const [bloodType, setBloodType] = useState(profile.blood_type || '');
+	const [nationality, setNationality] = useState(profile.nationality || '');
+	const [civilStatus, setCivilStatus] = useState(profile.civil_status || '');
+	const [contactNumber, setContactNumber] = useState(profile.contact_number || '');
 
 	const handleCancel = () => {
 		setSex(profile.sex);

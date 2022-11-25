@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { contactActions } from '../../../store/contact';
+import { contactActions } from '../../../../store/contact';
 
-import { fetchAccess } from '../../../utilities/access';
-import { getEmergencyContacts } from '../../../api/request';
+import { fetchAccess } from '../../../../utilities/access';
+import { getEmergencyContacts } from '../../../../api/request';
 
 const EmergencyContacts = () => {
 	console.log('Passed EmergencyContacts');
