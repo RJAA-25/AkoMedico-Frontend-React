@@ -22,6 +22,7 @@ const DoctorForm = ({
 		setError({});
 		setReadOnly(true);
 	};
+
 	return (
 		<form id="doctor" onSubmit={handleSubmit}>
 			<div>

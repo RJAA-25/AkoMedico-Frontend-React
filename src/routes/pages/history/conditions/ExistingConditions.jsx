@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { conditionActions } from '../../../store/condition';
+import { conditionActions } from '../../../../store/condition';
 
-import { fetchAccess } from '../../../utilities/access';
-import { getExistingConditions } from '../../../api/request';
+import { fetchAccess } from '../../../../utilities/access';
+import { getExistingConditions } from '../../../../api/request';
 
 const ExistingConditions = () => {
 	console.log('Passed ExistingConditions');
@@ -26,7 +26,12 @@ const ExistingConditions = () => {
 		// eslint-disable-next-line
 	}, []);
 
-	return <div>ExistingConditions</div>;
+	return (
+		<div>
+			ExistingConditions
+			<Outlet />
+		</div>
+	);
 };
 
 export default ExistingConditions;

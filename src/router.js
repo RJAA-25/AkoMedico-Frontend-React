@@ -23,7 +23,10 @@ import ContactInfo from './routes/pages/people/emergency-contacts/ContactInfo';
 import ContactsIndex from './routes/pages/people/emergency-contacts/ContactsIndex';
 import EmergencyContacts from './routes/pages/people/emergency-contacts/EmergencyContacts';
 
-import ExistingConditions from './routes/pages/history/ExistingConditions';
+import ConditionInfo from './routes/pages/history/conditions/ConditionInfo';
+import ConditionsIndex from './routes/pages/history/conditions/ConditionsIndex';
+import ExistingConditions from './routes/pages/history/conditions/ExistingConditions';
+
 import Consultations from './routes/pages/history/Consultations';
 import Admission from './routes/pages/history/Admissions';
 import Settings from './routes/pages/settings/Settings';
@@ -47,7 +50,10 @@ const router = createBrowserRouter(
 					<Route index element={<ContactsIndex />} />
 					<Route path=":contactId" element={<ContactInfo />} />
 				</Route>
-				<Route path="existing-conditions" element={<ExistingConditions />} />
+				<Route path="existing-conditions" element={<ExistingConditions />}>
+					<Route index element={<ConditionsIndex />} />
+					<Route path=":conditionId" element={<ConditionInfo />} />
+				</Route>
 				<Route path="consultations" element={<Consultations />} />
 				<Route path="admissions" element={<Admission />} />
 				<Route path="settings" element={<Settings />} />
