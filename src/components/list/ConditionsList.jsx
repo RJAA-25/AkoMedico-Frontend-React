@@ -1,11 +1,11 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { generateKey } from '../../utilities/keygen';
 
 const ConditionsList = ({ conditions }) => {
 	return (
 		<>
 			{conditions.map((condition) => (
-				<NavLink key={generateKey()} to={`/existing-conditions/${condition.id}`}>
+				<Link key={generateKey()} to={`/existing-conditions/${condition.id}`}>
 					<div>
 						<p>{condition.diagnosis}</p>
 						<p>
@@ -13,7 +13,7 @@ const ConditionsList = ({ conditions }) => {
 							{condition.end_date ? `- ${condition.end_date}` : ''}
 						</p>
 					</div>
-				</NavLink>
+				</Link>
 			))}
 		</>
 	);

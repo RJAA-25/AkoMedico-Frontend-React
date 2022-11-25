@@ -27,7 +27,7 @@ const ContactsIndex = () => {
 		const res = await createContact(formData);
 		switch (res.status) {
 			case 201:
-				console.log(res.data.doctor);
+				console.log(res.data.emergency_contact);
 				const {
 					data: { emergency_contact: contact },
 				} = res;

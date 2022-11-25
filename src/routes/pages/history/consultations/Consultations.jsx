@@ -1,0 +1,45 @@
+import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { consultationActions } from '../../../../store/consultation';
+import { doctorActions } from '../../../../store/doctor';
+
+import { getDoctors } from '../../../../api/request';
+import { getConsultations } from '../../../../api/request';
+import { fetchAccess } from '../../../../utilities/access';
+
+const Consultations = () => {
+	console.log('Passed Consultations');
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const doctorState = useSelector((state) => state.doctor.isChanged);
+	const consultationState = useSelector((state) => state.consultation.isChanged);
+
+	const fetchConsultations = async () => {
+		const res = await fetchAccess({ dispatch, navigate }, null, getConsultations);
+		const { consultations } = res;
+		dispatch(consultationActions.set(consultations));
+	};
+
+	const fetchDoctors = async () => {
+		const res = await fetchAccess({ dispatch, navigate }, null, getDoctors);
+		const { doctors } = res;
+		dispatch(doctorActions.set(doctors));
+	};
+
+	useEffect(() => {
+		if (!consultationState) fetchConsultations();
+		if (!doctorState) fetchDoctors();
+		// eslint-disable-next-line
+	}, []);
+	return (
+		<div>
+			Consultations
+			<Outlet />
+		</div>
+	);
+};
+
+export default Consultations;

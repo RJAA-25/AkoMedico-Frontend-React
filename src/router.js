@@ -27,9 +27,11 @@ import ConditionInfo from './routes/pages/history/conditions/ConditionInfo';
 import ConditionsIndex from './routes/pages/history/conditions/ConditionsIndex';
 import ExistingConditions from './routes/pages/history/conditions/ExistingConditions';
 
-import Consultations from './routes/pages/history/Consultations';
+import Consultations from './routes/pages/history/consultations/Consultations';
 import Admission from './routes/pages/history/Admissions';
 import Settings from './routes/pages/settings/Settings';
+import ConsultationsIndex from './routes/pages/history/consultations/ConsultationsIndex';
+import ConsultationInfo from './routes/pages/history/consultations/ConsultationInfo';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -54,7 +56,10 @@ const router = createBrowserRouter(
 					<Route index element={<ConditionsIndex />} />
 					<Route path=":conditionId" element={<ConditionInfo />} />
 				</Route>
-				<Route path="consultations" element={<Consultations />} />
+				<Route path="consultations" element={<Consultations />}>
+					<Route index element={<ConsultationsIndex />} />
+					<Route path=":consultationUid" element={<ConsultationInfo />} />
+				</Route>
 				<Route path="admissions" element={<Admission />} />
 				<Route path="settings" element={<Settings />} />
 			</Route>

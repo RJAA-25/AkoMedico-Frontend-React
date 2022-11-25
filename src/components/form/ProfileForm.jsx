@@ -54,7 +54,7 @@ const ProfileForm = ({
 					onChange={(e) => setBirthdate(e.target.value)}
 				/>
 				{error?.birth_date && (
-					<FormError message={error.birth_date} keyword="Birthdate name" custom={true} />
+					<FormError message={error.birth_date} keyword="Birthdate" custom={true} />
 				)}
 			</div>
 
