@@ -3,24 +3,24 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { doctorActions } from '../../../../store/doctor';
-import { consultationActions } from '../../../../store/consultation';
+import { admissionActions } from '../../../../store/admission';
 
 import { getDoctors } from '../../../../api/request';
-import { getConsultations } from '../../../../api/request';
+import { getAdmissions } from '../../../../api/request';
 import { fetchAccess } from '../../../../utilities/access';
 
-const Consultations = () => {
-	console.log('Passed Consultations');
+const Admission = () => {
+	console.log('Passed Admissions');
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const doctorState = useSelector((state) => state.doctor.isChanged);
-	const consultationState = useSelector((state) => state.consultation.isChanged);
+	const admissionState = useSelector((state) => state.admission.isChanged);
 
-	const fetchConsultations = async () => {
-		const res = await fetchAccess({ dispatch, navigate }, null, getConsultations);
-		const { consultations } = res;
-		dispatch(consultationActions.set(consultations));
+	const fetchAdmissions = async () => {
+		const res = await fetchAccess({ dispatch, navigate }, null, getAdmissions);
+		const { admissions } = res;
+		dispatch(admissionActions.set(admissions));
 	};
 
 	const fetchDoctors = async () => {
@@ -30,16 +30,17 @@ const Consultations = () => {
 	};
 
 	useEffect(() => {
-		if (!consultationState) fetchConsultations();
+		if (!admissionState) fetchAdmissions();
 		if (!doctorState) fetchDoctors();
 		// eslint-disable-next-line
 	}, []);
+
 	return (
 		<div>
-			Consultations
+			Admission
 			<Outlet />
 		</div>
 	);
 };
 
-export default Consultations;
+export default Admission;

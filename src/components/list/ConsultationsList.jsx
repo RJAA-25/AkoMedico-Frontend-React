@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { generateKey } from '../../utilities/keygen';
+
 const ConsultationsList = ({ consultations }) => {
 	return (
 		<>

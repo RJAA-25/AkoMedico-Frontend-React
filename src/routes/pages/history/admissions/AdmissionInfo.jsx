@@ -2,43 +2,44 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { consultationActions } from '../../../../store/consultation';
+import { admissionActions } from '../../../../store/admission';
 
 import ResultForm from '../../../../components/form/ResultForm';
-import ConsultationForm from '../../../../components/form/ConsultationForm';
+import AbstractForm from '../../../../components/form/AbstractForm';
+import AdmissionForm from '../../../../components/form/AdmissionForm';
 import PrescriptionForm from '../../../../components/form/PrescriptionForm';
 
-import { destroyConsultation, updateConsultation } from '../../../../api/consultation';
+import { destroyAdmission, updateAdmission } from '../../../../api/admission';
 
-const ConsultationInfo = () => {
-	console.log('Passed ConsultationInfo');
+const AdmissionInfo = () => {
+	console.log('Passed AdmissionsInfo');
 	const [error, setError] = useState({});
 	const [readOnly, setReadOnly] = useState(true);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const { consultationUid } = useParams();
+	const { admissionUid } = useParams();
 	const doctorState = useSelector((state) => state.doctor.isChanged);
-	const consultations = useSelector((state) => state.consultation.data);
-	const consultation = consultations.find((cons) => cons.uid === consultationUid);
+	const admissions = useSelector((state) => state.admission.data);
+	const admission = admissions.find((adm) => adm.uid === admissionUid);
 
-	const index = consultations.indexOf(consultation);
-	const copy = [...consultations];
+	const index = admissions.indexOf(admission);
+	const copy = [...admissions];
 
 	const handleUpdate = async (e) => {
 		e.preventDefault();
-		const form = document.querySelector('#consultation');
+		const form = document.querySelector('#admission');
 		const formData = new FormData(form);
-		const res = await updateConsultation(formData, consultation.uid);
+		const res = await updateAdmission(formData, admission.uid);
 		switch (res.status) {
 			case 200:
 				console.log(res.data.message);
 				const {
-					data: { consultation: updated },
+					data: { admission: updated },
 				} = res;
 				copy.splice(index, 1, updated);
-				dispatch(consultationActions.set(copy));
+				dispatch(admissionActions.set(copy));
 				setError({});
 				setReadOnly(true);
 				break;
@@ -52,28 +53,29 @@ const ConsultationInfo = () => {
 
 	const handleDelete = async (e) => {
 		e.preventDefault();
-		const res = await destroyConsultation(consultation.uid);
+		const res = await destroyAdmission(admission.uid);
 		switch (res.status) {
 			case 200:
 				copy.splice(index, 1);
-				dispatch(consultationActions.set(copy));
-				console.log('Redirect to Consultations');
-				navigate('/consultations', { replace: true });
+				dispatch(admissionActions.set(copy));
+				console.log('Redirect to Admissions');
+				navigate('/admissions', { replace: true });
 				break;
 			default:
 				console.log({ error: res.message });
 		}
 	};
+
 	return (
 		<div>
-			ConsultationInfo
-			{doctorState && consultation && (
+			AdmissionInfo
+			{doctorState && admission && (
 				<>
 					<button onClick={() => navigate(-1)}>Back</button>
 					{readOnly && <button onClick={() => setReadOnly(false)}>Edit</button>}
 					<button onClick={handleDelete}>Delete</button>
-					<ConsultationForm
-						consultation={consultation}
+					<AdmissionForm
+						admission={admission}
 						readOnly={readOnly}
 						setReadOnly={setReadOnly}
 						error={error}
@@ -85,21 +87,30 @@ const ConsultationInfo = () => {
 					<p>Prescriptions</p>
 					<PrescriptionForm
 						dispatch={dispatch}
-						storeAction={consultationActions}
+						storeAction={admissionActions}
 						index={index}
 						copy={copy}
-						target={consultation}
-						issue={'consultation'}
+						target={admission}
+						issue={'admission'}
 					/>
 					<hr />
 					<p>Results</p>
 					<ResultForm
 						dispatch={dispatch}
-						storeAction={consultationActions}
+						storeAction={admissionActions}
 						index={index}
 						copy={copy}
-						target={consultation}
-						issue={'consultation'}
+						target={admission}
+						issue={'admission'}
+					/>
+					<hr />
+					<p>Abstract</p>
+					<AbstractForm
+						dispatch={dispatch}
+						storeAction={admissionActions}
+						index={index}
+						copy={copy}
+						target={admission}
 					/>
 				</>
 			)}
@@ -107,4 +118,4 @@ const ConsultationInfo = () => {
 	);
 };
 
-export default ConsultationInfo;
+export default AdmissionInfo;

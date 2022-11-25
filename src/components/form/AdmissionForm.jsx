@@ -5,8 +5,8 @@ import { generateKey } from '../../utilities/keygen';
 
 import FormError from '../error/FormError';
 
-const ConsultationForm = ({
-	consultation = {},
+const AdmissionForm = ({
+	admission = {},
 	readOnly = false,
 	setReadOnly = null,
 	error,
@@ -16,11 +16,12 @@ const ConsultationForm = ({
 }) => {
 	const doctors = useSelector((state) => state.doctor.data);
 
-	const [diagnosis, setDiagnosis] = useState(consultation.diagnosis || '');
-	const [healthFacility, setHealthFacility] = useState(consultation.health_facility || '');
-	const [schedule, setSchedule] = useState(consultation.schedule || '');
-	const [notes, setNotes] = useState(consultation.notes || '');
-	const [doctorIds, setDoctorIds] = useState(consultation.doctors || []);
+	const [diagnosis, setDiagnosis] = useState(admission.diagnosis || '');
+	const [healthFacility, setHealthFacility] = useState(admission.health_facility || '');
+	const [startDate, setStartDate] = useState(admission.start_date || '');
+	const [endDate, setEndDate] = useState(admission.end_date || '');
+	const [notes, setNotes] = useState(admission.notes || '');
+	const [doctorIds, setDoctorIds] = useState(admission.doctors || []);
 
 	const toggleValue = (arr, value) => {
 		if (value === '') return arr;
@@ -30,21 +31,22 @@ const ConsultationForm = ({
 	};
 
 	const handleCancel = () => {
-		setDiagnosis(consultation.diagnosis);
-		setHealthFacility(consultation.health_facility);
-		setSchedule(consultation.schedule);
-		setNotes(consultation.notes);
-		setDoctorIds(consultation.doctors);
+		setDiagnosis(admission.diagnosis);
+		setHealthFacility(admission.health_facility);
+		setStartDate(admission.start_date);
+		setEndDate(admission.end_date);
+		setNotes(admission.notes);
+		setDoctorIds(admission.doctors);
 		setError({});
 		setReadOnly(true);
 	};
 
 	return (
-		<form id="consultation" onSubmit={handleSubmit}>
+		<form id="admission" onSubmit={handleSubmit}>
 			<div>
 				<input
 					type="text"
-					name="consultation[diagnosis]"
+					name="admission[diagnosis]"
 					readOnly={readOnly}
 					value={diagnosis}
 					placeholder="Diagnosis"
@@ -56,7 +58,7 @@ const ConsultationForm = ({
 			<div>
 				<input
 					type="text"
-					name="consultation[health_facility]"
+					name="admission[health_facility]"
 					readOnly={readOnly}
 					value={healthFacility}
 					placeholder="Health Facility"
@@ -70,13 +72,25 @@ const ConsultationForm = ({
 			<div>
 				<input
 					type="date"
-					name="consultation[schedule]"
+					name="admission[start_date]"
 					readOnly={readOnly}
-					value={schedule}
-					placeholder="Schedule"
-					onChange={(e) => setSchedule(e.target.value)}
+					value={startDate}
+					placeholder="Start Date"
+					onChange={(e) => setStartDate(e.target.value)}
 				/>
-				{error?.schedule && <FormError message={error.schedule} keyword="Schedule" />}
+				{error?.start_date && <FormError message={error.start_date} keyword="Start date" />}
+			</div>
+
+			<div>
+				<input
+					type="date"
+					name="admission[end_date]"
+					readOnly={readOnly}
+					value={endDate}
+					placeholder="End Date"
+					onChange={(e) => setEndDate(e.target.value)}
+				/>
+				{error?.end_date && <FormError message={error.end_date} keyword="End date" />}
 			</div>
 
 			<div hidden={!readOnly}>
@@ -96,7 +110,7 @@ const ConsultationForm = ({
 
 			<div hidden={readOnly}>
 				<select
-					name="consultation[doctor_ids][]"
+					name="admission[doctor_ids][]"
 					multiple={true}
 					size={5}
 					disabled={readOnly}
@@ -113,7 +127,7 @@ const ConsultationForm = ({
 
 			<div>
 				<textarea
-					name="consultation[notes]"
+					name="admission[notes]"
 					readOnly={readOnly}
 					value={notes}
 					placeholder="Enter your notes here"
@@ -137,4 +151,4 @@ const ConsultationForm = ({
 	);
 };
 
-export default ConsultationForm;
+export default AdmissionForm;
