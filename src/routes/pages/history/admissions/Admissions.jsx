@@ -36,8 +36,8 @@ const Admission = () => {
 	}, []);
 
 	return (
-		<div>
-			Admission
+		<div className="flex-grow-1 p-5">
+			<h2>Admission</h2>
 			<Outlet />
 		</div>
 	);

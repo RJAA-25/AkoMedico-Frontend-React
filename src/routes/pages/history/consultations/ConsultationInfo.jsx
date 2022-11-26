@@ -66,7 +66,6 @@ const ConsultationInfo = () => {
 	};
 	return (
 		<div>
-			ConsultationInfo
 			{doctorState && consultation && (
 				<>
 					<button onClick={() => navigate(-1)}>Back</button>

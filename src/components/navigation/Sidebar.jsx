@@ -13,52 +13,92 @@ const Sidebar = () => {
 	};
 
 	return (
-		<nav>
-			<div>
-				<NavLink to="/overview">Overview</NavLink>
-			</div>
+		<nav className="d-flex flex-column p-5 border-end border-2">
+			<NavLink
+				to="/overview"
+				className={({ isActive }) =>
+					isActive
+						? 'btn btn-warning rounded-pill px-5 my-2'
+						: 'btn btn-light rounded-pill px-5 my-2'
+				}>
+				Overview
+			</NavLink>
 
-			<div>
-				<p>PERSONAL</p>
-				<ul>
-					<li>
-						<NavLink to="/profile">Profile</NavLink>
-					</li>
-				</ul>
-			</div>
+			<p className="my-3 text-muted">PERSONAL</p>
+			<NavLink
+				to="/profile"
+				className={({ isActive }) =>
+					isActive
+						? 'btn btn-warning rounded-pill px-5 my-2'
+						: 'btn btn-light rounded-pill px-5 my-2'
+				}>
+				Profile
+			</NavLink>
 
-			<div>
-				<p>PEOPLE</p>
-				<ul>
-					<li>
-						<NavLink to="/doctors">Doctors</NavLink>
-					</li>
-					<li>
-						<NavLink to="/emergency-contacts">Emergency Contacts</NavLink>
-					</li>
-				</ul>
-			</div>
+			<p className="my-3 text-muted">PEOPLE</p>
+			<NavLink
+				to="/doctors"
+				className={({ isActive }) =>
+					isActive
+						? 'btn btn-warning rounded-pill px-5 my-2'
+						: 'btn btn-light rounded-pill px-5 my-2'
+				}>
+				Doctors
+			</NavLink>
+			<NavLink
+				to="/emergency-contacts"
+				className={({ isActive }) =>
+					isActive
+						? 'btn btn-warning rounded-pill px-5 my-2'
+						: 'btn btn-light rounded-pill px-5 my-2'
+				}>
+				Emergency Contacts
+			</NavLink>
 
-			<div>
-				<p>HISTORY</p>
-				<ul>
-					<li>
-						<NavLink to="/existing-conditions">Existing Conditions</NavLink>
-					</li>
-					<li>
-						<NavLink to="/consultations">Consultations</NavLink>
-					</li>
-					<li>
-						<NavLink to="/admissions">Admission</NavLink>
-					</li>
-				</ul>
-			</div>
+			<p className="my-3 text-muted">HISTORY</p>
+			<NavLink
+				to="/existing-conditions"
+				className={({ isActive }) =>
+					isActive
+						? 'btn btn-warning rounded-pill px-5 my-2'
+						: 'btn btn-light rounded-pill px-5 my-2'
+				}>
+				Existing Conditions
+			</NavLink>
+			<NavLink
+				to="/consultations"
+				className={({ isActive }) =>
+					isActive
+						? 'btn btn-warning rounded-pill px-5 my-2'
+						: 'btn btn-light rounded-pill px-5 my-2'
+				}>
+				Consultations
+			</NavLink>
+			<NavLink
+				to="/admissions"
+				className={({ isActive }) =>
+					isActive
+						? 'btn btn-warning rounded-pill px-5 my-2'
+						: 'btn btn-light rounded-pill px-5 my-2'
+				}>
+				Admission
+			</NavLink>
 
-			<div>
-				<NavLink to="/settings">Settings</NavLink>
-			</div>
+			{/* <NavLink
+				to="/settings"
+				className={({ isActive }) =>
+					isActive
+						? 'btn btn-warning rounded-pill px-5 my-2'
+						: 'btn btn-light rounded-pill px-5 my-2'
+				}>
+				Settings
+			</NavLink> */}
 
-			<button onClick={handleLogout}>Logout</button>
+			<hr />
+
+			<button onClick={handleLogout} className="btn btn-danger rounded-pill px-5 my-5">
+				Logout
+			</button>
 		</nav>
 	);
 };

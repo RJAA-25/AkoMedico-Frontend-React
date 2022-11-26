@@ -27,8 +27,8 @@ const Doctors = () => {
 	}, []);
 
 	return (
-		<div>
-			Doctors
+		<div className="flex-grow-1 p-5">
+			<h2>Doctors</h2>
 			<Outlet />
 		</div>
 	);

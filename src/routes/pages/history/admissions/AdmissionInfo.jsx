@@ -68,7 +68,6 @@ const AdmissionInfo = () => {
 
 	return (
 		<div>
-			AdmissionInfo
 			{doctorState && admission && (
 				<>
 					<button onClick={() => navigate(-1)}>Back</button>

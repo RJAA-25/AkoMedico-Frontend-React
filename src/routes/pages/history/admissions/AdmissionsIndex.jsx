@@ -46,15 +46,17 @@ const AdmissionsIndex = () => {
 	};
 
 	return (
-		<div>
-			AdmissionsIndex
+		<div className="flex-grow-1">
 			{admitState && doctorState && (
 				<>
 					{!create && (
 						<>
-							<p>Your List of Admissions</p>
+							<button
+								className="btn btn-warning rounded-pill px-5 my-3"
+								onClick={() => setCreate(true)}>
+								Add
+							</button>
 							<AdmissionsList admissions={admissions} />
-							<button onClick={() => setCreate(true)}>Add</button>
 						</>
 					)}
 					{create && (

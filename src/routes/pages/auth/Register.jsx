@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, Link } from 'react-router-dom';
 
 import FormError from '../../../components/error/FormError';
 
@@ -36,43 +36,75 @@ const Register = () => {
 			{isAuthorized ? (
 				<Navigate replace to="/overview" />
 			) : (
-				<div>
-					<form id="register" onSubmit={handleRegister}>
-						<div>
+				<div className="flex-grow-1 d-flex justify-content-center">
+					<form id="register" onSubmit={handleRegister} className="mt-5">
+						<div className="my-3">
+							<label
+								htmlFor="register[first_name]"
+								className="form-label fw-semibold">
+								First Name
+							</label>
 							<input
 								type="text"
+								id="register[first_name]"
 								name="register[first_name]"
-								placeholder="First Name"
+								className="form-control"
 							/>
 							{error?.first_name && (
 								<FormError message={error.first_name} keyword="First name" />
 							)}
 						</div>
-						<div>
-							<input type="text" name="register[last_name]" placeholder="Last Name" />
+						<div className="my-3">
+							<label htmlFor="register[last_name]" className="form-label fw-semibold">
+								Last Name
+							</label>
+							<input
+								type="text"
+								id="register[last_name]"
+								name="register[last_name]"
+								className="form-control"
+							/>
 							{error?.last_name && (
 								<FormError message={error.last_name} keyword="Last name" />
 							)}
 						</div>
-						<div>
-							<input type="text" name="register[email]" placeholder="Email" />
+						<div className="my-3">
+							<label htmlFor="register[email]" className="form-label fw-semibold">
+								Email
+							</label>
+							<input
+								type="text"
+								id="register[email]"
+								name="register[email]"
+								className="form-control"
+							/>
 							{error?.email && <FormError message={error.email} keyword="Email" />}
 						</div>
-						<div>
+						<div className="my-3">
+							<label htmlFor="register[password]" className="form-label fw-semibold">
+								Password
+							</label>
 							<input
 								type="password"
+								id="register[password]"
 								name="register[password]"
-								placeholder="Password"
+								className="form-control"
 							/>
 							{error?.password && (
 								<FormError message={error.password} keyword="Password" />
 							)}
 						</div>
-						<div>
+						<div className="my-3">
+							<label
+								htmlFor="register[password_confirmation]"
+								className="form-label fw-semibold">
+								Confirm Password
+							</label>
 							<input
 								type="password"
+								id="register[password_confirmation]"
 								name="register[password_confirmation]"
-								placeholder="Confirm Password"
+								className="form-control"
 							/>
 							{error?.password_confirmation && (
 								<FormError
@@ -81,7 +113,15 @@ const Register = () => {
 								/>
 							)}
 						</div>
-						<button>Register</button>
+
+						<div className="my-5 d-flex flex-column justify-content-center align-items-center ">
+							<button className="btn btn-warning rounded-pill px-5 text-center mb-5">
+								Register
+							</button>
+							<Link to="/login" className="btn btn-light rounded-pill px-5">
+								Login
+							</Link>
+						</div>
 					</form>
 				</div>
 			)}

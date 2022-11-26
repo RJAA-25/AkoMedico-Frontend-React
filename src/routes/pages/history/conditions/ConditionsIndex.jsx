@@ -45,15 +45,17 @@ const ConditionsIndex = () => {
 	};
 
 	return (
-		<div>
-			ConditionsIndex
+		<div className="flex-grow-1">
 			{conditionState && (
 				<>
 					{!create && (
 						<>
-							<p>Your List of Conditions</p>
+							<button
+								className="btn btn-warning rounded-pill px-5 my-3"
+								onClick={() => setCreate(true)}>
+								Add
+							</button>
 							<ConditionsList conditions={conditions} />
-							<button onClick={() => setCreate(true)}>Add</button>
 						</>
 					)}
 					{create && (

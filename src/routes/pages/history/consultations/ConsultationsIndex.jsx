@@ -45,15 +45,17 @@ const ConsultationsIndex = () => {
 		}
 	};
 	return (
-		<div>
-			ConsultationsIndex
+		<div className="flex-grow-1">
 			{consultState && doctorState && (
 				<>
 					{!create && (
 						<>
-							<p>Your List of Consultations</p>
+							<button
+								className="btn btn-warning rounded-pill px-5 my-3"
+								onClick={() => setCreate(true)}>
+								Add
+							</button>
 							<ConsultationsList consultations={consultations} />
-							<button onClick={() => setCreate(true)}>Add</button>
 						</>
 					)}
 					{create && (

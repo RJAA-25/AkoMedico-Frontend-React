@@ -10,11 +10,10 @@ const Protected = () => {
 
 	const isAuthorized = useSelector((state) => state.auth.isAuthenticated);
 
-	// isAuthorized ? <Outlet /> : <Navigate replace to="/login" />
 	return (
 		<>
 			{isAuthorized ? (
-				<div>
+				<div className="flex-grow-1 d-flex">
 					{user.email_confirmed && profile && <Sidebar />}
 					<Outlet />
 				</div>

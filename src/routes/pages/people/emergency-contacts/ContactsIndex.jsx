@@ -45,15 +45,17 @@ const ContactsIndex = () => {
 	};
 
 	return (
-		<div>
-			ContactsIndex
+		<div className="flex-grow-1">
 			{contactState && (
 				<>
 					{!create && (
 						<>
-							<p>Your List of Contacts</p>
+							<button
+								className="btn btn-warning rounded-pill px-5 my-3"
+								onClick={() => setCreate(true)}>
+								Add
+							</button>
 							<ContactsList contacts={contacts} />
-							<button onClick={() => setCreate(true)}>Add</button>
 						</>
 					)}
 					{create && (

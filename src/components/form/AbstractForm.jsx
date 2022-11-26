@@ -1,13 +1,12 @@
-import { useState } from 'react';
 import { generateKey } from '../../utilities/keygen';
 import { createAbstract } from '../../api/abstract';
 
 const AbstractForm = ({ dispatch, storeAction, index, copy, target }) => {
 	const obj = { ...target };
-	const abstracts = target.abstracts;
+	const abstracts = target.abstracts || 0;
 	const imageStyle = {
-		height: '100px',
-		width: 'auto',
+		// height: '100px',
+		width: '18rem',
 	};
 
 	const handleCreate = async (e) => {
@@ -35,21 +34,50 @@ const AbstractForm = ({ dispatch, storeAction, index, copy, target }) => {
 
 	return (
 		<>
-			<form id="abstract" encType="multipart/form-data" onSubmit={handleCreate}>
-				<div>
-					<input type="file" name="abstract[upload][]" multiple={true} accept="image/*" />
+			<form
+				id="abstract"
+				encType="multipart/form-data"
+				onSubmit={handleCreate}
+				className="my-5">
+				<div className="my-3">
+					<label htmlFor="abstract[upload]">Abstract</label>
+					<input
+						type="file"
+						id="abstract[upload]"
+						name="abstract[upload][]"
+						multiple={true}
+						accept="image/*"
+						className="form-control"
+					/>
 				</div>
-				<button>Upload</button>
+				<button type="submit" className="btn btn-warning rounded-pill px-5 ">
+					Upload
+				</button>
 			</form>
 
-			{abstracts.length > 0 &&
-				abstracts.map((abs) => (
-					<div key={generateKey()}>
-						<img src={abs.image_link} alt="abstract" style={imageStyle} />
-						<button>View</button>
-						<button>Select</button>
-					</div>
-				))}
+			<div className="d-flex flex-wrap">
+				{abstracts.length > 0 &&
+					abstracts.map((abs) => (
+						<div className="card mx-1 my-3" key={generateKey()}>
+							<img
+								src={abs.image_link}
+								alt="abstract"
+								style={imageStyle}
+								className="card-img-top"
+							/>
+							<div className="card-body text-center">
+								<button className="btn btn-warning rounded-pill px-3 mx-2 ">
+									View
+								</button>
+								<a
+									href={abs.download_link}
+									className="btn btn-warning rounded-pill px-3 mx-2 ">
+									Download
+								</a>
+							</div>
+						</div>
+					))}
+			</div>
 		</>
 	);
 };

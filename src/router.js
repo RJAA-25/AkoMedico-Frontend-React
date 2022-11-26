@@ -28,12 +28,14 @@ import ConditionsIndex from './routes/pages/history/conditions/ConditionsIndex';
 import ExistingConditions from './routes/pages/history/conditions/ExistingConditions';
 
 import Consultations from './routes/pages/history/consultations/Consultations';
-import Admission from './routes/pages/history/admissions/Admissions';
-import Settings from './routes/pages/settings/Settings';
-import ConsultationsIndex from './routes/pages/history/consultations/ConsultationsIndex';
 import ConsultationInfo from './routes/pages/history/consultations/ConsultationInfo';
-import AdmissionsIndex from './routes/pages/history/admissions/AdmissionsIndex';
+import ConsultationsIndex from './routes/pages/history/consultations/ConsultationsIndex';
+
+import Admission from './routes/pages/history/admissions/Admissions';
 import AdmissionInfo from './routes/pages/history/admissions/AdmissionInfo';
+import AdmissionsIndex from './routes/pages/history/admissions/AdmissionsIndex';
+
+import Settings from './routes/pages/settings/Settings';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(

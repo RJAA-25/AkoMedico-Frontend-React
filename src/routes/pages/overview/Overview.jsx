@@ -44,7 +44,9 @@ const Overview = () => {
 		// eslint-disable-next-line
 	}, []);
 
-	return <div>Overview</div>;
+	return (
+		<div className="flex-grow-1 d-flex justify-content-center align-items-center">Overview</div>
+	);
 };
 
 export default Overview;

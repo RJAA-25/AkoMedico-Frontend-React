@@ -43,40 +43,52 @@ const ProfileForm = ({
 	};
 
 	return (
-		<form id="profile" onSubmit={handleSubmit}>
-			<div>
+		<form id="profile" onSubmit={handleSubmit} className="my-5">
+			<div className="my-3">
+				<label htmlFor="profile[birth_date]" className="form-label fw-semibold">
+					Birthdate
+				</label>
 				<input
 					type="date"
+					id="profile[birth_date"
 					name="profile[birth_date]"
 					readOnly={readOnly}
 					value={birthdate}
-					placeholder="Birthdate"
 					onChange={(e) => setBirthdate(e.target.value)}
+					className="form-control"
 				/>
 				{error?.birth_date && (
 					<FormError message={error.birth_date} keyword="Birthdate" custom={true} />
 				)}
 			</div>
 
-			<div>
+			<div className="my-3">
+				<label htmlFor="profile[address]" className="form-label fw-semibold">
+					Address
+				</label>
 				<input
 					type="text"
 					name="profile[address]"
 					readOnly={readOnly}
 					value={address}
-					placeholder="Address"
 					onChange={(e) => setAddress(e.target.value)}
+					className="form-control"
 				/>
 				{error?.address && <FormError message={error.address} keyword="Address" />}
 			</div>
 
-			<div>
+			<div className="my-3">
+				<label htmlFor="profile[nationality]" className="form-label fw-semibold">
+					Nationality
+				</label>
 				<select
+					id="profile[nationality]"
 					name="profile[nationality]"
 					disabled={readOnly}
 					value={nationality}
-					onChange={(e) => setNationality(e.target.value)}>
-					<option value="">-- Nationality --</option>
+					onChange={(e) => setNationality(e.target.value)}
+					className="form-control">
+					<option value="">-- Select Nationality --</option>
 					{countries.map((country) => (
 						<option
 							key={country.alpha_2_code.toLowerCase()}
@@ -90,13 +102,17 @@ const ProfileForm = ({
 				)}
 			</div>
 
-			<div>
+			<div className="my-3">
+				<label htmlFor="profile[civil_status]" className="form-label fw-semibold">
+					Civil Status
+				</label>
 				<select
 					name="profile[civil_status]"
 					disabled={readOnly}
 					value={civilStatus}
-					onChange={(e) => setCivilStatus(e.target.value)}>
-					<option value="">-- Civil Status --</option>
+					onChange={(e) => setCivilStatus(e.target.value)}
+					className="form-control">
+					<option value="">-- Select Civil Status --</option>
 					{cStatus.map((status) => (
 						<option key={status.toLowerCase()} value={status}>
 							{status}
@@ -108,14 +124,18 @@ const ProfileForm = ({
 				)}
 			</div>
 
-			<div>
+			<div className="my-3">
+				<label htmlFor="profile[contact_number]" className="form-label fw-semibold">
+					Contact Number
+				</label>
 				<input
+					id="profile[contact_number]"
 					type="text"
 					name="profile[contact_number]"
 					readOnly={readOnly}
 					value={contactNumber}
-					placeholder="Contact Number"
 					onChange={(e) => setContactNumber(e.target.value)}
+					className="form-control"
 				/>
 				{error?.contact_number && (
 					<FormError
@@ -126,37 +146,49 @@ const ProfileForm = ({
 				)}
 			</div>
 
-			<div>
+			<div className="my-3">
+				<label htmlFor="profile[height]" className="form-label fw-semibold">
+					Height (m)
+				</label>
 				<input
 					type="number"
+					id="profile[height]"
 					name="profile[height]"
 					readOnly={readOnly}
 					value={height}
-					placeholder="Height (meters)"
 					onChange={(e) => setHeight(e.target.value)}
+					className="form-control"
 				/>
 				{error?.height && <FormError message={error.height} keyword="Height" />}
 			</div>
 
-			<div>
+			<div className="my-3">
+				<label htmlFor="profile[weight]" className="form-label fw-semibold">
+					Weight (kg)
+				</label>
 				<input
 					type="number"
+					id="profile[weight"
 					name="profile[weight]"
 					readOnly={readOnly}
 					value={weight}
-					placeholder="Weight (kilograms)"
 					onChange={(e) => setWeight(e.target.value)}
+					className="form-control"
 				/>
 				{error?.weight && <FormError message={error.weight} keyword="Weight" />}
 			</div>
 
-			<div>
+			<div className="my-3">
+				<label htmlFor="profile[sex]" className="form-label fw-semibold">
+					Sex
+				</label>
 				<select
 					name="profile[sex]"
 					disabled={readOnly}
 					value={sex}
-					onChange={(e) => setSex(e.target.value)}>
-					<option value="">-- Sex --</option>
+					onChange={(e) => setSex(e.target.value)}
+					className="form-control">
+					<option value="">-- Select Sex --</option>
 					{s.map((sex) => (
 						<option key={sex.toLowerCase()} value={sex}>
 							{sex}
@@ -166,12 +198,17 @@ const ProfileForm = ({
 				{error?.sex && <FormError message={error.sex} keyword="Sex" />}
 			</div>
 
-			<div>
+			<div className="my-3">
+				<label htmlFor="profile[blood_type]" className="form-label fw-semibold">
+					Blood Type
+				</label>
 				<select
+					id="profile[blood_type"
 					name="profile[blood_type]"
 					disabled={readOnly}
 					value={bloodType}
-					onChange={(e) => setBloodType(e.target.value)}>
+					onChange={(e) => setBloodType(e.target.value)}
+					className="form-control">
 					<option value="">-- Blood Type --</option>
 					{bType.map((type) => (
 						<option key={type.toLowerCase()} value={type}>
@@ -183,10 +220,15 @@ const ProfileForm = ({
 			</div>
 
 			{!readOnly && (
-				<div>
-					<button type="submit">Submit</button>
+				<div className="my-5 d-flex flex-column justify-content-center align-items-center">
+					<button type="submit" className="btn btn-warning rounded-pill px-5 ">
+						Submit
+					</button>
 					{update && (
-						<button type="button" onClick={handleCancel}>
+						<button
+							type="button"
+							className="mt-5 btn btn-light rounded-pill px-5"
+							onClick={handleCancel}>
 							Cancel
 						</button>
 					)}

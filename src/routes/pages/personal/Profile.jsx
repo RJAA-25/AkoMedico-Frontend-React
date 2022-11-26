@@ -53,9 +53,15 @@ const Profile = () => {
 	}, []);
 
 	return (
-		<div>
-			Profile
-			{readOnly && <button onClick={() => setReadOnly(false)}>Edit</button>}
+		<div className="flex-grow-1 p-5">
+			<h2>Profile</h2>
+			{readOnly && (
+				<button
+					onClick={() => setReadOnly(false)}
+					className="btn btn-light border-dark rounded-pill px-5 my-3">
+					Edit
+				</button>
+			)}
 			{profileState && (
 				<ProfileForm
 					profile={profile}

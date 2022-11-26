@@ -27,8 +27,8 @@ const EmergencyContacts = () => {
 	}, []);
 
 	return (
-		<div>
-			EmergencyContacts
+		<div className="flex-grow-1 p-5">
+			<h2>Emergency Contacts</h2>
 			<Outlet />
 		</div>
 	);

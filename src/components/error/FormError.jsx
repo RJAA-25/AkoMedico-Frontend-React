@@ -2,17 +2,19 @@ import { generateKey } from '../../utilities/keygen';
 
 const FormError = ({ message, keyword, custom = false }) => {
 	return (
-		<ul>
+		<>
 			{message.slice(-1).map((error) =>
 				custom ? (
-					<li key={generateKey()}>{error}</li>
+					<span key={generateKey()} className="text-start p-2 text-danger">
+						{error}
+					</span>
 				) : (
-					<li key={generateKey()}>
+					<span key={generateKey()} className="text-start p-2 text-danger">
 						{keyword} {error.toLowerCase()}
-					</li>
+					</span>
 				)
 			)}
-		</ul>
+		</>
 	);
 };
 

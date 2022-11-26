@@ -24,48 +24,63 @@ const DoctorForm = ({
 	};
 
 	return (
-		<form id="doctor" onSubmit={handleSubmit}>
-			<div>
+		<form id="doctor" onSubmit={handleSubmit} className="my-5">
+			<div className="my-3">
+				<label htmlFor="doctor[first_name]" className="form-label fw-semibold">
+					First Name
+				</label>
 				<input
 					type="text"
+					id="doctor[first_name]"
 					name="doctor[first_name]"
 					readOnly={readOnly}
 					value={firstName}
-					placeholder="First Name"
 					onChange={(e) => setFirstName(e.target.value)}
+					className="form-control"
 				/>
 				{error?.first_name && <FormError message={error.first_name} keyword="First name" />}
 			</div>
 
-			<div>
+			<div className="my-3">
+				<label htmlFor="doctor[last_name]" className="form-label fw-semibold">
+					Last Name
+				</label>
 				<input
 					type="text"
 					name="doctor[last_name]"
 					readOnly={readOnly}
 					value={lastName}
-					placeholder="Last Name"
 					onChange={(e) => setLastName(e.target.value)}
+					className="form-control"
 				/>
 				{error?.last_name && <FormError message={error.last_name} keyword="Last name" />}
 			</div>
 
-			<div>
+			<div className="my-3">
+				<label htmlFor="doctor[specialty]" className="form-label fw-semibold">
+					Specialty
+				</label>
 				<input
 					type="text"
 					name="doctor[specialty]"
 					readOnly={readOnly}
 					value={specialty}
-					placeholder="Specialty"
 					onChange={(e) => setSpecialty(e.target.value)}
+					className="form-control"
 				/>
 				{error?.specialty && <FormError message={error.specialty} keyword="Specialty" />}
 			</div>
 
 			{!readOnly && (
-				<div>
-					<button type="submit">Submit</button>
+				<div className="my-5 d-flex flex-column justify-content-center align-items-center">
+					<button type="submit" className="btn btn-warning rounded-pill px-5 ">
+						Submit
+					</button>
 					{update && (
-						<button type="button" onClick={handleCancel}>
+						<button
+							type="button"
+							className="mt-5 btn btn-light rounded-pill px-5"
+							onClick={handleCancel}>
 							Cancel
 						</button>
 					)}

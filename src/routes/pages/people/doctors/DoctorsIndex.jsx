@@ -45,15 +45,17 @@ const DoctorsIndex = () => {
 	};
 
 	return (
-		<div>
-			DoctorsIndex
+		<div className="flex-grow-1">
 			{doctorState && (
 				<>
 					{!create && (
 						<>
-							<p>Your List of Doctors</p>
+							<button
+								className="btn btn-warning rounded-pill px-5 my-3"
+								onClick={() => setCreate(true)}>
+								Add
+							</button>
 							<DoctorsList doctors={doctors} />
-							<button onClick={() => setCreate(true)}>Add</button>
 						</>
 					)}
 					{create && (

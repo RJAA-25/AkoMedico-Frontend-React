@@ -38,9 +38,19 @@ const Confirmation = () => {
 	}, []);
 
 	return (
-		<div>
-			Confirmation
-			<button onClick={handleResend}>Resend Confirmation Email</button>
+		<div className="flex-grow-1 d-flex justify-content-center  border border-primary">
+			<div className="p-3">
+				<p className="text-center my-5">
+					A confirmation email has been sent to your account. Please verify your account
+					to continue.
+				</p>
+				<div className="text-center">
+					<p>Didn't get any confirmation email?</p>
+					<button onClick={handleResend} className="btn btn-warning rounded-pill px-5">
+						Resend Confirmation
+					</button>
+				</div>
+			</div>
 		</div>
 	);
 };

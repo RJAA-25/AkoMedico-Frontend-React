@@ -27,8 +27,8 @@ const ExistingConditions = () => {
 	}, []);
 
 	return (
-		<div>
-			ExistingConditions
+		<div className="flex-grow-1 p-5">
+			<h2>Existing Conditions</h2>
 			<Outlet />
 		</div>
 	);

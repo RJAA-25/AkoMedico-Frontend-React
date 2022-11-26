@@ -23,41 +23,55 @@ const ContactForm = ({
 		setReadOnly(true);
 	};
 	return (
-		<form id="emergency_contact" onSubmit={handleSubmit}>
-			<div>
+		<form id="emergency_contact" onSubmit={handleSubmit} className="my-5">
+			<div className="my-3">
+				<label htmlFor="emergency_contact[full_name]" className="form-label fw-semibold">
+					Full Name
+				</label>
 				<input
 					type="text"
+					id="emergency_contact[full_name]"
 					name="emergency_contact[full_name]"
 					readOnly={readOnly}
 					value={fullName}
-					placeholder="Full Name"
 					onChange={(e) => setFullName(e.target.value)}
+					className="form-control"
 				/>
 				{error?.full_name && <FormError message={error.full_name} keyword="Full name" />}
 			</div>
 
-			<div>
+			<div className="my-3">
+				<label htmlFor="emergency_contact[relationship]" className="form-label fw-semibold">
+					Relationship
+				</label>
 				<input
 					type="text"
+					id="emergency_contact[relationship]"
 					name="emergency_contact[relationship]"
 					readOnly={readOnly}
 					value={relationship}
-					placeholder="Relationship"
 					onChange={(e) => setRelationship(e.target.value)}
+					className="form-control"
 				/>
 				{error?.relationship && (
 					<FormError message={error.relationship} keyword="Relationship" />
 				)}
 			</div>
 
-			<div>
+			<div className="my-3">
+				<label
+					htmlFor="emergency_contact[contact_number]"
+					className="form-label fw-semibold">
+					Contact Number
+				</label>
 				<input
 					type="text"
+					id="emergency_contact[contact_number]"
 					name="emergency_contact[contact_number]"
 					readOnly={readOnly}
 					value={contactNumber}
-					placeholder="Contact Number"
 					onChange={(e) => setContactNumber(e.target.value)}
+					className="form-control"
 				/>
 				{error?.contact_number && (
 					<FormError
@@ -69,10 +83,15 @@ const ContactForm = ({
 			</div>
 
 			{!readOnly && (
-				<div>
-					<button type="submit">Submit</button>
+				<div className="my-5 d-flex flex-column justify-content-center align-items-center">
+					<button type="submit" className="btn btn-warning rounded-pill px-5 ">
+						Submit
+					</button>
 					{update && (
-						<button type="button" onClick={handleCancel}>
+						<button
+							type="button"
+							className="mt-5 btn btn-light rounded-pill px-5"
+							onClick={handleCancel}>
 							Cancel
 						</button>
 					)}

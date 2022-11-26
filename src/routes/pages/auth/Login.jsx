@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, Link } from 'react-router-dom';
 
 import { authActions } from '../../../store/auth';
 import { userActions } from '../../../store/user';
@@ -48,21 +48,40 @@ const Login = () => {
 			{isAuthorized ? (
 				<Navigate replace to="/overview" />
 			) : (
-				<div>
-					<form id="session" onSubmit={handleLogin}>
-						<div>
-							<input type="text" name="session[email]" placeholder="Email" />
-						</div>
-						<div>
+				<div className="flex-grow-1 d-flex justify-content-center">
+					<form id="session" onSubmit={handleLogin} className="mt-5">
+						<div className="my-3">
+							<label htmlFor="session[email]" className="form-label fw-semibold">
+								Email
+							</label>
 							<input
-								type="password"
-								name="session[password]"
-								placeholder="Password"
+								type="text"
+								id="session[email]"
+								name="session[email]"
+								className="form-control"
 							/>
 						</div>
-						<button>Login</button>
+						<div className="my-3">
+							<label htmlFor="session[password]" className="form-label fw-semibold">
+								Password
+							</label>
+							<input
+								type="password"
+								id="session[password]"
+								name="session[password]"
+								className="form-control"
+							/>
+						</div>
+						{error?.error && <p className="text-danger">{error.error}</p>}
+						<div className="my-5 d-flex flex-column justify-content-center align-items-center ">
+							<button className="btn btn-warning rounded-pill px-5 text-center mb-5">
+								Login
+							</button>
+							<Link to="/register" className="btn btn-light rounded-pill px-5">
+								Register
+							</Link>
+						</div>
 					</form>
-					{error?.error && <p>{error.error}</p>}
 				</div>
 			)}
 		</>

@@ -35,8 +35,8 @@ const Consultations = () => {
 		// eslint-disable-next-line
 	}, []);
 	return (
-		<div>
-			Consultations
+		<div className="flex-grow-1 p-5">
+			<h2>Consultations</h2>
 			<Outlet />
 		</div>
 	);

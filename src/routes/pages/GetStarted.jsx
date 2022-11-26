@@ -49,8 +49,8 @@ const GetStarted = () => {
 	}, []);
 
 	return (
-		<div>
-			Get Started
+		<div className="flex-grow-1 d-flex flex-column align-items-center">
+			<h2 className="mt-5 text-center">Getting Started</h2>
 			<ProfileForm error={error} setError={setError} handleSubmit={handleCreate} />
 		</div>
 	);
