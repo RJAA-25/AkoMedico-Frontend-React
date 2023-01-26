@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const profileState1 = {
+const profileState = {
   data: {},
   isChanged: false,
 };

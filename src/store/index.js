@@ -9,7 +9,7 @@ import doctorSlice from "./doctor";
 import admissionSlice from "./admission";
 import consultationSlice from "./consultation";
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
     auth: authSlice,
     user: userSlice,
@@ -21,5 +21,3 @@ const store = configureStore({
     consultation: consultationSlice,
   },
 });
-
-export default store;
