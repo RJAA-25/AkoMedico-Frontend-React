@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCookie } from "../utilities/cookie";
+import { getCookie } from "../helpers/utilities";
 
 const authState = {
   isAuthenticated: getCookie("CSRF-TOKEN") ? true : false,
