@@ -4,7 +4,7 @@ import { styles, delay } from "../../helpers/form";
 const EmailInput = (props) => {
   const {
     name,
-    layout,
+    layout = "",
     validate = null,
     keyword,
     readOnly = false,
@@ -18,21 +18,24 @@ const EmailInput = (props) => {
   const [status, setStatus] = useState("base");
 
   useEffect(() => {
-    if (stateError[keyword]) {
-      setError(stateError[keyword]);
-      setStatus("invalid");
-      setState({ ...state, [keyword]: "" });
-    }
-
     let timeout;
     if (validate && touch) {
-      timeout = setTimeout(() => {
-        const error = validate(input);
-        setError(error);
-        setStatus(error ? "invalid" : "valid");
-        setState({ ...state, [keyword]: error ? "" : input });
-        setStateError({ ...stateError, [keyword]: error ? error : "" });
-      }, delay);
+      if (stateError[keyword] && !error) {
+        setError(`Email ${stateError[keyword]}`);
+        setStatus("invalid");
+        setState((state) => ({ ...state, [keyword]: "" }));
+      } else {
+        timeout = setTimeout(() => {
+          const error = validate(input);
+          setError(error);
+          setStatus(error ? "invalid" : "valid");
+          setState((state) => ({ ...state, [keyword]: error ? "" : input }));
+          setStateError((stateError) => ({
+            ...stateError,
+            [keyword]: error ? error : "",
+          }));
+        }, delay);
+      }
     }
 
     return () => {

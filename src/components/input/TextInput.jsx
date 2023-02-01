@@ -5,7 +5,7 @@ const TextInput = (props) => {
   const {
     name,
     title,
-    layout,
+    layout = "",
     validate = null,
     keyword,
     readOnly = false,
@@ -19,21 +19,24 @@ const TextInput = (props) => {
   const [status, setStatus] = useState("base");
 
   useEffect(() => {
-    if (stateError[keyword]) {
-      setError(stateError[keyword]);
-      setStatus("invalid");
-      setState({ ...state, [keyword]: "" });
-    }
-
     let timeout;
     if (validate && touch) {
-      timeout = setTimeout(() => {
-        const error = validate(input, title);
-        setError(error);
-        setStatus(error ? "invalid" : "valid");
-        setState({ ...state, [keyword]: error ? "" : input });
-        setStateError({ ...stateError, [keyword]: error ? error : "" });
-      }, delay);
+      if (stateError[keyword] && !error) {
+        setError(`${title} ${stateError[keyword]}`);
+        setStatus("invalid");
+        setState((state) => ({ ...state, [keyword]: "" }));
+      } else {
+        timeout = setTimeout(() => {
+          const error = validate(input, title);
+          setError(error);
+          setStatus(error ? "invalid" : "valid");
+          setState((state) => ({ ...state, [keyword]: error ? "" : input }));
+          setStateError((stateError) => ({
+            ...stateError,
+            [keyword]: error ? error : "",
+          }));
+        }, delay);
+      }
     }
 
     return () => {

@@ -6,7 +6,7 @@ import { styles, delay } from "../../helpers/form";
 const PasswordInput = (props) => {
   const {
     name,
-    layout,
+    layout = "",
     validate = null,
     confirm = false,
     keyword,
@@ -16,6 +16,7 @@ const PasswordInput = (props) => {
   } = props;
 
   const confirmName = name.replace("password", "password_confirmation");
+  const confirmKeyword = keyword + "_confirmation";
 
   const [show, setShow] = useState(false);
   const [touch, setTouch] = useState(false);
@@ -29,40 +30,56 @@ const PasswordInput = (props) => {
   useEffect(() => {
     let timeout;
     if (validate && touch) {
-      timeout = setTimeout(() => {
-        const error = validate(input1);
-        setError1(error);
-        setStatus1(error ? "invalid" : "valid");
-        if (!confirm) {
-          setState({ ...state, [keyword]: error ? "" : input1 });
-          setStateError({ ...stateError, [keyword]: error ? error : "" });
-        }
-
-        if (confirm) {
-          if (input2.length === 0) {
-            setStatus2("base");
-          } else {
-            setStatus2(input1 === input2 ? "valid" : "invalid");
-            setError2(input1 === input2 ? "" : "Passwords do not match");
-            setState({ ...state, [keyword]: input1 === input2 ? input1 : "" });
-            setStateError({
-              ...stateError,
-              [keyword]: input1 === input2 ? "" : "Passwords do not match",
-            });
+      if (stateError[keyword] && !error1) {
+        setError1(`${stateError[keyword]}`);
+        setStatus1("invalid");
+        setState((state) => ({ ...state, [keyword]: "" }));
+      } else if (confirm && stateError[confirmKeyword] && !error2) {
+        setError2(`${stateError[confirmKeyword]}`);
+        setStatus1("invalid");
+        setState((state) => ({ ...state, [confirmKeyword]: "" }));
+      } else {
+        timeout = setTimeout(() => {
+          const error = validate(input1);
+          setError1(error);
+          setStatus1(error ? "invalid" : "valid");
+          setState((state) => ({ ...state, [keyword]: error ? "" : input1 }));
+          setStateError((stateError) => ({
+            ...stateError,
+            [keyword]: error ? error : "",
+          }));
+          if (confirm) {
+            if (input2.length === 0) {
+              setStatus2("base");
+              setState((state) => ({ ...state, [confirmKeyword]: "" }));
+              setError2("");
+            } else {
+              setStatus2(input1 === input2 ? "valid" : "invalid");
+              setError2(input1 === input2 ? "" : "Passwords do not match");
+              setState((state) => ({
+                ...state,
+                [confirmKeyword]: input1 === input2 ? input1 : "",
+              }));
+              setStateError((stateError) => ({
+                ...stateError,
+                [confirmKeyword]:
+                  input1 === input2 ? "" : "Passwords do not match",
+              }));
+            }
           }
-        }
-      }, delay);
+        }, delay);
+      }
     }
 
     return () => {
       if (timeout) clearTimeout(timeout);
     };
-  }, [input1, input2, stateError[keyword]]);
+  }, [input1, input2, stateError[keyword], stateError[confirmKeyword]]);
 
   return (
     <>
       <div className={`form-control ${layout}`}>
-        <label htmlFor={name}>
+        <label htmlFor={name} className="label">
           <span className="label-text">Password</span>
         </label>
         <div className="input-group">
@@ -79,13 +96,9 @@ const PasswordInput = (props) => {
             className={`input w-full ${styles[status1]}`}
             readOnly={readOnly}
           />
-          <button
-            type="button"
-            className="btn"
-            onClick={() => setShow((state) => !state)}
-          >
+          <span onClick={() => setShow((state) => !state)}>
             <Icon icon={show ? faEyeSlash : faEye} />
-          </button>
+          </span>
         </div>
         {error1 && (
           <label htmlFor={name} className="label">
@@ -96,7 +109,7 @@ const PasswordInput = (props) => {
 
       {confirm && (
         <div className={`form-control ${layout}`}>
-          <label htmlFor={confirmName}>
+          <label htmlFor={confirmName} className="label">
             <span className="label-text">Password Confirmation</span>
           </label>
           <div className="input-group">
@@ -111,13 +124,9 @@ const PasswordInput = (props) => {
               }}
               className={`input w-full ${styles[status2]}`}
             />
-            <button
-              type="button"
-              className="btn"
-              onClick={() => setShow((state) => !state)}
-            >
+            <span onClick={() => setShow((state) => !state)}>
               <Icon icon={show ? faEyeSlash : faEye} />
-            </button>
+            </span>
           </div>
           {error2 && (
             <label htmlFor={name} className="label">
