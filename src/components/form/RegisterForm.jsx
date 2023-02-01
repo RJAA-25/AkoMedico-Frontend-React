@@ -28,6 +28,7 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    toast.dismiss();
     setLoading(true);
     const formData = getFormData("#register");
     const res = await registerUser(formData);
@@ -37,9 +38,11 @@ const RegisterForm = () => {
         navigate("/");
         toast.success(res.message);
         break;
+
       case 422:
         setError(res.errors);
         break;
+
       default:
         toast.error(res.message);
     }

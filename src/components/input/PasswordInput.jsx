@@ -11,8 +11,8 @@ const PasswordInput = (props) => {
     confirm = false,
     keyword,
     readOnly = false,
-    state: { state, setState },
-    error: { error: stateError, setError: setStateError },
+    state: { state = {}, setState } = {},
+    error: { error: stateError = {}, setError: setStateError } = {},
   } = props;
 
   const confirmName = name.replace("password", "password_confirmation");

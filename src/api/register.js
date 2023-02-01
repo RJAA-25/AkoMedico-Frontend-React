@@ -6,7 +6,6 @@ export const registerUser = async (formData) => {
     const { status, data } = res;
     return { status, message: data.message };
   } catch (error) {
-    console.log(error);
     if (error.response) {
       const {
         response: { status, data },

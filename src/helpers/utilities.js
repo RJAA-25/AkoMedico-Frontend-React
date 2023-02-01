@@ -7,5 +7,9 @@ export const generateKey = () => {
 
 export const getFormData = (formId) => {
   const form = document.querySelector(formId);
+  // const formData = new FormData(form);
+  // for (const pair of formData.entries()) {
+  //   console.log(`${pair[0]}, ${pair[1]}`);
+  // }
   return new FormData(form);
 };

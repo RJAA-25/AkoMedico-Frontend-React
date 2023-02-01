@@ -8,8 +8,8 @@ const EmailInput = (props) => {
     validate = null,
     keyword,
     readOnly = false,
-    state: { state, setState },
-    error: { error: stateError, setError: setStateError },
+    state: { state = {}, setState } = {},
+    error: { error: stateError = {}, setError: setStateError } = {},
   } = props;
 
   const [input, setInput] = useState(state[keyword] || "");
