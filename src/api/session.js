@@ -16,3 +16,38 @@ export const loginUser = async (formData) => {
     } else return error;
   }
 };
+
+export const logoutUser = async () => {
+  try {
+    const {
+      status,
+      data: { message },
+    } = await api.post("/logout");
+    return { status, message };
+  } catch (error) {
+    if (error.response) {
+      const {
+        response: { status, data },
+      } = error;
+      return { status, error: data.error };
+    } else return error;
+  }
+};
+
+export const checkAccess = async () => {
+  try {
+    const {
+      status,
+      data: { user, profile },
+    } = await api.get("/requests/access");
+    console.log(user, profile);
+    return { status, user, profile };
+  } catch (error) {
+    if (error.response) {
+      const {
+        response: { status, data },
+      } = error;
+      return { status, error: data.error };
+    } else return error;
+  }
+};

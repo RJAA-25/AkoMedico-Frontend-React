@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+
 import {
   checkNotEmpty,
   checkEmail,
@@ -13,6 +14,8 @@ import EmailInput from "../input/EmailInput";
 import PasswordInput from "../input/PasswordInput";
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
+
   const [state, setState] = useState({
     first_name: "",
     last_name: "",
@@ -22,9 +25,8 @@ const RegisterForm = () => {
   });
   const [error, setError] = useState({});
   const [loading, setLoading] = useState(false);
-  const formValid = Object.values(state).includes("") ? false : true;
 
-  const navigate = useNavigate();
+  const formValid = Object.values(state).includes("") ? false : true;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

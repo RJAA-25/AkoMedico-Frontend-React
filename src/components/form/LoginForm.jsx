@@ -1,22 +1,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
-import { loginUser } from "../../api/session";
-import { getFormData } from "../../helpers/utilities";
-import EmailInput from "../input/EmailInput";
-import PasswordInput from "../input/PasswordInput";
 import { useDispatch } from "react-redux";
+import { toast } from "react-hot-toast";
 
 import { authActions } from "../../store/auth";
 import { userActions } from "../../store/user";
 import { profileActions } from "../../store/profile";
 
-const LoginForm = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+import { loginUser } from "../../api/session";
+import { getFormData } from "../../helpers/utilities";
+import EmailInput from "../input/EmailInput";
+import PasswordInput from "../input/PasswordInput";
 
+const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
