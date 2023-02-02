@@ -40,7 +40,6 @@ export const checkAccess = async () => {
       status,
       data: { user, profile },
     } = await api.get("/requests/access");
-    console.log(user, profile);
     return { status, user, profile };
   } catch (error) {
     if (error.response) {
