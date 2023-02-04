@@ -31,7 +31,7 @@ export const checkContact = (input) => {
 export const checkNumber = (input, title, unit, min, max) => {
   let number = Number(input);
   if (input === "") return `${title} can't be blank`;
-  return number < min
+  return number <= min
     ? `${title} must be greater than ${min} ${unit}`
     : number >= max
     ? `${title} must be less than ${max} ${unit}`

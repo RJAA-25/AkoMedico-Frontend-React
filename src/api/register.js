@@ -2,8 +2,7 @@ import { api } from "./_axios";
 
 export const registerUser = async (formData) => {
   try {
-    const res = await api.post("/register", formData);
-    const { status, data } = res;
+    const { status, data } = await api.post("/register", formData);
     return { status, message: data.message };
   } catch (error) {
     if (error.response) {

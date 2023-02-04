@@ -5,12 +5,12 @@ const NumberInput = (props) => {
   const {
     name,
     title,
-    layout,
+    layout = "",
     validate = null,
     keyword,
     limit: { min = 0, max = 999, step, unit },
-    state: { state, setState },
-    error: { error: stateError, setError: setStateError },
+    state: { state = {}, setState } = {},
+    error: { error: stateError = {}, setError: setStateError } = {},
   } = props;
 
   const [input, setInput] = useState(state[keyword] || "");
@@ -19,21 +19,24 @@ const NumberInput = (props) => {
   const [status, setStatus] = useState("base");
 
   useEffect(() => {
-    if (stateError[keyword]) {
-      setError(stateError[keyword]);
-      setStatus("invalid");
-      setState({ ...state, [keyword]: "" });
-    }
-
     let timeout;
     if (validate && touch) {
-      timeout = setTimeout(() => {
-        const error = validate(input, title, unit, min, max);
-        setError(error);
-        setStatus(error ? "invalid" : "valid");
-        setState({ ...state, [keyword]: error ? "" : input });
-        setStateError({ ...stateError, [keyword]: error ? error : "" });
-      }, delay);
+      if (stateError[keyword] && !error) {
+        setError(`${title} ${stateError[keyword]}`);
+        setStatus("invalid");
+        setState((state) => ({ ...state, [keyword]: "" }));
+      } else {
+        timeout = setTimeout(() => {
+          const error = validate(input, title, unit, min, max);
+          setError(error);
+          setStatus(error ? "invalid" : "valid");
+          setState((state) => ({ ...state, [keyword]: error ? "" : input }));
+          setStateError((stateError) => ({
+            ...stateError,
+            [keyword]: error ? error : "",
+          }));
+        }, delay);
+      }
     }
 
     return () => {

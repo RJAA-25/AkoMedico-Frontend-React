@@ -6,13 +6,13 @@ const Select = (props) => {
   const {
     name,
     title,
-    layout,
+    layout = "",
     keyword,
     placeholder,
     options: { list, value, output },
     multiple = false,
-    state: { state, setState },
-    error: { error: stateError, setError: setStateError },
+    state: { state = {}, setState } = {},
+    error: { error: stateError = {}, setError: setStateError } = {},
   } = props;
 
   const initial = multiple ? [] : "";
@@ -30,18 +30,21 @@ const Select = (props) => {
   };
 
   useEffect(() => {
-    if (stateError[keyword]) {
-      setError(stateError[keyword]);
-      setStatus("invalid");
-      setState({ ...state, [keyword]: "" });
-    }
-
     if (touch) {
-      let error = input.length === 0 ? `${title} must be selected` : "";
-      setError(error);
-      setStatus(error ? "invalid" : "valid");
-      setState({ ...state, [keyword]: error ? "" : input });
-      setStateError({ ...stateError, [keyword]: error ? error : "" });
+      if (stateError[keyword] && !error) {
+        setError(`${title} ${stateError[keyword]}`);
+        setStatus("invalid");
+        setState((state) => ({ ...state, [keyword]: "" }));
+      } else {
+        let error = input.length === 0 ? `${title} must be selected` : "";
+        setError(error);
+        setStatus(error ? "invalid" : "valid");
+        setState((state) => ({ ...state, [keyword]: error ? "" : input }));
+        setStateError((stateError) => ({
+          ...stateError,
+          [keyword]: error ? error : "",
+        }));
+      }
     }
   }, [input, stateError[keyword]]);
 
@@ -55,6 +58,7 @@ const Select = (props) => {
         id={name}
         name={name}
         multiple={multiple}
+        size={1}
         value={input}
         onChange={(e) => {
           if (!touch) setTouch(true);

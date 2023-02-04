@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
-
 import {
   checkNotEmpty,
   checkEmail,
   checkPassword,
 } from "../../helpers/validations";
-import { getFormData } from "../../helpers/utilities";
-import { registerUser } from "../../api/register";
+import { handleSubmit } from "../../utilities/eventHandlers/register";
+
 import TextInput from "../input/TextInput";
 import EmailInput from "../input/EmailInput";
 import PasswordInput from "../input/PasswordInput";
@@ -28,32 +26,10 @@ const RegisterForm = () => {
 
   const formValid = Object.values(state).includes("") ? false : true;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    toast.dismiss();
-    setLoading(true);
-    const formData = getFormData("#register");
-    const res = await registerUser(formData);
-    setLoading(false);
-    switch (res.status) {
-      case 201:
-        navigate("/");
-        toast.success(res.message);
-        break;
-
-      case 422:
-        setError(res.errors);
-        break;
-
-      default:
-        toast.error(res.message);
-    }
-  };
-
   return (
     <form
       id="register"
-      onSubmit={handleSubmit}
+      onSubmit={(e) => handleSubmit(e, { navigate, setLoading })}
       className="mx-auto max-w-2xl border grid sm:grid-cols-2 gap-5 p-5"
     >
       <h1 className="font-bold text-xl sm:col-span-2">Register</h1>

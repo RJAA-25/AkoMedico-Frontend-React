@@ -5,13 +5,13 @@ const DateInput = (props) => {
   const {
     name,
     title,
-    layout,
+    layout = "",
     validate = null,
     keyword,
     readOnly = false,
     limit: { min, max },
-    state: { state, setState },
-    error: { error: stateError, setError: setStateError },
+    state: { state = {}, setState } = {},
+    error: { error: stateError = {}, setError: setStateError } = {},
   } = props;
 
   const [input, setInput] = useState(state[keyword] || "");
@@ -20,21 +20,24 @@ const DateInput = (props) => {
   const [status, setStatus] = useState("base");
 
   useEffect(() => {
-    if (stateError[keyword]) {
-      setError(stateError[keyword]);
-      setStatus("invalid");
-      setState({ ...state, [keyword]: "" });
-    }
-
     let timeout;
     if (validate && touch) {
-      timeout = setTimeout(() => {
-        const error = validate(input, min, max);
-        setError(error);
-        setStatus(error ? "invalid" : "valid");
-        setState({ ...state, [keyword]: error ? "" : input });
-        setStateError({ ...stateError, [keyword]: error ? error : "" });
-      }, delay);
+      if (stateError[keyword] && !error) {
+        setError(`${title} ${stateError[keyword]}`);
+        setStatus("invalid");
+        setState((state) => ({ ...state, [keyword]: "" }));
+      } else {
+        timeout = setTimeout(() => {
+          const error = validate(input, min, max);
+          setError(error);
+          setStatus(error ? "invalid" : "valid");
+          setState((state) => ({ ...state, [keyword]: error ? "" : input }));
+          setStateError((stateError) => ({
+            ...stateError,
+            [keyword]: error ? error : "",
+          }));
+        }, delay);
+      }
     }
 
     return () => {
