@@ -20,6 +20,7 @@ import Consultations from "../routes/protected/Consultations";
 import Admissions from "../routes/protected/Admissions";
 
 import RootError from "../components/error/RootError";
+import Layout from "../routes/protected/Layout";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,14 +31,16 @@ export const router = createBrowserRouter(
       <Route element={<Protected />}>
         <Route path="confirmation" element={<Confirmation />} />
         <Route path="get-started" element={<GetStarted />} />
-        <Route path="settings" element={<Settings />} />
-        <Route path="overview" element={<Overview />} />
-        <Route path="profile" element={<Profile />} />
-        <Route path="doctors" element={<Doctors />} />
-        <Route path="emergency-contacts" element={<EmergencyContacts />} />
-        <Route path="existing-conditions" element={<ExistingConditions />} />
-        <Route path="consultations" element={<Consultations />} />
-        <Route path="admissions" element={<Admissions />} />
+        <Route element={<Layout />}>
+          <Route path="settings" element={<Settings />} />
+          <Route path="overview" element={<Overview />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="doctors" element={<Doctors />} />
+          <Route path="emergency-contacts" element={<EmergencyContacts />} />
+          <Route path="existing-conditions" element={<ExistingConditions />} />
+          <Route path="consultations" element={<Consultations />} />
+          <Route path="admissions" element={<Admissions />} />
+        </Route>
       </Route>
     </Route>
   )
