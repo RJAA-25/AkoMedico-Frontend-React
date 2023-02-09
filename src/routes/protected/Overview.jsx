@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchData } from "../../utilities/eventHandlers/overview";
+import { fetchOverview } from "../../utilities/eventHandlers/overview";
 import Loading from "../../components/state/Loading";
 
 const Overview = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const { isChanged: user } = useSelector((state) => state.user);
   const { isChanged: profile } = useSelector((state) => state.profile);
   const { isChanged: contact } = useSelector((state) => state.contact);
@@ -19,7 +18,6 @@ const Overview = () => {
   );
 
   const [pageLoading, setPageLoading] = useState(true);
-
   const initialized = [
     user,
     profile,
@@ -31,8 +29,9 @@ const Overview = () => {
   ];
 
   useEffect(() => {
-    if (initialized.includes(false))
-      fetchData({ dispatch, navigate, setPageLoading });
+    if (initialized.includes(false)) {
+      fetchOverview({ dispatch, navigate, setPageLoading });
+    } else setPageLoading(false);
   }, []);
 
   return (

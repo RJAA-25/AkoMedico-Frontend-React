@@ -31,22 +31,22 @@ export const initOverview = async () => {
   }
 };
 
-export const initProfile = async () => {
-  try {
-    const {
-      status,
-      data: { profile },
-    } = await api.get("/requests/profile");
-    return { status, profile };
-  } catch (error) {
-    if (error.response) {
-      const {
-        response: { status, data },
-      } = error;
-      return { status, error: data.error };
-    } else return error;
-  }
-};
+// export const initProfile = async () => {
+//   try {
+//     const {
+//       status,
+//       data: { profile },
+//     } = await api.get("/requests/profile");
+//     return { status, profile };
+//   } catch (error) {
+//     if (error.response) {
+//       const {
+//         response: { status, data },
+//       } = error;
+//       return { status, error: data.error };
+//     } else return error;
+//   }
+// };
 
 export const initDoctors = async () => {
   try {

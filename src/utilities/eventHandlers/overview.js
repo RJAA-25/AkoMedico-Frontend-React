@@ -10,7 +10,7 @@ import { doctorActions } from "../../store/doctor";
 import { profileActions } from "../../store/profile";
 import { userActions } from "../../store/user";
 
-export const fetchData = async ({ dispatch, navigate, setPageLoading }) => {
+export const fetchOverview = async ({ dispatch, navigate, setPageLoading }) => {
   const res = await initOverview();
   setPageLoading(false);
 
