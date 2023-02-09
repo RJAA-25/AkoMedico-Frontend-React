@@ -33,20 +33,3 @@ export const logoutUser = async () => {
     } else return error;
   }
 };
-
-export const checkAccess = async () => {
-  try {
-    const {
-      status,
-      data: { user, profile },
-    } = await api.get("/requests/access");
-    return { status, user, profile };
-  } catch (error) {
-    if (error.response) {
-      const {
-        response: { status, data },
-      } = error;
-      return { status, error: data.error };
-    } else return error;
-  }
-};

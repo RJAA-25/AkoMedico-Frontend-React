@@ -5,7 +5,8 @@ import { userActions } from "../../store/user";
 import { profileActions } from "../../store/profile";
 
 import { resendConfirmation } from "../../api/confirmation";
-import { logoutUser, checkAccess } from "../../api/session";
+import { logoutUser } from "../../api/session";
+import { initAccess } from "../../api/initial";
 import { forceLogout } from "../functions/global";
 
 export const handleResend = async ({ dispatch, navigate, setLoading }) => {
@@ -63,7 +64,7 @@ export const handleLogout = async ({ dispatch, navigate, setLoading }) => {
 };
 
 export const fetchData = async ({ dispatch, navigate, setPageLoading }) => {
-  const res = await checkAccess();
+  const res = await initAccess();
   setPageLoading(false);
 
   switch (res.status) {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
+
 import Navbar from "../../components/navigation/Navbar";
 import Sidebar from "../../components/navigation/Sidebar";
 
@@ -18,7 +19,7 @@ const Layout = () => {
           onChange={() => setCheck((state) => !state)}
         />
 
-        <div className="drawer-content flex flex-col items-center justify-center border">
+        <div className="drawer-content flex flex-col">
           <Outlet />
         </div>
 

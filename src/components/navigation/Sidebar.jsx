@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { generateKey } from "../../helpers/utilities";
 
 const Sidebar = (props) => {
   const {
@@ -22,30 +23,40 @@ const Sidebar = (props) => {
         <li onClick={() => setCheck(false)}>
           <NavLink to="/overview">Overview</NavLink>
         </li>
-
-        <li className="menu-title my-3">
+        <div className="divider"></div>
+        <li className="menu-title mb-3">
           <span>PERSONAL</span>
         </li>
         {personal.map((item) => (
-          <li onClick={() => setCheck(false)} className="ml-3">
+          <li
+            key={generateKey()}
+            onClick={() => setCheck(false)}
+            className="ml-3"
+          >
             <NavLink to={item[0]}>{item[1]}</NavLink>
           </li>
         ))}
-
         <li className="menu-title my-3">
           <span>PEOPLE</span>
         </li>
         {people.map((item) => (
-          <li onClick={() => setCheck(false)} className="ml-3">
+          <li
+            key={generateKey()}
+            onClick={() => setCheck(false)}
+            className="ml-3"
+          >
             <NavLink to={item[0]}>{item[1]}</NavLink>
           </li>
         ))}
-
         <li className="menu-title my-3">
           <span>HISTORY</span>
         </li>
         {history.map((item) => (
-          <li onClick={() => setCheck(false)} className="ml-3">
+          <li
+            key={generateKey()}
+            onClick={() => setCheck(false)}
+            className="ml-3"
+          >
             <NavLink to={item[0]}>{item[1]}</NavLink>
           </li>
         ))}

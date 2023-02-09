@@ -5,7 +5,7 @@ import { profileActions } from "../../store/profile";
 
 import { createProfile } from "../../api/profile";
 import { getFormData } from "../../helpers/utilities";
-import { checkAccess } from "../../api/session";
+import { initAccess } from "../../api/initial";
 import { forceLogout } from "../functions/global";
 
 export const handleSubmit = async (e, { dispatch, navigate, setLoading }) => {
@@ -39,7 +39,7 @@ export const handleSubmit = async (e, { dispatch, navigate, setLoading }) => {
 };
 
 export const fetchData = async ({ dispatch, navigate, setPageLoading }) => {
-  const res = await checkAccess();
+  const res = await initAccess();
   setPageLoading(false);
 
   switch (res.status) {
