@@ -17,7 +17,7 @@ const Doctors = () => {
     }
   }, []);
 
-  return <>{pageLoading ? <Loading /> : <Outlet />}</>;
+  return pageLoading ? <Loading /> : <Outlet />;
 };
 
 export default Doctors;

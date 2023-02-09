@@ -1,12 +1,16 @@
 import { toast } from "react-hot-toast";
 
-import { initAccess, initDoctors } from "../../api/initial";
+import { initAccess, initConditions } from "../../api/initial";
 import { userActions } from "../../store/user";
 import { profileActions } from "../../store/profile";
-import { doctorActions } from "../../store/doctor";
+import { conditionActions } from "../../store/condition";
 import { forceLogout } from "../functions/global";
 
-export const fetchDoctors = async ({ dispatch, navigate, setPageLoading }) => {
+export const fetchConditions = async ({
+  dispatch,
+  navigate,
+  setPageLoading,
+}) => {
   const res = await initAccess();
 
   switch (res.status) {
@@ -21,9 +25,9 @@ export const fetchDoctors = async ({ dispatch, navigate, setPageLoading }) => {
         navigate("/get-started", { replace: true });
         break;
       } else {
-        const { doctors } = await initDoctors();
+        const { conditions } = await initConditions();
         setPageLoading(false);
-        dispatch(doctorActions.set(doctors));
+        dispatch(conditionActions.set(conditions));
         break;
       }
 
