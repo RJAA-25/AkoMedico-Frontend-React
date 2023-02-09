@@ -22,7 +22,10 @@ import ExistingConditions from "../routes/protected/conditions/ExistingCondition
 import ConditionsIndex from "../routes/protected/conditions/ConditionsIndex";
 import ConditionInfo from "../routes/protected/conditions/ConditionInfo";
 
-import EmergencyContacts from "../routes/protected/EmergencyContacts";
+import EmergencyContacts from "../routes/protected/contacts/EmergencyContacts";
+import ContactsIndex from "../routes/protected/contacts/ContactsIndex";
+import ContactInfo from "../routes/protected/contacts/ContactInfo";
+
 import Consultations from "../routes/protected/Consultations";
 import Admissions from "../routes/protected/Admissions";
 
@@ -46,7 +49,10 @@ export const router = createBrowserRouter(
             <Route index element={<DoctorsIndex />} />
             <Route path=":doctorId" element={<DoctorInfo />} />
           </Route>
-          <Route path="emergency-contacts" element={<EmergencyContacts />} />
+          <Route path="emergency-contacts" element={<EmergencyContacts />}>
+            <Route index element={<ContactsIndex />} />
+            <Route path=":contactId" element={<ContactInfo />} />
+          </Route>
           <Route path="existing-conditions" element={<ExistingConditions />}>
             <Route index element={<ConditionsIndex />} />
             <Route path=":conditionId" element={<ConditionInfo />} />
