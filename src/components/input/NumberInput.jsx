@@ -8,6 +8,7 @@ const NumberInput = (props) => {
     layout = "",
     validate = null,
     keyword,
+    readOnly,
     limit: { min = 0, max = 999, step, unit },
     state: { state = {}, setState } = {},
     error: { error: stateError = {}, setError: setStateError } = {},
@@ -54,6 +55,7 @@ const NumberInput = (props) => {
           type="number"
           id={name}
           name={name}
+          readOnly={readOnly}
           min={min}
           max={max}
           step={step}

@@ -30,7 +30,7 @@ const RegisterForm = () => {
     <form
       id="register"
       onSubmit={(e) => handleSubmit(e, { navigate, setLoading })}
-      className="mx-auto max-w-2xl border grid sm:grid-cols-2 gap-5 p-5"
+      className="mx-auto max-w-3xl border grid sm:grid-cols-2 gap-5 p-5"
     >
       <h1 className="font-bold text-xl sm:col-span-2">Register</h1>
       <TextInput

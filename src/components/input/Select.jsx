@@ -8,6 +8,7 @@ const Select = (props) => {
     title,
     layout = "",
     keyword,
+    readOnly,
     placeholder,
     options: { list, value, output },
     multiple = false,
@@ -57,6 +58,7 @@ const Select = (props) => {
       <select
         id={name}
         name={name}
+        disabled={readOnly}
         multiple={multiple}
         size={1}
         value={input}

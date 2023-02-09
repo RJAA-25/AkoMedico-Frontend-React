@@ -6,6 +6,7 @@ module.exports = {
     "./src/helpers/*.{js,jsx}",
     "./src/routes/*.{js,jsx}",
     "./src/routes/**/*.{js,jsx}",
+    "./src/routes/**/**/*.{js,jsx}",
   ],
   theme: {
     extend: {},

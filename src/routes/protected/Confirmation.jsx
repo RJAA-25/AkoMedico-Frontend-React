@@ -21,15 +21,11 @@ const Confirmation = () => {
     (state) => state.user
   );
 
-  const [pageLoading, setPageLoading] = useState(true);
+  const [pageLoading, setPageLoading] = useState(!userState);
   const [loading, setLoading] = useState("");
 
   useEffect(() => {
-    if (!userState) {
-      fetchData({ dispatch, navigate, setPageLoading });
-    } else {
-      setPageLoading(false);
-    }
+    if (!userState) fetchData({ dispatch, navigate, setPageLoading });
   }, []);
 
   return (

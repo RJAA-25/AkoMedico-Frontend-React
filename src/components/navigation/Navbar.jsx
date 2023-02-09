@@ -5,9 +5,7 @@ import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = (props) => {
-  const {
-    toggle: { show = false, check, setCheck },
-  } = props;
+  const { toggle: { show = false, check, setCheck } = {} } = props;
 
   const authorized = useSelector((state) => state.auth.isAuthenticated);
   const destination = authorized ? "/overview" : "/";
