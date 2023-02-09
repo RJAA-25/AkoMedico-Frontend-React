@@ -13,7 +13,7 @@ import GetStarted from "../routes/protected/GetStarted";
 import Settings from "../routes/protected/Settings";
 import Overview from "../routes/protected/Overview";
 import Profile from "../routes/protected/Profile";
-import Doctors from "../routes/protected/Doctors";
+import Doctors from "../routes/protected/doctors/Doctors";
 import EmergencyContacts from "../routes/protected/EmergencyContacts";
 import ExistingConditions from "../routes/protected/ExistingConditions";
 import Consultations from "../routes/protected/Consultations";
@@ -21,6 +21,8 @@ import Admissions from "../routes/protected/Admissions";
 
 import RootError from "../components/error/RootError";
 import Layout from "../routes/protected/Layout";
+import DoctorsIndex from "../routes/protected/doctors/DoctorsIndex";
+import DoctorInfo from "../routes/protected/doctors/DoctorInfo";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,7 +37,10 @@ export const router = createBrowserRouter(
           <Route path="settings" element={<Settings />} />
           <Route path="overview" element={<Overview />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="doctors" element={<Doctors />} />
+          <Route path="doctors" element={<Doctors />}>
+            <Route index element={<DoctorsIndex />} />
+            <Route path=":doctorId" element={<DoctorInfo />} />
+          </Route>
           <Route path="emergency-contacts" element={<EmergencyContacts />} />
           <Route path="existing-conditions" element={<ExistingConditions />} />
           <Route path="consultations" element={<Consultations />} />
