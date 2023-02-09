@@ -5,11 +5,13 @@ import {
 } from "react-router-dom";
 
 import Root from "../routes/Root";
+import RootError from "../components/error/RootError";
 import Login from "../routes/Login";
 import Register from "../routes/Register";
 import Protected from "../routes/Protected";
 import Confirmation from "../routes/protected/Confirmation";
 import GetStarted from "../routes/protected/GetStarted";
+import Layout from "../routes/protected/Layout";
 import Settings from "../routes/protected/Settings";
 import Overview from "../routes/protected/Overview";
 import Profile from "../routes/protected/Profile";
@@ -26,11 +28,13 @@ import EmergencyContacts from "../routes/protected/contacts/EmergencyContacts";
 import ContactsIndex from "../routes/protected/contacts/ContactsIndex";
 import ContactInfo from "../routes/protected/contacts/ContactInfo";
 
-import Consultations from "../routes/protected/Consultations";
-import Admissions from "../routes/protected/Admissions";
+import Consultations from "../routes/protected/consultations/Consultations";
+import ConsultationsIndex from "../routes/protected/consultations/ConsultationsIndex";
+import ConsultationInfo from "../routes/protected/consultations/ConsultationInfo";
 
-import RootError from "../components/error/RootError";
-import Layout from "../routes/protected/Layout";
+import Admissions from "../routes/protected/admissions/Admissions";
+import AdmissionsIndex from "../routes/protected/admissions/AdmissionsIndex";
+import AdmissionInfo from "../routes/protected/admissions/AdmissionInfo";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -57,8 +61,14 @@ export const router = createBrowserRouter(
             <Route index element={<ConditionsIndex />} />
             <Route path=":conditionId" element={<ConditionInfo />} />
           </Route>
-          <Route path="consultations" element={<Consultations />} />
-          <Route path="admissions" element={<Admissions />} />
+          <Route path="consultations" element={<Consultations />}>
+            <Route index element={<ConsultationsIndex />} />
+            <Route path=":consultationUid" element={<ConsultationInfo />} />
+          </Route>
+          <Route path="admissions" element={<Admissions />}>
+            <Route index element={<AdmissionsIndex />} />
+            <Route path="admissionUid" element={<AdmissionInfo />} />
+          </Route>
         </Route>
       </Route>
     </Route>
