@@ -8,7 +8,10 @@ import { getFormData } from "../../helpers/utilities";
 import { initAccess } from "../../api/initial";
 import { forceLogout } from "../functions/global";
 
-export const handleSubmit = async (e, { dispatch, navigate, setLoading }) => {
+export const handleSubmit = async (
+  e,
+  { dispatch, navigate, setLoading, setError }
+) => {
   e.preventDefault();
   toast.dismiss();
   setLoading(true);
@@ -31,6 +34,11 @@ export const handleSubmit = async (e, { dispatch, navigate, setLoading }) => {
     case 401:
       toast.error(res.error);
       forceLogout(dispatch, navigate);
+      break;
+
+    case 422:
+      toast.error("Invalid input");
+      setError(res.errors);
       break;
 
     default:

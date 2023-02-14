@@ -31,18 +31,16 @@ const Profile = () => {
       {pageLoading ? (
         <Loading />
       ) : (
-        <div className="grid gap-5 border-2 p-5">
+        <div className="grid gap-10 border-2 p-5">
           <Banner title="Profile" imageSrc={imageSrc} />
-          <div>
-            <button
-              className={`btn btn-block ${
-                readOnly ? "btn-neutral" : "btn-error"
-              }`}
-              onClick={() => setReadOnly((state) => !state)}
-            >
-              {readOnly ? "Update Profile" : "Cancel Update"}
-            </button>
-          </div>
+          <button
+            className={`btn btn-block max-w-3xl mx-auto ${
+              readOnly ? "btn-neutral" : "btn-error"
+            }`}
+            onClick={() => setReadOnly((state) => !state)}
+          >
+            {readOnly ? "Update Profile" : "Cancel Update"}
+          </button>
           <ProfileForm
             setup={userData}
             toggle={{ readOnly, setReadOnly }}

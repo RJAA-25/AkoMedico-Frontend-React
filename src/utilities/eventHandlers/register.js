@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast";
 import { registerUser } from "../../api/register";
 import { getFormData } from "../../helpers/utilities";
 
-export const handleSubmit = async (e, { navigate, setLoading }) => {
+export const handleSubmit = async (e, { navigate, setLoading, setError }) => {
   e.preventDefault();
   toast.dismiss();
   setLoading(true);
@@ -18,6 +18,7 @@ export const handleSubmit = async (e, { navigate, setLoading }) => {
       break;
 
     case 422:
+      toast.error("Registration failed");
       setError(res.errors);
       break;
 

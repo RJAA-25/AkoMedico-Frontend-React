@@ -29,6 +29,7 @@ export const updateProfile = async (formData) => {
       const {
         response: { status, data },
       } = error;
+      console.log(error.response);
       return { status, errors: data.errors, error: data.error };
     } else return error;
   }

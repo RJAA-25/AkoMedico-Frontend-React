@@ -14,24 +14,30 @@ const NumberInput = (props) => {
     error: { error: stateError = {}, setError: setStateError } = {},
   } = props;
 
-  const [input, setInput] = useState(state[keyword] || "");
   const [error, setError] = useState("");
   const [touch, setTouch] = useState(false);
   const [status, setStatus] = useState("base");
 
   useEffect(() => {
     let timeout;
+    let input = state[keyword];
+
+    if (readOnly) {
+      setError("");
+      setStatus("base");
+      setTouch(false);
+      return;
+    }
+
     if (validate && touch) {
       if (stateError[keyword] && !error) {
         setError(`${title} ${stateError[keyword]}`);
         setStatus("invalid");
-        setState((state) => ({ ...state, [keyword]: "" }));
       } else {
         timeout = setTimeout(() => {
           const error = validate(input, title, unit, min, max);
           setError(error);
           setStatus(error ? "invalid" : "valid");
-          setState((state) => ({ ...state, [keyword]: error ? "" : input }));
           setStateError((stateError) => ({
             ...stateError,
             [keyword]: error ? error : "",
@@ -43,7 +49,7 @@ const NumberInput = (props) => {
     return () => {
       if (timeout) clearTimeout(timeout);
     };
-  }, [input, stateError[keyword]]);
+  }, [readOnly, state[keyword], stateError[keyword]]);
 
   return (
     <div className={`form-control ${layout}`}>
@@ -59,9 +65,10 @@ const NumberInput = (props) => {
           min={min}
           max={max}
           step={step}
-          value={input}
+          value={state[keyword]}
           onChange={(e) => {
             if (!touch) setTouch(true);
+            setState((state) => ({ ...state, [keyword]: e.target.value }));
             setInput(e.target.value);
           }}
           className={`input w-full ${styles[status]}`}

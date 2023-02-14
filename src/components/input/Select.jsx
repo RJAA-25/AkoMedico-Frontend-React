@@ -16,8 +16,6 @@ const Select = (props) => {
     error: { error: stateError = {}, setError: setStateError } = {},
   } = props;
 
-  const initial = multiple ? [] : "";
-  const [input, setInput] = useState(state[keyword] || initial);
   const [error, setError] = useState("");
   const [touch, setTouch] = useState(false);
   const [status, setStatus] = useState("base");
@@ -31,23 +29,30 @@ const Select = (props) => {
   };
 
   useEffect(() => {
+    let input = state[keyword];
+
+    if (readOnly) {
+      setError("");
+      setStatus("base");
+      setTouch(false);
+      return;
+    }
+
     if (touch) {
       if (stateError[keyword] && !error) {
         setError(`${title} ${stateError[keyword]}`);
         setStatus("invalid");
-        setState((state) => ({ ...state, [keyword]: "" }));
       } else {
         let error = input.length === 0 ? `${title} must be selected` : "";
         setError(error);
         setStatus(error ? "invalid" : "valid");
-        setState((state) => ({ ...state, [keyword]: error ? "" : input }));
         setStateError((stateError) => ({
           ...stateError,
           [keyword]: error ? error : "",
         }));
       }
     }
-  }, [input, stateError[keyword]]);
+  }, [readOnly, state[keyword], stateError[keyword]]);
 
   return (
     <div className={`form-control ${layout}`}>
@@ -61,12 +66,16 @@ const Select = (props) => {
         disabled={readOnly}
         multiple={multiple}
         size={1}
-        value={input}
+        value={state[keyword]}
         onChange={(e) => {
           if (!touch) setTouch(true);
-          if (multiple) setInput(toggleValue(input, e.target.value));
+          if (multiple)
+            setState((state) => ({
+              ...state,
+              keyword: toggleValue(state[keyword], e.target.value),
+            }));
           else {
-            setInput(e.target.value);
+            setState((state) => ({ ...state, [keyword]: e.target.value }));
           }
         }}
         className={`select w-full ${select[status]}`}

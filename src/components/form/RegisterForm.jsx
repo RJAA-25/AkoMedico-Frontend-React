@@ -29,7 +29,7 @@ const RegisterForm = () => {
   return (
     <form
       id="register"
-      onSubmit={(e) => handleSubmit(e, { navigate, setLoading })}
+      onSubmit={(e) => handleSubmit(e, { navigate, setLoading, setError })}
       className="mx-auto max-w-3xl border grid sm:grid-cols-2 gap-5 p-5"
     >
       <h1 className="font-bold text-xl sm:col-span-2">Register</h1>

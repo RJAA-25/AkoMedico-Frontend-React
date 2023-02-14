@@ -14,24 +14,30 @@ const DateInput = (props) => {
     error: { error: stateError = {}, setError: setStateError } = {},
   } = props;
 
-  const [input, setInput] = useState(state[keyword] || "");
   const [error, setError] = useState("");
   const [touch, setTouch] = useState(false);
   const [status, setStatus] = useState("base");
 
   useEffect(() => {
     let timeout;
+    let input = state[keyword];
+
+    if (readOnly) {
+      setError("");
+      setStatus("base");
+      setTouch(false);
+      return;
+    }
+
     if (validate && touch) {
       if (stateError[keyword] && !error) {
         setError(`${title} ${stateError[keyword]}`);
         setStatus("invalid");
-        setState((state) => ({ ...state, [keyword]: "" }));
       } else {
         timeout = setTimeout(() => {
           const error = validate(input, min, max);
           setError(error);
           setStatus(error ? "invalid" : "valid");
-          setState((state) => ({ ...state, [keyword]: error ? "" : input }));
           setStateError((stateError) => ({
             ...stateError,
             [keyword]: error ? error : "",
@@ -43,7 +49,7 @@ const DateInput = (props) => {
     return () => {
       if (timeout) clearTimeout(timeout);
     };
-  }, [input, min, stateError[keyword]]);
+  }, [min, readOnly, state[keyword], stateError[keyword]]);
 
   return (
     <div className={`form-control ${layout}`}>
@@ -54,10 +60,10 @@ const DateInput = (props) => {
         type="date"
         name={name}
         id={name}
-        value={input}
+        value={state[keyword]}
         onChange={(e) => {
           if (!touch) setTouch(true);
-          setInput(e.target.value);
+          setState((state) => ({ ...state, [keyword]: e.target.value }));
         }}
         className={`input w-full ${styles[status]}`}
         readOnly={readOnly}

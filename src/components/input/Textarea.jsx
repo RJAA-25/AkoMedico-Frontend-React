@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { delay } from "../../helpers/form";
+import { delay, limit } from "../../helpers/form";
 
 const Textarea = (props) => {
   const {
@@ -13,7 +13,6 @@ const Textarea = (props) => {
 
   const [input, setInput] = useState(state[keyword] || "");
   const [length, setLength] = useState(state[keyword].length || 0);
-  const limit = 1000;
 
   useEffect(() => {
     const timeout = setTimeout(() => {

@@ -31,11 +31,15 @@ const ProfileForm = (props) => {
 
   const formValid = Object.values(state).includes("") ? false : true;
 
+  useEffect(() => {
+    if (readOnly) setState(setup);
+  }, [readOnly]);
+
   return (
     <form
       id="profile"
       onSubmit={(e) =>
-        handleSubmit(e, { dispatch, navigate, setLoading, setReadOnly })
+        handleSubmit(e, { dispatch, navigate, setLoading, setReadOnly, setError })
       }
       className="mx-auto w-full max-w-3xl grid sm:grid-cols-2 gap-5"
     >

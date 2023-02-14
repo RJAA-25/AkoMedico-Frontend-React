@@ -35,7 +35,7 @@ export const fetchProfile = async ({ dispatch, navigate, setPageLoading }) => {
 
 export const handleUpdate = async (
   e,
-  { dispatch, navigate, setLoading, setReadOnly }
+  { dispatch, navigate, setLoading, setError, setReadOnly }
 ) => {
   e.preventDefault();
   toast.dismiss();
@@ -59,6 +59,11 @@ export const handleUpdate = async (
     case 401:
       toast.error(res.error);
       forceLogout(dispatch, navigate);
+      break;
+
+    case 422:
+      toast.error("Invalid input");
+      setError(res.errors);
       break;
 
     default:
