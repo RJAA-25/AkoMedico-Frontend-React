@@ -14,8 +14,8 @@ const DoctorInfo = () => {
   const navigate = useNavigate();
 
   const { doctorId } = useParams();
-  const doctorData = useSelector((state) => state.doctor.data);
-  const selected = doctorData.find((doc) => doc.id === Number(doctorId));
+  const doctorsData = useSelector((state) => state.doctor.data);
+  const selected = doctorsData.find((doc) => doc.id === Number(doctorId));
 
   const [readOnly, setReadOnly] = useState(true);
   const modal = {
@@ -25,7 +25,7 @@ const DoctorInfo = () => {
       handleDelete({
         dispatch,
         navigate,
-        data: doctorData,
+        data: doctorsData,
         id: selected.id,
       }),
   };
@@ -61,7 +61,7 @@ const DoctorInfo = () => {
       )}
       <DoctorForm
         setup={selected}
-        data={doctorData}
+        data={doctorsData}
         readOnly={readOnly}
         setReadOnly={setReadOnly}
         handleSubmit={handleUpdate}

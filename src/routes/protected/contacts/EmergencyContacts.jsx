@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 
-import Loading from "../../../components/state/Loading";
+import imageSrc from "../../../assets/images/contact.png";
 import { fetchContacts } from "../../../utilities/eventHandlers/contacts";
+
+import Banner from "../../../components/general/Banner";
+import Loading from "../../../components/state/Loading";
 
 const EmergencyContacts = () => {
   const dispatch = useDispatch();
@@ -16,7 +19,14 @@ const EmergencyContacts = () => {
     if (!contactState) fetchContacts({ dispatch, navigate, setPageLoading });
   }, []);
 
-  return pageLoading ? <Loading /> : <Outlet />;
+  return pageLoading ? (
+    <Loading />
+  ) : (
+    <div className="grid gap-5 p-5">
+      <Banner title="Emergency Contacts" imageSrc={imageSrc} />
+      <Outlet />
+    </div>
+  );
 };
 
 export default EmergencyContacts;
