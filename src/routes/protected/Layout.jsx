@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 
 import Navbar from "../../components/navigation/Navbar";
 import Sidebar from "../../components/navigation/Sidebar";
+import ConfirmModal from "../../components/state/ConfirmModal";
 
 const Layout = () => {
   const [check, setCheck] = useState(false);
@@ -31,6 +32,7 @@ const Layout = () => {
           <Sidebar toggle={{ setCheck }} />
         </div>
       </div>
+      <ConfirmModal />
     </>
   );
 };

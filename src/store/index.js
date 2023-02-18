@@ -8,6 +8,7 @@ import conditionSlice from "./condition";
 import doctorSlice from "./doctor";
 import admissionSlice from "./admission";
 import consultationSlice from "./consultation";
+import modalSlice from "./modal";
 
 export const store = configureStore({
   reducer: {
@@ -19,5 +20,13 @@ export const store = configureStore({
     doctor: doctorSlice,
     admission: admissionSlice,
     consultation: consultationSlice,
+    modal: modalSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ["modal/set"],
+        ignoredPaths: ["modal.content.action"],
+      },
+    }),
 });

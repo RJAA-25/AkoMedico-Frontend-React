@@ -31,23 +31,29 @@ const Profile = () => {
       {pageLoading ? (
         <Loading />
       ) : (
-        <div className="grid gap-10 border-2 p-5">
+        <div className="grid gap-5 p-5">
           <Banner title="Profile" imageSrc={imageSrc} />
-          <button
-            className={`btn btn-block max-w-3xl mx-auto ${
-              readOnly ? "btn-neutral" : "btn-error"
-            }`}
-            onClick={() => setReadOnly((state) => !state)}
-          >
-            {readOnly ? "Update Profile" : "Cancel Update"}
-          </button>
-          <ProfileForm
-            setup={userData}
-            toggle={{ readOnly, setReadOnly }}
-            handleSubmit={handleUpdate}
-            dispatch={dispatch}
-            navigate={navigate}
-          />
+          <div className="mx-auto w-full max-w-3xl grid gap-5">
+            <button
+              className={`btn btn-block ${
+                readOnly ? "btn-neutral" : "btn-error"
+              }`}
+              onClick={() => setReadOnly((state) => !state)}
+            >
+              {readOnly ? "Update Profile" : "Cancel Update"}
+            </button>
+            {!readOnly && (
+              <div className="divider font-bold text-xl sm:text-2xl">
+                Update Profile
+              </div>
+            )}
+            <ProfileForm
+              setup={userData}
+              readOnly={readOnly}
+              setReadOnly={setReadOnly}
+              handleSubmit={handleUpdate}
+            />
+          </div>
         </div>
       )}
     </>

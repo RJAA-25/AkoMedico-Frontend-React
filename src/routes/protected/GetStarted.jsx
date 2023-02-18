@@ -49,12 +49,7 @@ const GetStarted = () => {
             Fill up the form as accurately as you can. No false entries, please!
           </p>
         </div>
-        <ProfileForm
-          setup={setup}
-          handleSubmit={handleSubmit}
-          dispatch={dispatch}
-          navigate={navigate}
-        />
+        <ProfileForm setup={setup} handleSubmit={handleSubmit} />
       </div>
     </div>
   );

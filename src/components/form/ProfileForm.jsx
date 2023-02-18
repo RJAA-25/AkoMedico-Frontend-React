@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import {
   checkAge,
@@ -17,13 +19,10 @@ import NumberInput from "../input/NumberInput";
 import Select from "../input/Select";
 
 const ProfileForm = (props) => {
-  const {
-    setup,
-    toggle: { readOnly = false, setReadOnly },
-    handleSubmit,
-    dispatch,
-    navigate,
-  } = props;
+  const { setup, readOnly = false, setReadOnly = null, handleSubmit } = props;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [state, setState] = useState(setup);
   const [error, setError] = useState({});
@@ -39,7 +38,13 @@ const ProfileForm = (props) => {
     <form
       id="profile"
       onSubmit={(e) =>
-        handleSubmit(e, { dispatch, navigate, setLoading, setReadOnly, setError })
+        handleSubmit(e, {
+          dispatch,
+          navigate,
+          setLoading,
+          setReadOnly,
+          setError,
+        })
       }
       className="mx-auto w-full max-w-3xl grid sm:grid-cols-2 gap-5"
     >
