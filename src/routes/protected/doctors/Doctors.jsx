@@ -11,7 +11,7 @@ import Loading from "../../../components/state/Loading";
 const Doctors = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isChanged: doctorState } = useSelector((state) => state.doctor);
+  const doctorState = useSelector((state) => state.doctor.isChanged);
 
   const [pageLoading, setPageLoading] = useState(!doctorState);
 

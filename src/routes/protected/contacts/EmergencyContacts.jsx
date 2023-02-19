@@ -11,7 +11,7 @@ import Loading from "../../../components/state/Loading";
 const EmergencyContacts = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isChanged: contactState } = useSelector((state) => state.contact);
+  const contactState = useSelector((state) => state.contact.isChanged);
 
   const [pageLoading, setPageLoading] = useState(!contactState);
 

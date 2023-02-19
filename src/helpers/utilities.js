@@ -13,3 +13,26 @@ export const getFormData = (formId) => {
   // }
   return new FormData(form);
 };
+
+export const formatDate = (input, type) => {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const testDate = new Date(input);
+  const year = testDate.getFullYear();
+  const month = months[testDate.getMonth()];
+  const date = testDate.getDate();
+  if (type === "estimate") return `${month} ${year}`;
+  if (type === "exact") return `${month} ${date}, ${year}`;
+};

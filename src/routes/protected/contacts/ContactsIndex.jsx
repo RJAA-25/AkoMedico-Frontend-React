@@ -27,7 +27,7 @@ const ContactsIndex = () => {
         className={`btn ${create ? "btn-error" : "btn-neutral"}`}
         onClick={() => setCreate((state) => !state)}
       >
-        {create ? "Cancel" : "Add"}
+        {create ? "Cancel" : "Add Emergency Contact"}
       </button>
       {create ? (
         <>

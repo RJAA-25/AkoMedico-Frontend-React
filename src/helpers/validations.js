@@ -47,6 +47,7 @@ export const checkAge = (input) => {
 };
 
 export const checkDate = (input, min, max) => {
+  if (input === "" && min) return "";
   if (!dateRegex.test(input)) return "Date format is invalid";
   let date = new Date(input);
   let end = new Date(max);

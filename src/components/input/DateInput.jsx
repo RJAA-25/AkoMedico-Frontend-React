@@ -63,7 +63,10 @@ const DateInput = (props) => {
         value={state[keyword]}
         onChange={(e) => {
           if (!touch) setTouch(true);
-          setState((state) => ({ ...state, [keyword]: e.target.value }));
+          setState((state) => ({
+            ...state,
+            [keyword]: e.target.value,
+          }));
         }}
         className={`input w-full ${styles[status]}`}
         readOnly={readOnly}

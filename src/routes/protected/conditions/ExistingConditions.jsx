@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 
+import imageSrc from "../../../assets/images/condition.png";
 import { fetchConditions } from "../../../utilities/eventHandlers/conditions";
+
 import Loading from "../../../components/state/Loading";
+import Banner from "../../../components/general/Banner";
 
 const ExistingConditions = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isChanged: conditionState } = useSelector((state) => state.condition);
+  const conditionState = useSelector((state) => state.condition.isChanged);
 
   const [pageLoading, setPageLoading] = useState(!conditionState);
 
@@ -18,7 +21,14 @@ const ExistingConditions = () => {
     }
   }, []);
 
-  return pageLoading ? <Loading /> : <Outlet />;
+  return pageLoading ? (
+    <Loading />
+  ) : (
+    <div className="grid gap-5 p-5">
+      <Banner title="Existing Conditions" imageSrc={imageSrc} />
+      <Outlet />
+    </div>
+  );
 };
 
 export default ExistingConditions;
