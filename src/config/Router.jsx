@@ -67,7 +67,7 @@ export const router = createBrowserRouter(
           </Route>
           <Route path="admissions" element={<Admissions />}>
             <Route index element={<AdmissionsIndex />} />
-            <Route path="admissionUid" element={<AdmissionInfo />} />
+            <Route path=":admissionUid" element={<AdmissionInfo />} />
           </Route>
         </Route>
       </Route>

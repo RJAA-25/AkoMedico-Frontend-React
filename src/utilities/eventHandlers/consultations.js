@@ -35,8 +35,8 @@ export const fetchConsultations = async ({
         const { consultations } = await initConsultations();
         const { doctors } = await initDoctors();
         dispatch(doctorActions.set(doctors));
-        setPageLoading(false);
         dispatch(consultationActions.set(consultations));
+        setPageLoading(false);
         break;
       }
 

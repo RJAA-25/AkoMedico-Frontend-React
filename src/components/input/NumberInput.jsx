@@ -69,7 +69,6 @@ const NumberInput = (props) => {
           onChange={(e) => {
             if (!touch) setTouch(true);
             setState((state) => ({ ...state, [keyword]: e.target.value }));
-            setInput(e.target.value);
           }}
           className={`input w-full ${styles[status]}`}
         />

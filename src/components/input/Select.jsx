@@ -67,7 +67,13 @@ const Select = (props) => {
         disabled={readOnly}
         multiple={multiple}
         size={size}
-        value={multiple ? state[keyword] : state[keyword][0] || ""}
+        value={
+          multiple
+            ? state[keyword]
+            : state[keyword] instanceof Array
+            ? state[keyword][0]
+            : state[keyword]
+        }
         onChange={(e) => {
           if (!touch) setTouch(true);
           if (multiple)

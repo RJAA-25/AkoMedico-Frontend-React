@@ -8,7 +8,7 @@ import Select from "../input/Select";
 import Textarea from "../input/Textarea";
 import TextInput from "../input/TextInput";
 
-const ConsultationForm = (props) => {
+const AdmissionForm = (props) => {
   const {
     setup,
     data,
@@ -33,8 +33,15 @@ const ConsultationForm = (props) => {
   const [error, setError] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const { diagnosis, health_facility, schedule, doctor_ids } = state;
-  const required = [diagnosis, health_facility, schedule, doctor_ids];
+  const { diagnosis, health_facility, start_date, end_date, doctor_ids } =
+    state;
+  const required = [
+    diagnosis,
+    health_facility,
+    start_date,
+    end_date,
+    doctor_ids,
+  ];
 
   const formValid = required.includes("") ? false : true;
 
@@ -44,7 +51,7 @@ const ConsultationForm = (props) => {
 
   return (
     <form
-      id="consultation"
+      id="admission"
       onSubmit={(e) =>
         handleSubmit(e, {
           dispatch,
@@ -59,8 +66,8 @@ const ConsultationForm = (props) => {
       className="grid sm:grid-cols-2 gap-5"
     >
       <TextInput
-        name="consultation[diagnosis]"
-        title="Chief Complaint"
+        name="admission[diagnosis"
+        title="Diagnosis"
         layout="sm:col-span-2"
         validate={checkNotEmpty}
         keyword="diagnosis"
@@ -69,7 +76,7 @@ const ConsultationForm = (props) => {
         error={{ error, setError }}
       />
       <TextInput
-        name="consultation[health_facility]"
+        name="admission[health_facility]"
         title="Health Facility"
         layout="sm:col-span-2"
         validate={checkNotEmpty}
@@ -79,15 +86,26 @@ const ConsultationForm = (props) => {
         error={{ error, setError }}
       />
       <DateInput
-        name="consultation[schedule]"
-        title="Date of Appointment"
+        name="admission[start_date]"
+        title="Date of Admission"
         validate={checkDate}
-        keyword="schedule"
+        keyword="start_date"
         readOnly={readOnly}
         limit={{ min: null, max: new Date() }}
         state={{ state, setState }}
         error={{ error, setError }}
       />
+      <DateInput
+        name="admission[end_date]"
+        title="Date of Discharge"
+        validate={checkDate}
+        keyword="end_date"
+        readOnly={readOnly}
+        limit={{ min: state["start_date"] || null, max: new Date() }}
+        state={{ state, setState }}
+        error={{ error, setError }}
+      />
+
       {readOnly ? (
         <div className="form-control sm:col-span-2">
           <label className="label">
@@ -118,11 +136,12 @@ const ConsultationForm = (props) => {
         </div>
       ) : (
         <Select
-          name="consultation[doctor_ids][]"
+          name="admission[doctor_ids][]"
           title="Doctors"
           layout="sm:col-span-2"
-          multiple={false}
-          placeholder="Select a doctor"
+          multiple={true}
+          size={5}
+          placeholder="Select doctors"
           keyword="doctor_ids"
           readOnly={readOnly}
           options={{
@@ -135,7 +154,7 @@ const ConsultationForm = (props) => {
         />
       )}
       <Textarea
-        name="consultation[notes]"
+        name="admission[notes]"
         title="Notes"
         layout="sm:col-span-2"
         keyword="notes"
@@ -158,4 +177,4 @@ const ConsultationForm = (props) => {
   );
 };
 
-export default ConsultationForm;
+export default AdmissionForm;
