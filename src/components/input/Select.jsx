@@ -6,6 +6,7 @@ const Select = (props) => {
   const {
     name,
     title,
+    size = 1,
     layout = "",
     keyword,
     readOnly,
@@ -22,7 +23,7 @@ const Select = (props) => {
 
   const toggleValue = (arr, value) => {
     if (value === "") return arr;
-    console.log(arr, value);
+    // console.log(arr, value);
     return arr.includes(Number(value))
       ? arr.filter((el) => el !== Number(value))
       : [...arr, Number(value)];
@@ -65,17 +66,17 @@ const Select = (props) => {
         name={name}
         disabled={readOnly}
         multiple={multiple}
-        size={1}
-        value={state[keyword]}
+        size={size}
+        value={multiple ? state[keyword] : state[keyword][0] || ""}
         onChange={(e) => {
           if (!touch) setTouch(true);
           if (multiple)
             setState((state) => ({
               ...state,
-              keyword: toggleValue(state[keyword], e.target.value),
+              [keyword]: toggleValue(state[keyword], e.target.value),
             }));
           else {
-            setState((state) => ({ ...state, [keyword]: e.target.value }));
+            setState((state) => ({ ...state, [keyword]: [e.target.value] }));
           }
         }}
         className={`select w-full ${select[status]}`}

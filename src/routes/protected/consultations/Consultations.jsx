@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 
-import Loading from "../../../components/state/Loading";
 import { fetchConsultations } from "../../../utilities/eventHandlers/consultations";
+
+import imageSrc from "../../../assets/images/consultation.png";
+import Banner from "../../../components/general/Banner";
+import Loading from "../../../components/state/Loading";
 
 const Consultations = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isChanged: consultState } = useSelector(
-    (state) => state.consultation
-  );
+  const consultState = useSelector((state) => state.consultation.isChanged);
 
   const [pageLoading, setPageLoading] = useState(!consultState);
 
@@ -19,7 +20,14 @@ const Consultations = () => {
       fetchConsultations({ dispatch, navigate, setPageLoading });
   }, []);
 
-  return pageLoading ? <Loading /> : <Outlet />;
+  return pageLoading ? (
+    <Loading />
+  ) : (
+    <div className="grid gap-5 p-5">
+      <Banner title="Consultations" imageSrc={imageSrc} />
+      <Outlet />
+    </div>
+  );
 };
 
 export default Consultations;

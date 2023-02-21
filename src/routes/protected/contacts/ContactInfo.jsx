@@ -52,11 +52,9 @@ const ContactInfo = () => {
           {readOnly ? "Update" : "Cancel"}
         </button>
       </div>
-      {!readOnly && (
-        <div className="divider font-bold text-xl sm:text-2xl">
-          Update Emergency Contact
-        </div>
-      )}
+      <div className="divider font-bold text-xl sm:text-2xl">
+        {readOnly ? "Contact Details" : "Update Contact"}
+      </div>
       <ContactForm
         setup={selected}
         data={contactsData}

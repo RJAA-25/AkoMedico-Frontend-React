@@ -57,11 +57,9 @@ const ConditionInfo = () => {
           {readOnly ? "Update" : "Cancel"}
         </button>
       </div>
-      {!readOnly && (
-        <div className="divider font-bold text-xl sm:text-2xl">
-          Update Existing Condition
-        </div>
-      )}
+      <div className="divider font-bold text-xl sm:text-2xl">
+        {readOnly ? "Condition Details" : "Update Condition"}
+      </div>
       <ConditionForm
         setup={selected}
         data={conditionsData}

@@ -60,7 +60,7 @@ const DateInput = (props) => {
         type="date"
         name={name}
         id={name}
-        value={state[keyword]}
+        value={state[keyword] || ""}
         onChange={(e) => {
           if (!touch) setTouch(true);
           setState((state) => ({

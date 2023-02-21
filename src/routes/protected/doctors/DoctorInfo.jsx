@@ -20,7 +20,7 @@ const DoctorInfo = () => {
   const [readOnly, setReadOnly] = useState(true);
   const modal = {
     title: "Delete Doctor",
-    body: "Remove doctor this doctor from your list?",
+    body: "Remove doctor from your list?",
     action: () =>
       handleDelete({
         dispatch,
@@ -54,11 +54,9 @@ const DoctorInfo = () => {
           {readOnly ? "Update" : "Cancel"}
         </button>
       </div>
-      {!readOnly && (
-        <div className="divider font-bold text-xl sm:text-2xl">
-          Update Doctor
-        </div>
-      )}
+      <div className="divider font-bold text-xl sm:text-2xl">
+        {readOnly ? "Doctor Details" : "Update Doctor"}
+      </div>
       <DoctorForm
         setup={selected}
         data={doctorsData}
