@@ -95,7 +95,7 @@ const ConsultationForm = (props) => {
               Doctors ({setup["doctor_ids"].length})
             </span>
           </label>
-          <ul className="space-y-5">
+          <ul className="space-y-3">
             {selected.map((doctor) => (
               <li key={generateKey()}>
                 <Link

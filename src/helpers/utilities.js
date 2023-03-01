@@ -11,6 +11,12 @@ export const getFormData = (formId) => {
   // for (const pair of formData.entries()) {
   //   console.log(`${pair[0]}, ${pair[1]}`);
   // }
+  // for (const key of formData.keys()) {
+  //   console.log(key);
+  // }
+  // for (const value of formData.values()) {
+  //   console.log(value);
+  // }
   return new FormData(form);
 };
 

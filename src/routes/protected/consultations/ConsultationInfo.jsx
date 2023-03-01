@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ConsultationForm from "../../../components/form/ConsultationForm";
+import Prescriptions from "../../../components/general/Prescriptions";
+import { consultationActions } from "../../../store/consultation";
 
 import { modalActions } from "../../../store/modal";
 import {
@@ -18,6 +20,8 @@ const ConsultationInfo = () => {
   const selected = consultationsData.find(
     (consult) => consult.uid === consultationUid
   );
+  const prescriptions = selected.prescriptions;
+  const results = selected.results;
 
   const [readOnly, setReadOnly] = useState(true);
   const modal = {
@@ -66,6 +70,15 @@ const ConsultationInfo = () => {
         setReadOnly={setReadOnly}
         handleSubmit={handleUpdate}
       />
+      {readOnly && (
+        <>
+          <Prescriptions
+            selected={selected}
+            issue="consultation"
+            storeAction={consultationActions}
+          />
+        </>
+      )}
     </div>
   );
 };

@@ -40,7 +40,7 @@ const Profile = () => {
               }`}
               onClick={() => setReadOnly((state) => !state)}
             >
-              {readOnly ? "Update Profile" : "Cancel Update"}
+              {readOnly ? "Update Profile" : "Cancel"}
             </button>
             {!readOnly && (
               <div className="divider font-bold text-xl sm:text-2xl">
