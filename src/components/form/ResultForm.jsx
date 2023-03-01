@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { generateKey, getFormData } from "../../helpers/utilities";
+import { generateKey } from "../../helpers/utilities";
 
-const PrescriptionForm = (props) => {
+const ResultForm = (props) => {
   const {
     source,
     data,
@@ -19,10 +19,10 @@ const PrescriptionForm = (props) => {
 
   return (
     <form
-      id="prescription"
+      id="result"
       encType="multipart/form-data"
       className="grid gap-5"
-      onSubmit={(e) => {
+      onSubmit={(e) =>
         handleSubmit(e, {
           dispatch,
           navigate,
@@ -31,12 +31,12 @@ const PrescriptionForm = (props) => {
           setLoading,
           source,
           data,
-        });
-      }}
+        })
+      }
     >
       <input
         type="text"
-        name="prescription[issue]"
+        name="result[issue]"
         defaultValue={issue}
         hidden={true}
       />
@@ -48,7 +48,7 @@ const PrescriptionForm = (props) => {
           </label>
           <input
             type="file"
-            name="prescription[upload][]"
+            name="result[upload][]"
             multiple={true}
             accept="image/*"
             className="file-input w-full input-bordered"
@@ -63,14 +63,14 @@ const PrescriptionForm = (props) => {
               <span className="label-text">Select files to be removed</span>
             </label>
 
-            {data.prescriptions.map((img) => (
+            {data.results.map((img) => (
               <div
                 key={generateKey()}
                 className="aspect-square bg-base-100 border"
               >
                 <input
                   type="checkbox"
-                  name="prescription[remove][]"
+                  name="result[remove][]"
                   id={img.file_id}
                   value={img.file_id}
                   hidden={true}
@@ -103,4 +103,4 @@ const PrescriptionForm = (props) => {
   );
 };
 
-export default PrescriptionForm;
+export default ResultForm;

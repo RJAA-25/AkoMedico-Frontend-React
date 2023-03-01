@@ -1,8 +1,5 @@
 import { toast } from "react-hot-toast";
-import {
-  createPrescription,
-  updatePrescription,
-} from "../../api/prescriptions";
+import { createResult, updateResult } from "../../api/results";
 import { getFormData } from "../../helpers/utilities";
 import { forceLogout } from "../functions/global";
 
@@ -13,15 +10,15 @@ export const handleUpload = async (
   e.preventDefault();
   toast.dismiss();
   setLoading(true);
-  const formData = getFormData("#prescription");
-  const res = await createPrescription(formData, data.uid);
+  const formData = getFormData("#result");
+  const res = await createResult(formData, data.uid);
   setLoading(false);
 
   switch (res.status) {
     case 201:
-      const { message, prescriptions } = res;
+      const { message, results } = res;
       toast.success(message);
-      data.prescriptions = prescriptions;
+      data.results = results;
       const index = source.map((obj) => obj.uid === data.uid).indexOf(data.uid);
       const newData = [...source];
       newData.splice(index, 1, data);
@@ -54,15 +51,15 @@ export const handleRemove = async (
   e.preventDefault();
   toast.dismiss();
   setLoading(true);
-  const formData = getFormData("#prescription");
-  const res = await updatePrescription(formData, data.uid);
+  const formData = getFormData("#result");
+  const res = await updateResult(formData, data.uid);
   setLoading(false);
 
   switch (res.status) {
     case 200:
-      const { message, prescriptions } = res;
+      const { message, results } = res;
       toast.success(message);
-      data.prescriptions = prescriptions;
+      data.results = results;
       const index = source.map((obj) => obj.uid === data.uid).indexOf(data.uid);
       const newData = [...source];
       newData.splice(index, 1, data);

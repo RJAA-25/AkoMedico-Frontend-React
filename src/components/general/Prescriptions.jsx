@@ -20,6 +20,7 @@ const Prescriptions = (props) => {
       <div className="divider font-bold text-xl sm:text-2xl">
         Prescriptions ({data.prescriptions.length})
       </div>
+
       <div className="flex justify-between gap-3">
         {status === "base" && (
           <button
@@ -48,7 +49,7 @@ const Prescriptions = (props) => {
       </div>
 
       {status === "base" && (
-        <div className="grid w-full grid-cols-2 sm:grid-cols-3 border place-items-stretch">
+        <div className="grid w-full grid-cols-2 sm:grid-cols-3 place-items-stretch">
           {data.prescriptions.map((img) => (
             <a
               href={img.image_link}

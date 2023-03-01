@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ConsultationForm from "../../../components/form/ConsultationForm";
 import Prescriptions from "../../../components/general/Prescriptions";
+import Results from "../../../components/general/Results";
 import { consultationActions } from "../../../store/consultation";
 
 import { modalActions } from "../../../store/modal";
@@ -73,6 +74,11 @@ const ConsultationInfo = () => {
       {readOnly && (
         <>
           <Prescriptions
+            selected={selected}
+            issue="consultation"
+            storeAction={consultationActions}
+          />
+          <Results
             selected={selected}
             issue="consultation"
             storeAction={consultationActions}
