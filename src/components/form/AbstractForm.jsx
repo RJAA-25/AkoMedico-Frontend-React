@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { generateKey } from "../../helpers/utilities";
 
-const PrescriptionForm = (props) => {
+const AbstractForm = (props) => {
   const {
     source,
     data,
@@ -19,7 +19,7 @@ const PrescriptionForm = (props) => {
 
   return (
     <form
-      id="prescription"
+      id="abstract"
       encType="multipart/form-data"
       className="grid gap-5"
       onSubmit={(e) => {
@@ -34,12 +34,12 @@ const PrescriptionForm = (props) => {
         });
       }}
     >
-      <input
+      {/* <input
         type="text"
-        name="prescription[issue]"
+        name="abstract[issue]"
         defaultValue={issue}
         hidden={true}
-      />
+      /> */}
 
       {status === "upload" && (
         <div className="form-control">
@@ -48,7 +48,7 @@ const PrescriptionForm = (props) => {
           </label>
           <input
             type="file"
-            name="prescription[upload][]"
+            name="abstract[upload][]"
             multiple={true}
             accept="image/*"
             className="file-input w-full input-bordered"
@@ -63,14 +63,14 @@ const PrescriptionForm = (props) => {
               <span className="label-text">Select files to be removed</span>
             </label>
 
-            {data.prescriptions.map((img) => (
+            {data.abstracts.map((img) => (
               <div
                 key={generateKey()}
                 className="aspect-square bg-base-100 border"
               >
                 <input
                   type="checkbox"
-                  name="prescription[remove][]"
+                  name="abstract[remove][]"
                   id={img.file_id}
                   value={img.file_id}
                   hidden={true}
@@ -103,4 +103,4 @@ const PrescriptionForm = (props) => {
   );
 };
 
-export default PrescriptionForm;
+export default AbstractForm;

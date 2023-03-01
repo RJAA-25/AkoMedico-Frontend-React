@@ -53,7 +53,7 @@ const AdmissionsList = (props) => {
                   )}
                   {admit.abstracts.length > 0 && (
                     <div className="badge badge-outline gap-2">
-                      {admit.abstract.length}
+                      {admit.abstracts.length}
                       <Icon icon={faHeartPulse} />
                     </div>
                   )}

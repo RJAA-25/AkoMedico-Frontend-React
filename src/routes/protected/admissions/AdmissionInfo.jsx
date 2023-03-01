@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
+import { admissionActions } from "../../../store/admission";
 import { modalActions } from "../../../store/modal";
 import {
   handleDelete,
@@ -9,6 +10,9 @@ import {
 } from "../../../utilities/eventHandlers/admissions";
 
 import AdmissionForm from "../../../components/form/AdmissionForm";
+import Prescriptions from "../../../components/general/Prescriptions";
+import Results from "../../../components/general/Results";
+import Abstracts from "../../../components/general/Abstracts";
 
 const AdmissionInfo = () => {
   const dispatch = useDispatch();
@@ -65,6 +69,26 @@ const AdmissionInfo = () => {
         setReadOnly={setReadOnly}
         handleSubmit={handleUpdate}
       />
+
+      {readOnly && (
+        <>
+          <Prescriptions
+            selected={selected}
+            issue="admission"
+            storeAction={admissionActions}
+          />
+          <Results
+            selected={selected}
+            issue="admission"
+            storeAction={admissionActions}
+          />
+          <Abstracts
+            selected={selected}
+            issue="admission"
+            storeAction={admissionActions}
+          />
+        </>
+      )}
     </div>
   );
 };
