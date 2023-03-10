@@ -63,7 +63,7 @@ export const handleCreate = async (
       const { message, condition } = res;
       toast.success(message);
       dispatch(conditionActions.set([...data, condition]));
-      navigate(`/existing-conditions/${condition.id}`);
+      navigate(`/existing-conditions/${condition.uid}`);
       break;
 
     case 400:
@@ -87,13 +87,13 @@ export const handleCreate = async (
 
 export const handleUpdate = async (
   e,
-  { dispatch, navigate, setLoading, setError, setReadOnly, data, id }
+  { dispatch, navigate, setLoading, setError, setReadOnly, data, uid }
 ) => {
   e.preventDefault();
   toast.dismiss();
   setLoading(true);
   const formData = getFormData("#condition");
-  const res = await updateCondition(formData, id);
+  const res = await updateCondition(formData, uid);
   setLoading(false);
 
   switch (res.status) {
@@ -101,7 +101,7 @@ export const handleUpdate = async (
       const { message, condition } = res;
       toast.success(message);
       setReadOnly((state) => !state);
-      const index = data.map((condition) => condition.id).indexOf(id);
+      const index = data.map((condition) => condition.uid).indexOf(uid);
       const newData = [...data];
       newData.splice(index, 1, condition);
       dispatch(conditionActions.set(newData));
@@ -126,15 +126,15 @@ export const handleUpdate = async (
   }
 };
 
-export const handleDelete = async ({ dispatch, navigate, data, id }) => {
+export const handleDelete = async ({ dispatch, navigate, data, uid }) => {
   toast.dismiss();
-  const res = await destroyCondition(id);
+  const res = await destroyCondition(uid);
 
   switch (res.status) {
     case 200:
       const { message } = res;
       toast.success(message);
-      const index = data.map((condition) => condition.id).indexOf(id);
+      const index = data.map((condition) => condition.uid).indexOf(uid);
 
       const newData = [...data];
       newData.splice(index, 1);

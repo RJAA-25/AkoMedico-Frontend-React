@@ -17,12 +17,12 @@ export const createCondition = async (formData) => {
   }
 };
 
-export const updateCondition = async (formData, id) => {
+export const updateCondition = async (formData, uid) => {
   try {
     const {
       status,
       data: { message, condition },
-    } = await api.patch(`/conditions/update/${id}`, formData);
+    } = await api.patch(`/conditions/update/${uid}`, formData);
     return { status, message, condition };
   } catch (error) {
     if (error.response) {
@@ -34,12 +34,12 @@ export const updateCondition = async (formData, id) => {
   }
 };
 
-export const destroyCondition = async (id) => {
+export const destroyCondition = async (uid) => {
   try {
     const {
       status,
       data: { message },
-    } = await api.delete(`/conditions/destroy/${id}`);
+    } = await api.delete(`/conditions/destroy/${uid}`);
     return { status, message };
   } catch (error) {
     if (error.response) {

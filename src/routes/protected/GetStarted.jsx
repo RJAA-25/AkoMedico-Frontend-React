@@ -14,9 +14,11 @@ import Loading from "../../components/state/Loading";
 const GetStarted = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { data: userData, isChanged: userState } = useSelector(
-    (state) => state.user
-  );
+  const {
+    data: { first_name },
+    isChanged: userState,
+  } = useSelector((state) => state.user);
+
   const setup = {
     birth_date: "",
     civil_status: "",
@@ -40,10 +42,10 @@ const GetStarted = () => {
   ) : (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="grow grid place-content-center gap-5 text-center">
+      <div className="grow grid place-content-center gap-5 text-center p-5">
         <div className="p-5">
           <h1 className="font-bold text-2xl mb-5">
-            Let's build your profile, {userData.first_name}
+            Let's build your profile, {first_name}
           </h1>
           <p>
             Fill up the form as accurately as you can. No false entries, please!

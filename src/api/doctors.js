@@ -17,12 +17,12 @@ export const createDoctor = async (formData) => {
   }
 };
 
-export const updateDoctor = async (formData, id) => {
+export const updateDoctor = async (formData, uid) => {
   try {
     const {
       status,
       data: { message, doctor },
-    } = await api.patch(`/doctors/update/${id}`, formData);
+    } = await api.patch(`/doctors/update/${uid}`, formData);
     return { status, message, doctor };
   } catch (error) {
     if (error.response) {
@@ -34,12 +34,12 @@ export const updateDoctor = async (formData, id) => {
   }
 };
 
-export const destroyDoctor = async (id) => {
+export const destroyDoctor = async (uid) => {
   try {
     const {
       status,
       data: { message },
-    } = await api.delete(`/doctors/destroy/${id}`);
+    } = await api.delete(`/doctors/destroy/${uid}`);
     return { status, message };
   } catch (error) {
     if (error.response) {

@@ -14,18 +14,21 @@ const ContactInfo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { contactId } = useParams();
+  const { contactUid } = useParams();
   const contactsData = useSelector((state) => state.contact.data);
-  const selected = contactsData.find(
-    (contact) => contact.id === Number(contactId)
-  );
+  const selected = contactsData.find((contact) => contact.uid === contactUid);
 
   const [readOnly, setReadOnly] = useState(true);
   const modal = {
     title: "Delete Emergency Contact",
     body: "Remove emergency contact from your list?",
     action: () =>
-      handleDelete({ dispatch, navigate, data: contactsData, id: selected.id }),
+      handleDelete({
+        dispatch,
+        navigate,
+        data: contactsData,
+        uid: selected.uid,
+      }),
   };
 
   return (

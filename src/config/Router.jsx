@@ -51,15 +51,15 @@ export const router = createBrowserRouter(
           <Route path="profile" element={<Profile />} />
           <Route path="doctors" element={<Doctors />}>
             <Route index element={<DoctorsIndex />} />
-            <Route path=":doctorId" element={<DoctorInfo />} />
+            <Route path=":doctorUid" element={<DoctorInfo />} />
           </Route>
           <Route path="emergency-contacts" element={<EmergencyContacts />}>
             <Route index element={<ContactsIndex />} />
-            <Route path=":contactId" element={<ContactInfo />} />
+            <Route path=":contactUid" element={<ContactInfo />} />
           </Route>
           <Route path="existing-conditions" element={<ExistingConditions />}>
             <Route index element={<ConditionsIndex />} />
-            <Route path=":conditionId" element={<ConditionInfo />} />
+            <Route path=":conditionUid" element={<ConditionInfo />} />
           </Route>
           <Route path="consultations" element={<Consultations />}>
             <Route index element={<ConsultationsIndex />} />

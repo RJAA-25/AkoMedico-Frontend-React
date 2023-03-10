@@ -14,10 +14,10 @@ const ConditionInfo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { conditionId } = useParams();
+  const { conditionUid } = useParams();
   const conditionsData = useSelector((state) => state.condition.data);
   const selected = conditionsData.find(
-    (condition) => condition.id === Number(conditionId)
+    (condition) => condition.uid === conditionUid
   );
 
   const [readOnly, setReadOnly] = useState(true);
@@ -29,7 +29,7 @@ const ConditionInfo = () => {
         dispatch,
         navigate,
         data: conditionsData,
-        id: selected.id,
+        uid: selected.uid,
       }),
   };
 

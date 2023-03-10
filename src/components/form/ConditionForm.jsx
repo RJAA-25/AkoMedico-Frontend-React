@@ -41,7 +41,7 @@ const ConditionForm = (props) => {
           setError,
           setReadOnly,
           data,
-          id: setup.id,
+          uid: setup.uid,
         })
       }
       className="grid sm:grid-cols-2 gap-5"

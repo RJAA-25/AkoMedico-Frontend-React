@@ -13,9 +13,9 @@ const DoctorInfo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { doctorId } = useParams();
+  const { doctorUid } = useParams();
   const doctorsData = useSelector((state) => state.doctor.data);
-  const selected = doctorsData.find((doc) => doc.id === Number(doctorId));
+  const selected = doctorsData.find((doc) => doc.uid === doctorUid);
 
   const [readOnly, setReadOnly] = useState(true);
   const modal = {
@@ -26,7 +26,7 @@ const DoctorInfo = () => {
         dispatch,
         navigate,
         data: doctorsData,
-        id: selected.id,
+        uid: selected.uid,
       }),
   };
 

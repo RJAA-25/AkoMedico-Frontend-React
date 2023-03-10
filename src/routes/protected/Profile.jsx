@@ -15,7 +15,8 @@ import ProfileForm from "../../components/form/ProfileForm";
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { data: userData, isChanged: profileState } = useSelector(
+  const { first_name, last_name } = useSelector((state) => state.user.data);
+  const { data: profileData, isChanged: profileState } = useSelector(
     (state) => state.profile
   );
 
@@ -48,7 +49,8 @@ const Profile = () => {
               </div>
             )}
             <ProfileForm
-              setup={userData}
+              initials={first_name[0] + last_name[0]}
+              setup={profileData}
               readOnly={readOnly}
               setReadOnly={setReadOnly}
               handleSubmit={handleUpdate}

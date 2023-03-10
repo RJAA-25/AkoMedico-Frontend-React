@@ -59,7 +59,7 @@ export const handleCreate = async (
       const { message, emergency_contact } = res;
       toast.success(message);
       dispatch(contactActions.set([...data, emergency_contact]));
-      navigate(`/emergency-contacts/${emergency_contact.id}`);
+      navigate(`/emergency-contacts/${emergency_contact.uid}`);
       break;
 
     case 400:
@@ -83,13 +83,13 @@ export const handleCreate = async (
 
 export const handleUpdate = async (
   e,
-  { dispatch, navigate, setLoading, setError, setReadOnly, data, id }
+  { dispatch, navigate, setLoading, setError, setReadOnly, data, uid }
 ) => {
   e.preventDefault();
   toast.dismiss();
   setLoading(true);
   const formData = getFormData("#emergency_contact");
-  const res = await updateContact(formData, id);
+  const res = await updateContact(formData, uid);
   setLoading(false);
 
   switch (res.status) {
@@ -97,7 +97,7 @@ export const handleUpdate = async (
       const { message, emergency_contact } = res;
       toast.success(message);
       setReadOnly((state) => !state);
-      const index = data.map((contact) => contact.id).indexOf(id);
+      const index = data.map((contact) => contact.uid).indexOf(uid);
       const newData = [...data];
       newData.splice(index, 1, emergency_contact);
       dispatch(contactActions.set(newData));
@@ -122,15 +122,15 @@ export const handleUpdate = async (
   }
 };
 
-export const handleDelete = async ({ dispatch, navigate, data, id }) => {
+export const handleDelete = async ({ dispatch, navigate, data, uid }) => {
   toast.dismiss();
-  const res = await destroyContact(id);
+  const res = await destroyContact(uid);
 
   switch (res.status) {
     case 200:
       const { message } = res;
       toast.success(message);
-      const index = data.map((contact) => contact.id).indexOf(id);
+      const index = data.map((contact) => contact.uid).indexOf(uid);
       const newData = [...data];
       newData.splice(index, 1);
       dispatch(contactActions.set(newData));

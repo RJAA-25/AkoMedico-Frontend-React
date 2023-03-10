@@ -52,14 +52,13 @@ const Abstracts = (props) => {
         <div className="grid w-full grid-cols-2 sm:grid-cols-3 place-items-stretch">
           {data.abstracts.map((img) => (
             <a
-              href={img.image_link}
+              href={img.image_url}
               target="_blank"
               key={generateKey()}
               className="aspect-square bg-base-100 border hover:brightness-150"
             >
               <img
-                src={`https://lh3.googleusercontent.com/d/${img.file_id}`}
-                // src={img.image_link}
+                src={img.image_url}
                 alt="prescription image"
                 className="h-full object-cover"
               />

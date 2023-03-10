@@ -7,17 +7,14 @@ export const generateKey = () => {
 
 export const getFormData = (formId) => {
   const form = document.querySelector(formId);
-  // const formData = new FormData(form);
-  // for (const pair of formData.entries()) {
-  //   console.log(`${pair[0]}, ${pair[1]}`);
-  // }
-  // for (const key of formData.keys()) {
-  //   console.log(key);
-  // }
-  // for (const value of formData.values()) {
-  //   console.log(value);
-  // }
   return new FormData(form);
+};
+
+export const computeAge = (date) => {
+  const today = new Date();
+  const birthdate = new Date(date);
+  const age = (today - birthdate) / (1000 * 60 * 60 * 24 * 365);
+  return Math.floor(age);
 };
 
 export const formatDate = (input, type) => {

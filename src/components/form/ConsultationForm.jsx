@@ -99,7 +99,7 @@ const ConsultationForm = (props) => {
             {selected.map((doctor) => (
               <li key={generateKey()}>
                 <Link
-                  to={`/doctors/${doctor.id}`}
+                  to={`/doctors/${doctor.uid}`}
                   className="block border p-5 shadow rounded-lg"
                 >
                   <div className="flex flex-col sm:flex-row justify-between items-baseline">

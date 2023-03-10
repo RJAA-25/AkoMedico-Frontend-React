@@ -71,18 +71,17 @@ const PrescriptionForm = (props) => {
                 <input
                   type="checkbox"
                   name="prescription[remove][]"
-                  id={img.file_id}
-                  value={img.file_id}
+                  id={img.uid}
+                  value={img.uid}
                   hidden={true}
                   className="peer"
                 />
                 <label
-                  htmlFor={img.file_id}
+                  htmlFor={img.uid}
                   className="block h-full hover:cursor-pointer peer-checked:border-4 peer-checked:border-red-500"
                 >
                   <img
-                    src={`https://lh3.googleusercontent.com/d/${img.file_id}`}
-                    // src={img.image_link}
+                    src={img.image_url}
                     alt="prescription image"
                     className="h-full object-cover"
                   />

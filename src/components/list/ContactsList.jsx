@@ -11,8 +11,8 @@ const ContactsList = (props) => {
       {data.length === 0 && (
         <div className="border text-center rounded-lg p-10">
           <p>No emergency contacts added</p>
-          <span className="text-sm italic block">(for now, right?)</span>
-          <span className="text-xs italic">(...right?)</span>
+          {/* <span className="text-sm italic block">(for now, right?)</span>
+          <span className="text-xs italic">(...right?)</span> */}
         </div>
       )}
 
@@ -21,7 +21,7 @@ const ContactsList = (props) => {
           {data.map((contact) => (
             <li key={generateKey()}>
               <Link
-                to={`/emergency-contacts/${contact.id}`}
+                to={`/emergency-contacts/${contact.uid}`}
                 className="block border p-5 shadow rounded-lg"
               >
                 <div className="flex flex-col sm:flex-row justify-between items-baseline">

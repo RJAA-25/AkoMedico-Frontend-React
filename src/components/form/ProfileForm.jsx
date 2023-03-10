@@ -19,7 +19,13 @@ import NumberInput from "../input/NumberInput";
 import Select from "../input/Select";
 
 const ProfileForm = (props) => {
-  const { setup, readOnly = false, setReadOnly = null, handleSubmit } = props;
+  const {
+    initials = "",
+    setup,
+    readOnly = false,
+    setReadOnly = null,
+    handleSubmit,
+  } = props;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -48,6 +54,30 @@ const ProfileForm = (props) => {
       }
       className="mx-auto w-full max-w-3xl grid sm:grid-cols-2 gap-5"
     >
+      {readOnly ? (
+        <div className="sm:col-span-2 w-48 sm:w-60 mx-auto aspect-square rounded-full overflow-clip grid border-8 place-items-center bg-yellow-500">
+          {!setup.image_url ? (
+            <span className="font-black text-7xl sm:text-8xl text-white">
+              {initials}
+            </span>
+          ) : (
+            <img src={state.image_url} alt="" className="h-full object-cover" />
+          )}
+        </div>
+      ) : (
+        <div className="form-control sm:col-span-2">
+          <label className="label">
+            <span className="label-text">Profile Picture</span>
+          </label>
+          <input
+            type="file"
+            name="profile[image_url]"
+            accept="image/*"
+            className="file-input w-full input-bordered"
+          />
+        </div>
+      )}
+
       <DateInput
         name="profile[birth_date]"
         title="Birthdate"

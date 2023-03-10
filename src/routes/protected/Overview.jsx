@@ -3,29 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchOverview } from "../../utilities/eventHandlers/overview";
 import Loading from "../../components/state/Loading";
+import ProfileCard from "../../components/card/ProfileCard";
+import ConditionCard from "../../components/card/ConditionCard";
+import ConsultationCard from "../../components/card/ConsultationCard";
+import AdmissionCard from "../../components/card/AdmissionCard";
 
 const Overview = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isChanged: user } = useSelector((state) => state.user);
-  const { isChanged: profile } = useSelector((state) => state.profile);
-  const { isChanged: contact } = useSelector((state) => state.contact);
-  const { isChanged: condition } = useSelector((state) => state.condition);
-  const { isChanged: doctor } = useSelector((state) => state.doctor);
-  const { isChanged: admission } = useSelector((state) => state.admission);
-  const { isChanged: consultation } = useSelector(
-    (state) => state.consultation
-  );
+  const { user, profile, contact, doctor, condition, consultation, admission } =
+    useSelector((state) => state);
 
   const [pageLoading, setPageLoading] = useState(true);
   const initialized = [
-    user,
-    profile,
-    contact,
-    condition,
-    doctor,
-    admission,
-    consultation,
+    user.isChanged,
+    profile.isChanged,
+    contact.isChanged,
+    condition.isChanged,
+    doctor.isChanged,
+    admission.isChanged,
+    consultation.isChanged,
   ];
 
   useEffect(() => {
@@ -35,7 +32,22 @@ const Overview = () => {
   }, []);
 
   return (
-    <>{pageLoading ? <Loading /> : <div className="grow">Overview</div>}</>
+    <>
+      {pageLoading ? (
+        <Loading />
+      ) : (
+        <div className="grid gap-10 p-5 mb-20">
+          <ProfileCard data={{ ...user.data, ...profile.data }} />
+          <ConditionCard data={condition.data} />
+
+          <div className="grid sm:grid-cols-2 gap-5">
+            <ConsultationCard data={consultation.data} />
+
+            <AdmissionCard data={admission.data} />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

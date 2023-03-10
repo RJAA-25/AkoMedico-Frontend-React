@@ -55,7 +55,7 @@ export const handleCreate = async (
       const { message, doctor } = res;
       toast.success(message);
       dispatch(doctorActions.set([...data, doctor]));
-      navigate(`/doctors/${doctor.id}`);
+      navigate(`/doctors/${doctor.uid}`);
       break;
 
     case 400:
@@ -79,13 +79,13 @@ export const handleCreate = async (
 
 export const handleUpdate = async (
   e,
-  { dispatch, navigate, setLoading, setError, setReadOnly, data, id }
+  { dispatch, navigate, setLoading, setError, setReadOnly, data, uid }
 ) => {
   e.preventDefault();
   toast.dismiss();
   setLoading(true);
   const formData = getFormData("#doctor");
-  const res = await updateDoctor(formData, id);
+  const res = await updateDoctor(formData, uid);
   setLoading(false);
 
   switch (res.status) {
@@ -93,7 +93,7 @@ export const handleUpdate = async (
       const { message, doctor } = res;
       toast.success(message);
       setReadOnly((state) => !state);
-      const index = data.map((doc) => doc.id).indexOf(id);
+      const index = data.map((doc) => doc.uid).indexOf(uid);
       const newData = [...data];
       newData.splice(index, 1, doctor);
       dispatch(doctorActions.set(newData));
@@ -118,15 +118,15 @@ export const handleUpdate = async (
   }
 };
 
-export const handleDelete = async ({ dispatch, navigate, data, id }) => {
+export const handleDelete = async ({ dispatch, navigate, data, uid }) => {
   toast.dismiss();
-  const res = await destroyDoctor(id);
+  const res = await destroyDoctor(uid);
 
   switch (res.status) {
     case 200:
       const { message } = res;
       toast.success(message);
-      const index = data.map((doc) => doc.id).indexOf(id);
+      const index = data.map((doc) => doc.uid).indexOf(uid);
       const newData = [...data];
       newData.splice(index, 1);
       dispatch(doctorActions.set(newData));

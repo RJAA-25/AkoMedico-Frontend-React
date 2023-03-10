@@ -17,12 +17,12 @@ export const createContact = async (formData) => {
   }
 };
 
-export const updateContact = async (formData, id) => {
+export const updateContact = async (formData, uid) => {
   try {
     const {
       status,
       data: { message, emergency_contact },
-    } = await api.patch(`/emergency-contacts/update/${id}`, formData);
+    } = await api.patch(`/emergency-contacts/update/${uid}`, formData);
     return { status, message, emergency_contact };
   } catch (error) {
     if (error.response) {
@@ -34,12 +34,12 @@ export const updateContact = async (formData, id) => {
   }
 };
 
-export const destroyContact = async (id) => {
+export const destroyContact = async (uid) => {
   try {
     const {
       status,
       data: { message },
-    } = await api.delete(`/emergency-contacts/destroy/${id}`);
+    } = await api.delete(`/emergency-contacts/destroy/${uid}`);
     return { status, message };
   } catch (error) {
     if (error.response) {
