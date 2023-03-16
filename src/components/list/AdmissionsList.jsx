@@ -26,7 +26,7 @@ const AdmissionsList = (props) => {
             <li key={generateKey()}>
               <Link
                 to={`/admissions/${admit.uid}`}
-                className="block border p-5 shadow rounded-lg"
+                className="block p-5 border border-stone-400 rounded-lg shadow-lg hover:bg-secondary hover:border-transparent transition hover:shadow-xl"
               >
                 <div className="flex flex-col sm:flex-row justify-between items-baseline">
                   <p>
@@ -40,19 +40,19 @@ const AdmissionsList = (props) => {
                 <span className="text-sm">{admit.health_facility}</span>
                 <div className="flex gap-3 mt-3">
                   {admit.prescriptions.length > 0 && (
-                    <div className="badge badge-outline gap-2">
+                    <div className="badge badge-secondary gap-2">
                       {admit.prescriptions.length}
                       <Icon icon={faPills} />
                     </div>
                   )}
                   {admit.results.length > 0 && (
-                    <div className="badge badge-outline gap-2">
+                    <div className="badge badge-secondary gap-2">
                       {admit.results.length}
                       <Icon icon={faFlaskVial} />
                     </div>
                   )}
                   {admit.abstracts.length > 0 && (
-                    <div className="badge badge-outline gap-2">
+                    <div className="badge badge-secondary gap-2">
                       {admit.abstracts.length}
                       <Icon icon={faHeartPulse} />
                     </div>

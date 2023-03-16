@@ -1,10 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
 import { generateKey } from "../../helpers/utilities";
+import { logoutSession } from "../../utilities/functions/global";
 
 const Sidebar = (props) => {
   const {
     toggle: { setCheck },
   } = props;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const personal = [["/profile", "Profile"]];
   const people = [
@@ -18,8 +22,8 @@ const Sidebar = (props) => {
   ];
 
   return (
-    <div className="bg-base-100 w-80">
-      <ul className="menu bg-base-100 p-4">
+    <div className="bg-base-100 w-80 mt-16 border flex flex-col">
+      <ul className="menu bg-base-100 p-4 grow">
         <li onClick={() => setCheck(false)}>
           <NavLink to="/overview">Overview</NavLink>
         </li>
@@ -61,6 +65,15 @@ const Sidebar = (props) => {
           </li>
         ))}
       </ul>
+      <div className="p-4">
+        <div className="divider"></div>
+        <button
+          className="btn btn-block btn-error"
+          onClick={() => logoutSession(dispatch, navigate)}
+        >
+          Logout
+        </button>
+      </div>
     </div>
   );
 };

@@ -23,7 +23,7 @@ const ConditionCard = (props) => {
               <Link
                 to={`/existing-conditions/${condition.uid}`}
                 key={generateKey()}
-                className="block border rounded-lg"
+                className="block border border-stone-400 rounded-lg shadow-lg hover:bg-secondary hover:border-transparent transition hover:shadow-xl"
               >
                 <div className="p-5 sm:p-10">
                   <p className="my-2 font-bold text-xl sm:text-2xl">

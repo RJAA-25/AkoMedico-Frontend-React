@@ -80,7 +80,7 @@ const ConditionForm = (props) => {
         <button
           type="Submit"
           disabled={!formValid}
-          className={`btn btn-primary sm:col-span-2 ${
+          className={`btn btn-neutral sm:col-span-2 ${
             loading ? "loading" : ""
           }`}
         >

@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-
 import { handleCreate } from "../../../utilities/eventHandlers/admissions";
-
 import AdmissionForm from "../../../components/form/AdmissionForm";
 import AdmissionsList from "../../../components/list/AdmissionsList";
 

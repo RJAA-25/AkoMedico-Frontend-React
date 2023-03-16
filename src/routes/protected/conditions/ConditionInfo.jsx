@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
 import { modalActions } from "../../../store/modal";
 import {
   handleDelete,
   handleUpdate,
 } from "../../../utilities/eventHandlers/conditions";
-
 import ConditionForm from "../../../components/form/ConditionForm";
 
 const ConditionInfo = () => {
@@ -38,9 +36,12 @@ const ConditionInfo = () => {
       <div className="flex gap-3">
         {readOnly && (
           <>
-            <Link to="/existing-conditions" className="btn grow">
+            <button
+              className="btn btn-accent grow"
+              onClick={() => navigate(-1)}
+            >
               Back
-            </Link>
+            </button>
             <label
               htmlFor="confirm-modal"
               onClick={() => dispatch(modalActions.set(modal))}
@@ -51,7 +52,7 @@ const ConditionInfo = () => {
           </>
         )}
         <button
-          className={`btn grow ${readOnly ? "btn-secondary" : "btn-error"}`}
+          className={`btn grow ${readOnly ? "btn-neutral" : "btn-error"}`}
           onClick={() => setReadOnly((state) => !state)}
         >
           {readOnly ? "Update" : "Cancel"}

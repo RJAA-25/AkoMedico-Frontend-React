@@ -11,8 +11,6 @@ const DoctorsList = (props) => {
       {data.length === 0 && (
         <div className="border text-center rounded-lg p-10">
           <p>No doctors added</p>
-          {/* <span className="text-sm italic block">(for now, right?)</span>
-          <span className="text-xs italic">(...right?)</span> */}
         </div>
       )}
 
@@ -22,7 +20,7 @@ const DoctorsList = (props) => {
             <li key={generateKey()}>
               <Link
                 to={`/doctors/${doctor.uid}`}
-                className="block border p-5 shadow rounded-lg"
+                className="block p-5 border border-stone-400 rounded-lg shadow-lg hover:bg-secondary hover:border-transparent transition hover:shadow-xl"
               >
                 <div className="flex flex-col sm:flex-row justify-between items-baseline">
                   <p>

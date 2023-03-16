@@ -44,6 +44,11 @@ export const fetchOverview = async ({ dispatch, navigate, setPageLoading }) => {
       forceLogout(dispatch, navigate);
       break;
 
+    case 403:
+      toast(res.error);
+      navigate("/confirmation", { replace: true });
+      break;
+
     default:
       toast.error(res.message);
   }

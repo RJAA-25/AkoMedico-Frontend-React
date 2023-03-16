@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import {
   handleDelete,
@@ -35,9 +35,12 @@ const DoctorInfo = () => {
       <div className="flex gap-3">
         {readOnly && (
           <>
-            <Link to="/doctors" className="btn grow">
+            <button
+              onClick={() => navigate(-1)}
+              className="btn btn-accent grow"
+            >
               Back
-            </Link>
+            </button>
             <label
               htmlFor="confirm-modal"
               onClick={() => dispatch(modalActions.set(modal))}
@@ -48,7 +51,7 @@ const DoctorInfo = () => {
           </>
         )}
         <button
-          className={`btn grow ${readOnly ? "btn-secondary" : "btn-error"}`}
+          className={`btn grow ${readOnly ? "btn-neutral" : "btn-error"}`}
           onClick={() => setReadOnly((state) => !state)}
         >
           {readOnly ? "Update" : "Cancel"}

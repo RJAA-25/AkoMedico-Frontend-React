@@ -40,9 +40,9 @@ const GetStarted = () => {
   return pageLoading ? (
     <Loading />
   ) : (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col mt-16 bg-base-200 bg-layout-pattern">
       <Navbar />
-      <div className="grow grid place-content-center gap-5 text-center p-5">
+      <div className="grow grid place-content-center gap-5 text-center p-5 bg-base-100 w-full max-w-3xl mx-auto">
         <div className="p-5">
           <h1 className="font-bold text-2xl mb-5">
             Let's build your profile, {first_name}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
 
@@ -55,15 +55,23 @@ const LoginForm = () => {
     <form
       id="session"
       onSubmit={handleSubmit}
-      className="mx-auto grid max-w-lg gap-5 p-5 border"
+      className="mx-auto grid max-w-lg gap-5 p-5 rounded-lg bg-base-100 shadow-lg backdrop-blur"
     >
       <h1 className="font-bold text-xl">Login</h1>
       <EmailInput name="session[email]" keyword="email" />
       <PasswordInput name="session[password]" keyword="password" />
       {error && <p className="text-error text-sm">{error}</p>}
+
+      <p className="text-sm">
+        Don't have an account?{" "}
+        <Link to="/register" className="link hover:text-primary">
+          Register
+        </Link>
+      </p>
+
       <button
         type="Submit"
-        className={`btn btn-primary ${loading ? "loading" : ""}`}
+        className={`btn btn-neutral ${loading ? "loading" : ""}`}
       >
         Submit
       </button>

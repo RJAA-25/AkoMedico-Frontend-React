@@ -23,7 +23,7 @@ const Consultations = () => {
   return pageLoading ? (
     <Loading />
   ) : (
-    <div className="grid gap-5 p-5">
+    <div className="grid gap-5 p-5 mb-20">
       <Banner title="Consultations" imageSrc={imageSrc} />
       <Outlet />
     </div>

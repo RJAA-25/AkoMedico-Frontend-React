@@ -55,7 +55,7 @@ const ProfileForm = (props) => {
       className="mx-auto w-full max-w-3xl grid sm:grid-cols-2 gap-5"
     >
       {readOnly ? (
-        <div className="sm:col-span-2 w-48 sm:w-60 mx-auto aspect-square rounded-full overflow-clip grid border-8 place-items-center bg-yellow-500">
+        <div className="sm:col-span-2 w-48 sm:w-60 mx-auto aspect-square rounded-full overflow-clip grid border-8 border-amber-500 place-items-center bg-primary">
           {!setup.image_url ? (
             <span className="font-black text-7xl sm:text-8xl text-white">
               {initials}
@@ -183,7 +183,7 @@ const ProfileForm = (props) => {
         <button
           type="Submit"
           disabled={!formValid}
-          className={`btn btn-primary sm:col-span-2 ${
+          className={`btn btn-neutral sm:col-span-2 ${
             loading ? "loading" : ""
           }`}
         >

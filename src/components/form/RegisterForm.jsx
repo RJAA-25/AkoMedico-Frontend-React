@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   checkNotEmpty,
   checkEmail,
@@ -30,7 +30,7 @@ const RegisterForm = () => {
     <form
       id="register"
       onSubmit={(e) => handleSubmit(e, { navigate, setLoading, setError })}
-      className="mx-auto max-w-3xl border grid sm:grid-cols-2 gap-5 p-5"
+      className="mx-auto max-w-3xl grid sm:grid-cols-2 gap-5 p-5 bg-base-100 rounded-lg shadow-lg"
     >
       <h1 className="font-bold text-xl sm:col-span-2">Register</h1>
       <TextInput
@@ -68,10 +68,18 @@ const RegisterForm = () => {
         state={{ state, setState }}
         error={{ error, setError }}
       />
+
+      <p className="text-sm">
+        Already have an account?{" "}
+        <Link to="/login" className="link hover:text-primary">
+          Login
+        </Link>
+      </p>
+
       <button
         type="Submit"
         disabled={!formValid}
-        className={`btn btn-primary sm:col-span-2 ${loading ? "loading" : ""}`}
+        className={`btn btn-neutral sm:col-span-2 ${loading ? "loading" : ""}`}
       >
         Submit
       </button>

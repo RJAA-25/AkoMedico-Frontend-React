@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-
 import Navbar from "../../components/navigation/Navbar";
 import Sidebar from "../../components/navigation/Sidebar";
 import ConfirmModal from "../../components/state/ConfirmModal";
@@ -20,17 +19,14 @@ const Layout = () => {
           onChange={() => setCheck((state) => !state)}
         />
 
-        <div className="drawer-content flex flex-col">
-          <div className="grow w-full max-w-screen-lg mx-auto border-2">
+        <div className="drawer-content flex flex-col bg-base-200 bg-layout-pattern">
+          <div className="grow w-full max-w-screen-lg mx-auto border-2 mt-16 bg-base-100">
             <Outlet />
           </div>
         </div>
 
         <div className="drawer-side">
-          <label
-            htmlFor="app-drawer"
-            className="drawer-overlay border border-red-500"
-          ></label>
+          <label htmlFor="app-drawer" className="drawer-overlay"></label>
           <Sidebar toggle={{ setCheck }} />
         </div>
       </div>

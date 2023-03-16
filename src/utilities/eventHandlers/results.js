@@ -46,14 +46,12 @@ export const handleUpload = async (
 
 export const handleRemove = async (
   e,
-  { dispatch, navigate, storeAction, setLoading, setStatus, source, data }
+  { dispatch, navigate, storeAction, setStatus, source, data }
 ) => {
   e.preventDefault();
   toast.dismiss();
-  setLoading(true);
   const formData = getFormData("#result");
   const res = await updateResult(formData, data.uid);
-  setLoading(false);
 
   switch (res.status) {
     case 200:

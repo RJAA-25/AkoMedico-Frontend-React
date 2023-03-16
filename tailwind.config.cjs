@@ -9,21 +9,28 @@ module.exports = {
     "./src/routes/**/**/*.{js,jsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "root": "url('./src/assets/images/root.jpg')",
+        "register": "url('./src/assets/images/register.jpg')",
+        "login": "url('./src/assets/images/login.jpg')",
+        "layout-pattern": "url('./src/assets/images/hexagons.svg')",
+      },
+    },
   },
   daisyui: {
     themes: [
       {
         akomedico: {
-          "primary": "#6419E6",
-          "secondary": "#D926A9",
-          "accent": "#1FB2A6",
-          "neutral": "#191D24",
+          "primary": "#fbbf24",
+          "secondary": "#fcd34d",
+          "accent": "#d4d4d4",
+          "neutral": "#292524",
           "base-100": "#f5f5f5",
           "info": "#3ABFF8",
-          "success": "#36D399",
+          "success": "#22c55e",
           "warning": "#FBBD23",
-          "error": "#F87272",
+          "error": "#e11d48",
         },
       },
     ],

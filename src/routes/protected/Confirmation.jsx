@@ -33,11 +33,11 @@ const Confirmation = () => {
       {pageLoading ? (
         <Loading />
       ) : (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col bg-base-200 bg-layout-pattern">
           <Navbar />
-          <div className="grow grid place-content-center">
-            <div className="grid w-full max-w-3xl mx-auto sm:grid-cols-2 gap-5 text-center">
-              <section className="border sm:col-span-2 p-5">
+          <div className="grow grid place-content-center mt-16">
+            <div className="grid w-full max-w-3xl mx-auto sm:grid-cols-2 gap-5 p-5 text-center">
+              <section className="sm:col-span-2 p-5 shadow-lg rounded-lg bg-base-100">
                 <h1 className="font-bold text-2xl">
                   Hey, {userData.first_name}
                 </h1>
@@ -52,7 +52,7 @@ const Confirmation = () => {
                   <p>Once confirmed, you can continue using the application.</p>
                 </div>
               </section>
-              <section className="border p-5">
+              <section className="rounded-lg shadow-lg p-5 bg-base-100">
                 <h2 className="font-bold text-xl">Didn't get any Email?</h2>
                 <p className="my-5">
                   Don't worry! We can send you another one.
@@ -61,14 +61,14 @@ const Confirmation = () => {
                   onClick={() =>
                     handleResend({ dispatch, navigate, setLoading })
                   }
-                  className={`btn btn-primary ${
+                  className={`btn btn-neutral ${
                     loading === "resend" ? "loading" : ""
                   }`}
                 >
                   Resend Email
                 </button>
               </section>
-              <section className="border p-5">
+              <section className="rounded-lg shadow-lg p-5 bg-base-100">
                 <h2 className="font-bold text-xl">Not your account?</h2>
                 <p className="my-5">
                   Just switch to your account after logging out.

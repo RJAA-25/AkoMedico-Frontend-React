@@ -6,6 +6,8 @@ import { conditionActions } from "../../store/condition";
 import { doctorActions } from "../../store/doctor";
 import { consultationActions } from "../../store/consultation";
 import { admissionActions } from "../../store/admission";
+import { logoutUser } from "../../api/session";
+import { toast } from "react-hot-toast";
 
 export const forceLogout = (dispatch, navigate) => {
   dispatch(authActions.logout());
@@ -17,4 +19,10 @@ export const forceLogout = (dispatch, navigate) => {
   dispatch(consultationActions.reset());
   dispatch(admissionActions.reset());
   navigate("/login", { replace: true });
+};
+
+export const logoutSession = async (dispatch, navigate) => {
+  const res = await logoutUser();
+  forceLogout(dispatch, navigate);
+  toast.success(res.message);
 };

@@ -32,13 +32,11 @@ const Profile = () => {
       {pageLoading ? (
         <Loading />
       ) : (
-        <div className="grid gap-5 p-5">
+        <div className="grid gap-5 p-5 mb-20">
           <Banner title="Profile" imageSrc={imageSrc} />
           <div className="mx-auto w-full max-w-3xl grid gap-5">
             <button
-              className={`btn btn-block ${
-                readOnly ? "btn-neutral" : "btn-error"
-              }`}
+              className={`btn ${readOnly ? "btn-neutral" : "btn-error"}`}
               onClick={() => setReadOnly((state) => !state)}
             >
               {readOnly ? "Update Profile" : "Cancel"}

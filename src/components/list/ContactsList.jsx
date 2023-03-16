@@ -22,7 +22,7 @@ const ContactsList = (props) => {
             <li key={generateKey()}>
               <Link
                 to={`/emergency-contacts/${contact.uid}`}
-                className="block border p-5 shadow rounded-lg"
+                className="block p-5 border border-stone-400 rounded-lg shadow-lg hover:bg-secondary hover:border-transparent transition hover:shadow-xl"
               >
                 <div className="flex flex-col sm:flex-row justify-between items-baseline">
                   <p>

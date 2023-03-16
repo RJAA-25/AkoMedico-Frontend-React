@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { generateKey } from "../../helpers/utilities";
+import { modalActions } from "../../store/modal";
 
 const PrescriptionForm = (props) => {
   const {
@@ -16,6 +17,19 @@ const PrescriptionForm = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const modal = {
+    title: "Remove Prescriptions",
+    body: "Remove selected prescriptions from your list?",
+    action: (e) =>
+      handleSubmit(e, {
+        dispatch,
+        navigate,
+        storeAction,
+        setStatus,
+        source,
+        data,
+      }),
+  };
 
   return (
     <form
@@ -92,12 +106,24 @@ const PrescriptionForm = (props) => {
         </>
       )}
 
-      <button
-        type="submit"
-        className={`btn btn-outline ${loading ? "loading" : ""}`}
-      >
-        {status === "upload" ? "Upload Files" : "Remove Files"}
-      </button>
+      {status === "upload" && (
+        <button
+          type="submit"
+          className={`btn btn-neutral ${loading ? "loading" : ""}`}
+        >
+          Upload Files
+        </button>
+      )}
+
+      {status === "remove" && (
+        <label
+          htmlFor="confirm-modal"
+          className="btn btn-neutral"
+          onClick={() => dispatch(modalActions.set(modal))}
+        >
+          Remove Files
+        </label>
+      )}
     </form>
   );
 };

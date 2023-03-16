@@ -9,9 +9,9 @@ const ConfirmModal = () => {
   const [check, setCheck] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleClick = async () => {
+  const handleClick = async (e) => {
     setLoading(true);
-    await action();
+    await action(e);
     setLoading(false);
     setCheck((state) => !state);
   };
@@ -30,11 +30,11 @@ const ConfirmModal = () => {
           <h3 className="font-bold text-lg">{title}</h3>
           <p className="py-4">{body}</p>
           <div className="modal-action">
-            <label htmlFor="confirm-modal" className="btn">
+            <label htmlFor="confirm-modal" className="btn btn-accent">
               Cancel
             </label>
             <button
-              className={`btn ${loading ? "loading" : ""}`}
+              className={`btn btn-neutral ${loading ? "loading" : ""}`}
               onClick={handleClick}
             >
               Remove

@@ -36,7 +36,7 @@ const Overview = () => {
       {pageLoading ? (
         <Loading />
       ) : (
-        <div className="grid gap-10 p-5 mb-20">
+        <div className="grid gap-5 p-5 mb-20">
           <ProfileCard data={{ ...user.data, ...profile.data }} />
           <ConditionCard data={condition.data} />
 

@@ -1,10 +1,32 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import RegisterForm from "../components/form/RegisterForm";
+import Footer from "../components/navigation/Footer";
+import Navbar from "../components/navigation/Navbar";
+import { getCookie } from "../helpers/utilities";
 
 const Register = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (getCookie("CSRF-TOKEN")) navigate("/overview", { replace: true });
+  }, []);
+
   return (
-    <div>
-      <RegisterForm />
-    </div>
+    <>
+      <Navbar />
+      <div className="w-screen h-screen flex flex-col">
+        <div className="flex grow mt-16 mx-auto w-full max-w-screen-2xl sm:p-10">
+          <div className="flex-1">
+            <div className="bg-register w-full h-full bg-cover bg-center"></div>
+          </div>
+          <div className="bg-primary p-5">
+            <RegisterForm />
+          </div>
+        </div>
+        <Footer />
+      </div>
+    </>
   );
 };
 

@@ -13,7 +13,7 @@ export const handleSubmit = async (e, { navigate, setLoading, setError }) => {
 
   switch (res.status) {
     case 201:
-      navigate("/");
+      navigate("/login");
       toast.success(res.message);
       break;
 

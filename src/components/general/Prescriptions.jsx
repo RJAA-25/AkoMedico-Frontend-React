@@ -24,7 +24,7 @@ const Prescriptions = (props) => {
       <div className="flex justify-between gap-3">
         {status === "base" && (
           <button
-            className="btn btn-outline grow"
+            className="btn btn-neutral grow"
             onClick={() => setStatus("upload")}
           >
             Add
@@ -32,7 +32,7 @@ const Prescriptions = (props) => {
         )}
         {status === "base" && (
           <button
-            className="btn btn-outline grow"
+            className="btn btn-error grow"
             onClick={() => setStatus("remove")}
           >
             Remove
