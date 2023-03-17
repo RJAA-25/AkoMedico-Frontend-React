@@ -11,10 +11,10 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "root": "url('./src/assets/images/root.jpg')",
-        "register": "url('./src/assets/images/register.jpg')",
-        "login": "url('./src/assets/images/login.jpg')",
-        "layout-pattern": "url('./src/assets/images/hexagons.svg')",
+        "root": "url('/src/assets/images/root.jpg')",
+        "register": "url('/src/assets/images/register.jpg')",
+        "login": "url('/src/assets/images/login.jpg')",
+        "layout-pattern": "url('/src/assets/images/hexagons.svg')",
       },
     },
   },

@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import {
   fetchProfile,
   handleUpdate,
-} from "../../utilities/eventHandlers/profile";
+} from "/src/utilities/eventHandlers/profile";
 import imageSrc from "../../assets/images/profile.png";
-
 import Loading from "../../components/state/Loading";
 import Banner from "../../components/general/Banner";
 import ProfileForm from "../../components/form/ProfileForm";

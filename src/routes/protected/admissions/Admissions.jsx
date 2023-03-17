@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import { fetchAdmissions } from "../../../utilities/eventHandlers/admissions";
-import imageSrc from "../../../assets/images/admission.png";
+import imageSrc from "/src/assets/images/admission.png";
 import Banner from "../../../components/general/Banner";
 import Loading from "../../../components/state/Loading";
 
