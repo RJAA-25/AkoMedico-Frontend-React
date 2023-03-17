@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-
+import { handleCreate } from "../../../utilities/eventHandlers/consultations";
 import ConsultationForm from "../../../components/form/ConsultationForm";
 import ConsultationsList from "../../../components/list/ConsultationsList";
-import { handleCreate } from "../../../utilities/eventHandlers/consultations";
 
 const ConsultationsIndex = () => {
   const consultationsData = useSelector((state) => state.consultation.data);

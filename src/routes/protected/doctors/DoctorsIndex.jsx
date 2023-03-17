@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-
 import { handleCreate } from "../../../utilities/eventHandlers/doctors";
-
 import DoctorsList from "../../../components/list/DoctorsList";
 import DoctorForm from "../../../components/form/DoctorForm";
 

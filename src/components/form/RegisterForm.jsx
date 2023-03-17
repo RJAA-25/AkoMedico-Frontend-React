@@ -6,7 +6,6 @@ import {
   checkPassword,
 } from "../../helpers/validations";
 import { handleSubmit } from "../../utilities/eventHandlers/register";
-
 import TextInput from "../input/TextInput";
 import EmailInput from "../input/EmailInput";
 import PasswordInput from "../input/PasswordInput";

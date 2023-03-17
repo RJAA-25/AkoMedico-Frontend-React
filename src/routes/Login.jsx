@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "../helpers/utilities";
 import LoginForm from "../components/form/LoginForm";
 import Footer from "../components/navigation/Footer";
 import Navbar from "../components/navigation/Navbar";
-import { getCookie } from "../helpers/utilities";
 
 const Login = () => {
   const navigate = useNavigate();

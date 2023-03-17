@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <>
       <Navbar toggle={{ show: true, check, setCheck }} />
-      <div className="drawer drawer-mobile border border-green-500">
+      <div className="drawer drawer-mobile">
         <input
           id="app-drawer"
           type="checkbox"

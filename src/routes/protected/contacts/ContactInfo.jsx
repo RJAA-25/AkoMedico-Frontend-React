@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-
 import {
   handleUpdate,
   handleDelete,
 } from "../../../utilities/eventHandlers/contacts";
 import { modalActions } from "../../../store/modal";
-
 import ContactForm from "../../../components/form/ContactForm";
 
 const ContactInfo = () => {

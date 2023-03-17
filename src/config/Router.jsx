@@ -3,7 +3,6 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-
 import Root from "../routes/Root";
 import RootError from "../components/error/RootError";
 import Login from "../routes/Login";
@@ -12,26 +11,20 @@ import Protected from "../routes/Protected";
 import Confirmation from "../routes/protected/Confirmation";
 import GetStarted from "../routes/protected/GetStarted";
 import Layout from "../routes/protected/Layout";
-import Settings from "../routes/protected/Settings";
 import Overview from "../routes/protected/Overview";
 import Profile from "../routes/protected/Profile";
-
 import Doctors from "../routes/protected/doctors/Doctors";
 import DoctorsIndex from "../routes/protected/doctors/DoctorsIndex";
 import DoctorInfo from "../routes/protected/doctors/DoctorInfo";
-
 import ExistingConditions from "../routes/protected/conditions/ExistingConditions";
 import ConditionsIndex from "../routes/protected/conditions/ConditionsIndex";
 import ConditionInfo from "../routes/protected/conditions/ConditionInfo";
-
 import EmergencyContacts from "../routes/protected/contacts/EmergencyContacts";
 import ContactsIndex from "../routes/protected/contacts/ContactsIndex";
 import ContactInfo from "../routes/protected/contacts/ContactInfo";
-
 import Consultations from "../routes/protected/consultations/Consultations";
 import ConsultationsIndex from "../routes/protected/consultations/ConsultationsIndex";
 import ConsultationInfo from "../routes/protected/consultations/ConsultationInfo";
-
 import Admissions from "../routes/protected/admissions/Admissions";
 import AdmissionsIndex from "../routes/protected/admissions/AdmissionsIndex";
 import AdmissionInfo from "../routes/protected/admissions/AdmissionInfo";
@@ -46,7 +39,6 @@ export const router = createBrowserRouter(
         <Route path="confirmation" element={<Confirmation />} />
         <Route path="get-started" element={<GetStarted />} />
         <Route element={<Layout />}>
-          <Route path="settings" element={<Settings />} />
           <Route path="overview" element={<Overview />} />
           <Route path="profile" element={<Profile />} />
           <Route path="doctors" element={<Doctors />}>

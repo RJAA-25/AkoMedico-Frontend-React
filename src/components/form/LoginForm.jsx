@@ -2,11 +2,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
-
 import { authActions } from "../../store/auth";
 import { userActions } from "../../store/user";
 import { profileActions } from "../../store/profile";
-
 import { loginUser } from "../../api/session";
 import { getFormData } from "../../helpers/utilities";
 import EmailInput from "../input/EmailInput";

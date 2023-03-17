@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-
 import { handleCreate } from "../../../utilities/eventHandlers/contacts";
-
 import ContactForm from "../../../components/form/ContactForm";
 import ContactsList from "../../../components/list/ContactsList";
 

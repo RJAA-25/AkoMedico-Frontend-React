@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import {
   fetchData,
   handleSubmit,
 } from "../../utilities/eventHandlers/getStarted";
-
 import ProfileForm from "../../components/form/ProfileForm";
 import Navbar from "../../components/navigation/Navbar";
 import Loading from "../../components/state/Loading";

@@ -23,10 +23,9 @@ const Select = (props) => {
 
   const toggleValue = (arr, value) => {
     if (value === "") return arr;
-    // console.log(arr, value);
-    return arr.includes(Number(value))
-      ? arr.filter((el) => el !== Number(value))
-      : [...arr, Number(value)];
+    return arr.includes(value)
+      ? arr.filter((el) => el !== value)
+      : [...arr, value];
   };
 
   useEffect(() => {

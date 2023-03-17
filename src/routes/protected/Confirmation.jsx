@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   handleLogout,
   handleResend,
   fetchData,
 } from "../../utilities/eventHandlers/confirmation";
-
 import Loading from "../../components/state/Loading";
 import Navbar from "../../components/navigation/Navbar";
-
 import imgSrc from "../../assets/images/confirmation.png";
 
 const Confirmation = () => {

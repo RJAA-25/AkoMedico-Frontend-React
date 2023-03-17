@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import {
   checkAge,
   checkContact,
@@ -12,7 +11,6 @@ import { countries } from "../../utilities/dataLists/countries";
 import { civilStatus } from "../../utilities/dataLists/civilStatus";
 import { sex } from "../../utilities/dataLists/sex";
 import { bloodTypes } from "../../utilities/dataLists/bloodTypes";
-
 import DateInput from "../input/DateInput";
 import TextInput from "../input/TextInput";
 import NumberInput from "../input/NumberInput";

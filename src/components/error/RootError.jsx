@@ -1,6 +1,5 @@
 import { useNavigate, useRouteError } from "react-router-dom";
 import Navbar from "../navigation/Navbar";
-
 import imgSrc from "../../assets/images/notfound.png";
 
 const RootError = () => {

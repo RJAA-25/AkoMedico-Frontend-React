@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
-
 import imageSrc from "../../../assets/images/condition.png";
 import { fetchConditions } from "../../../utilities/eventHandlers/conditions";
-
 import Loading from "../../../components/state/Loading";
 import Banner from "../../../components/general/Banner";
 

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getCookie } from "../helpers/utilities";
 import Footer from "../components/navigation/Footer";
 import Navbar from "../components/navigation/Navbar";
-import { getCookie } from "../helpers/utilities";
 
 const Root = () => {
   const navigate = useNavigate();
