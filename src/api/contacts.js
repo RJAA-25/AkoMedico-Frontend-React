@@ -1,11 +1,11 @@
-import { api } from "./_axios";
+import { api, config } from "./_axios";
 
 export const createContact = async (formData) => {
   try {
     const {
       status,
       data: { message, emergency_contact },
-    } = await api.post("/emergency-contacts/create", formData);
+    } = await api.post("/emergency-contacts/create", formData, config());
     return { status, message, emergency_contact };
   } catch (error) {
     if (error.response) {
@@ -22,7 +22,11 @@ export const updateContact = async (formData, uid) => {
     const {
       status,
       data: { message, emergency_contact },
-    } = await api.patch(`/emergency-contacts/update/${uid}`, formData);
+    } = await api.patch(
+      `/emergency-contacts/update/${uid}`,
+      formData,
+      config()
+    );
     return { status, message, emergency_contact };
   } catch (error) {
     if (error.response) {
@@ -39,7 +43,7 @@ export const destroyContact = async (uid) => {
     const {
       status,
       data: { message },
-    } = await api.delete(`/emergency-contacts/destroy/${uid}`);
+    } = await api.delete(`/emergency-contacts/destroy/${uid}`, config());
     return { status, message };
   } catch (error) {
     if (error.response) {

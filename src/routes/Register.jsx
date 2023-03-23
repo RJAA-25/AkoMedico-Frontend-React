@@ -9,7 +9,8 @@ const Register = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (getCookie("CSRF-TOKEN")) navigate("/overview", { replace: true });
+    // if (getCookie("CSRF-TOKEN")) navigate("/overview", { replace: true });
+    if (getCookie("access_token")) navigate("/overview", { replace: true });
   }, []);
 
   return (

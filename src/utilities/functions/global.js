@@ -8,6 +8,7 @@ import { consultationActions } from "../../store/consultation";
 import { admissionActions } from "../../store/admission";
 import { logoutUser } from "../../api/session";
 import { toast } from "react-hot-toast";
+import { deleteCookie } from "../../helpers/utilities";
 
 export const forceLogout = (dispatch, navigate) => {
   dispatch(authActions.logout());
@@ -18,6 +19,7 @@ export const forceLogout = (dispatch, navigate) => {
   dispatch(doctorActions.reset());
   dispatch(consultationActions.reset());
   dispatch(admissionActions.reset());
+  deleteCookie("access_token");
   navigate("/login", { replace: true });
 };
 

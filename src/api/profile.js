@@ -1,11 +1,11 @@
-import { api } from "./_axios";
+import { api, config } from "./_axios";
 
 export const createProfile = async (formData) => {
   try {
     const {
       status,
       data: { message, profile },
-    } = await api.post("/profiles/create", formData);
+    } = await api.post("/profiles/create", formData, config());
     return { status, message, profile };
   } catch (error) {
     if (error.response) {
@@ -22,7 +22,7 @@ export const updateProfile = async (formData) => {
     const {
       status,
       data: { message, profile },
-    } = await api.patch("/profiles/update", formData);
+    } = await api.patch("/profiles/update", formData, config());
     return { status, message, profile };
   } catch (error) {
     if (error.response) {

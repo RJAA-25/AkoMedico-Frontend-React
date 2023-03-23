@@ -1,11 +1,11 @@
-import { api } from "./_axios";
+import { api, config } from "./_axios";
 
 export const createPrescription = async (formData, uid) => {
   try {
     const {
       status,
       data: { message, prescriptions },
-    } = await api.post(`/prescriptions/create/${uid}`, formData);
+    } = await api.post(`/prescriptions/create/${uid}`, formData, config());
     return { status, message, prescriptions };
   } catch (error) {
     if (error.response) {
@@ -22,7 +22,7 @@ export const updatePrescription = async (formData, uid) => {
     const {
       status,
       data: { message, prescriptions },
-    } = await api.patch(`/prescriptions/update/${uid}`, formData);
+    } = await api.patch(`/prescriptions/update/${uid}`, formData, config());
     return { status, message, prescriptions };
   } catch (error) {
     if (error.response) {

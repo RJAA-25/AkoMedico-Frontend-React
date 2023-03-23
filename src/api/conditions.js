@@ -1,11 +1,11 @@
-import { api } from "./_axios";
+import { api, config } from "./_axios";
 
 export const createCondition = async (formData) => {
   try {
     const {
       status,
       data: { message, condition },
-    } = await api.post("/conditions/create", formData);
+    } = await api.post("/conditions/create", formData, config());
     return { status, message, condition };
   } catch (error) {
     if (error.response) {
@@ -22,7 +22,7 @@ export const updateCondition = async (formData, uid) => {
     const {
       status,
       data: { message, condition },
-    } = await api.patch(`/conditions/update/${uid}`, formData);
+    } = await api.patch(`/conditions/update/${uid}`, formData, config());
     return { status, message, condition };
   } catch (error) {
     if (error.response) {
@@ -39,7 +39,7 @@ export const destroyCondition = async (uid) => {
     const {
       status,
       data: { message },
-    } = await api.delete(`/conditions/destroy/${uid}`);
+    } = await api.delete(`/conditions/destroy/${uid}`, config());
     return { status, message };
   } catch (error) {
     if (error.response) {

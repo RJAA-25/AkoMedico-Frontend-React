@@ -1,11 +1,11 @@
-import { api } from "./_axios";
+import { api, config } from "./_axios";
 
 export const createResult = async (formData, uid) => {
   try {
     const {
       status,
       data: { message, results },
-    } = await api.post(`/results/create/${uid}`, formData);
+    } = await api.post(`/results/create/${uid}`, formData, config());
     return { status, message, results };
   } catch (error) {
     if (error.response) {
@@ -22,7 +22,7 @@ export const updateResult = async (formData, uid) => {
     const {
       status,
       data: { message, results },
-    } = await api.patch(`/results/update/${uid}`, formData);
+    } = await api.patch(`/results/update/${uid}`, formData, config());
     return { status, message, results };
   } catch (error) {
     if (error.response) {

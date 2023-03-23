@@ -1,11 +1,11 @@
-import { api } from "./_axios";
+import { api, config } from "./_axios";
 
 export const initAccess = async () => {
   try {
     const {
       status,
       data: { user, profile },
-    } = await api.get("/requests/access");
+    } = await api.get("/requests/access", config());
     return { status, user, profile };
   } catch (error) {
     if (error.response) {
@@ -19,7 +19,7 @@ export const initAccess = async () => {
 
 export const initOverview = async () => {
   try {
-    const { status, data } = await api.get("/requests/overview");
+    const { status, data } = await api.get("/requests/overview", config());
     return { status, ...data };
   } catch (error) {
     if (error.response) {
@@ -36,7 +36,7 @@ export const initDoctors = async () => {
     const {
       status,
       data: { doctors },
-    } = await api.get("/requests/doctors");
+    } = await api.get("/requests/doctors", config());
     return { status, doctors };
   } catch (error) {
     if (error.response) {
@@ -53,7 +53,7 @@ export const initContacts = async () => {
     const {
       status,
       data: { contacts },
-    } = await api.get("/requests/emergency-contacts");
+    } = await api.get("/requests/emergency-contacts", config());
     return { status, contacts };
   } catch (error) {
     if (error.response) {
@@ -70,7 +70,7 @@ export const initConditions = async () => {
     const {
       status,
       data: { conditions },
-    } = await api.get("/requests/existing-conditions");
+    } = await api.get("/requests/existing-conditions", config());
     return { status, conditions };
   } catch (error) {
     if (error.response) {
@@ -87,7 +87,7 @@ export const initConsultations = async () => {
     const {
       status,
       data: { consultations },
-    } = await api.get("/requests/consultations");
+    } = await api.get("/requests/consultations", config());
     return { status, consultations };
   } catch (error) {
     if (error.response) {
@@ -104,7 +104,7 @@ export const initAdmissions = async () => {
     const {
       status,
       data: { admissions },
-    } = await api.get("/requests/admissions");
+    } = await api.get("/requests/admissions", config());
     return { status, admissions };
   } catch (error) {
     if (error.response) {

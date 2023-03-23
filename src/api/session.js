@@ -1,12 +1,12 @@
-import { api } from "./_axios";
+import { api, config } from "./_axios";
 
 export const loginUser = async (formData) => {
   try {
     const {
       status,
-      data: { message, user, profile },
+      data: { message, user, expiry, access_token, profile },
     } = await api.post("/login", formData);
-    return { status, message, user, profile };
+    return { status, message, user, expiry, access_token, profile };
   } catch (error) {
     if (error.response) {
       const {
@@ -22,7 +22,7 @@ export const logoutUser = async () => {
     const {
       status,
       data: { message },
-    } = await api.post("/logout");
+    } = await api.post("/logout", null, config());
     return { status, message };
   } catch (error) {
     if (error.response) {

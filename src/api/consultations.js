@@ -1,11 +1,11 @@
-import { api } from "./_axios";
+import { api, config } from "./_axios";
 
 export const createConsultation = async (formData) => {
   try {
     const {
       status,
       data: { message, consultation },
-    } = await api.post("/consultations/create", formData);
+    } = await api.post("/consultations/create", formData, config());
     return { status, message, consultation };
   } catch (error) {
     if (error.response) {
@@ -22,7 +22,7 @@ export const updateConsultation = async (formData, uid) => {
     const {
       status,
       data: { message, consultation },
-    } = await api.patch(`/consultations/update/${uid}`, formData);
+    } = await api.patch(`/consultations/update/${uid}`, formData, config());
     return { status, message, consultation };
   } catch (error) {
     if (error.response) {
@@ -39,7 +39,7 @@ export const destroyConsultation = async (uid) => {
     const {
       status,
       data: { message },
-    } = await api.delete(`/consultations/destroy/${uid}`);
+    } = await api.delete(`/consultations/destroy/${uid}`, config());
     return { status, message };
   } catch (error) {
     if (error.response) {

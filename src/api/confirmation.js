@@ -1,11 +1,11 @@
-import { api } from "./_axios";
+import { api, config } from "./_axios";
 
 export const resendConfirmation = async () => {
   try {
     const {
       status,
       data: { message },
-    } = await api.post("/confirmations/resend");
+    } = await api.post("/confirmations/resend", null, config());
     return { status, message };
   } catch (error) {
     if (error.response) {

@@ -1,6 +1,18 @@
 export const getCookie = (name) =>
   document.cookie.match("(^|;)\\s*" + name + "\\s*=\\s*([^;]+)")?.pop() || "";
 
+export const setCookie = (name, value, exp) => {
+  const cookie = `${name}=${value};`;
+  const expiry = `expires=${new Date(exp * 1000).toUTCString()};`;
+  document.cookie = cookie + expiry + "path=/;";
+};
+
+export const deleteCookie = (name) => {
+  const cookie = `${name}=;`;
+  const expiry = `expires=${new Date(0).toUTCString()}`;
+  document.cookie = cookie + expiry + "path=/;";
+};
+
 export const generateKey = () => {
   return (Math.random() + 1).toString(36).substring(7);
 };
